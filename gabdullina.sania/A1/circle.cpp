@@ -7,9 +7,9 @@
 
 Circle::Circle(const point_t& pos, double radius) :center_(pos),radius_(radius)
 {
-	if (radius_ < 0) {
-		std::cout << "Radius can't be negative" <<std::endl;
-	}
+  if (radius_ < 0) {
+    std::cout << "Radius can't be negative" <<std::endl;
+  }
 }
 
 Circle::Circle(double x, double y, double radius) :Circle({ x,y }, radius)
@@ -17,12 +17,12 @@ Circle::Circle(double x, double y, double radius) :Circle({ x,y }, radius)
 
 double Circle::getArea() const 
 {
-	return M_PI * radius_ * radius_;
+  return M_PI * radius_ * radius_;
 }
 
 rectangle_t Circle::getFrameRect() const 
 {
-	return { radius_ * 2,radius_ * 2,center_ };
+  return { radius_ * 2,radius_ * 2,center_ };
 }
 
 point_t Circle::getPos() const 
@@ -32,11 +32,11 @@ point_t Circle::getPos() const
 
 void Circle::move(const point_t& center) 
 {
-	center_ = center;
+  center_ = center;
 }
 
 void Circle::move(double deltaX, double deltaY) 
 {
-	center_.x += deltaX;
-	center_.y += deltaY;
+  center_.x += deltaX;
+  center_.y += deltaY;
 }
