@@ -47,3 +47,5 @@ void Circle::getInfo() const
   std::cout << "Radius: " << radius_ << std::endl;
   std::cout << "Center: " << "(" << position_.x << ", " << position_.y << ")" << std::endl;
 }
+
+

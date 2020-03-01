@@ -54,3 +54,5 @@ void Rectangle::getInfo() const
   std::cout << "Height: " << height_ << std::endl;
   std::cout << "Center: " << "(" << position_.x << ", " << position_.y << ")" << std::endl;
 }
+
+
