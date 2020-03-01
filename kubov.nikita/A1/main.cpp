@@ -1,7 +1,7 @@
+#include <iostream>
 #include "shape.hpp"
 #include "rectangle.hpp"
 #include "circle.hpp"
-#include <iostream>
 
 void printInfoAboutFrameRect(Shape *figure)
 {
@@ -29,6 +29,8 @@ int main()
 
   printInfoAboutFrameRect(figure);
 
+  delete figure;
+
   figure = new Rectangle(position, 3.0, 4.0);
   figure->getInfo();
 
@@ -41,6 +43,8 @@ int main()
   figure->getInfo();
 
   printInfoAboutFrameRect(figure);
+
+  delete figure;
 
   return 0;
 }
