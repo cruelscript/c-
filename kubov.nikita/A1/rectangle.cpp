@@ -1,14 +1,6 @@
 #include "rectangle.hpp"
 #include <stdexcept>
-
-Rectangle::Rectangle() :
-  width_(2.0),
-  height_(1.0)
-{
-  center_.x = 0.0;
-  center_.y = 0.0;
-}
-
+#include <iostream>
 
 Rectangle::Rectangle(const point_t &center, const double width, const double height) :
   center_(center),
@@ -37,12 +29,7 @@ double Rectangle::getArea() const
 
 rectangle_t Rectangle::getFrameRect() const
 {
-  rectangle_t frameRectangle;
-  frameRectangle.height = height_;
-  frameRectangle.width = width_;
-  frameRectangle.pos = center_;
-
-  return frameRectangle;
+  return {width_, height_, center_};
 }
 
 void Rectangle::move(const point_t &positionNew)
@@ -56,12 +43,12 @@ void Rectangle::move(const double &deltaX, const double &deltaY)
   center_.y += deltaY;
 }
 
-void Rectangle::getInfo() const
+void Rectangle::print() const
 {
-  std::cout << "This is rectangle." << std::endl;
-  std::cout << "Width: " << width_ << std::endl;
-  std::cout << "Height: " << height_ << std::endl;
-  std::cout << "Center: " << "(" << center_.x << ", " << center_.y << ")" << std::endl;
+  std::cout << "This is rectangle\n";
+  std::cout << "Width: " << width_ << "\n";
+  std::cout << "Height: " << height_ << "\n";
+  std::cout << "Center: (" << center_.x << ", " << center_.y << ")\n";
 }
 
 
