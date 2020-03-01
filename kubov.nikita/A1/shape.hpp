@@ -2,7 +2,6 @@
 #define SHAPE_HPP
 
 #include "base-types.hpp"
-#include <iostream>
 
 class Shape
 {
@@ -12,8 +11,7 @@ public:
   virtual rectangle_t getFrameRect() const = 0;
   virtual void move(const point_t &positionNew) = 0;
   virtual void move(const double &deltaX, const double &deltaY) = 0;
-  virtual void getInfo() const = 0;
-
+  virtual void print() const = 0;
 };
 #endif
 
