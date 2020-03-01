@@ -1,14 +1,14 @@
-#include <iostream>
 #include "shape.hpp"
 #include "rectangle.hpp"
 #include "circle.hpp"
+#include <iostream>
 
 void printInfoAboutFrameRect(Shape *figure)
 {
   std::cout << "\nFrame rectangle " << std::endl;
   std::cout << "Height = " << figure->getFrameRect().height << "\nWidth = " << figure->getFrameRect().width << "\n";
   std::cout << "Center: " << "(" << figure->getFrameRect().position.x << ", "
-    << figure->getFrameRect().position.y << ")\n" << std::endl;
+            << figure->getFrameRect().position.y << ")\n" << std::endl;
 }
 
 int main()
