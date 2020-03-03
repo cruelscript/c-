@@ -7,19 +7,19 @@ Rectangle::Rectangle(const point_t &center, const double width, const double hei
   width_(width),
   height_(height)
 {
-    if (width_ <= 0.0)
-    {
-      width_ = 0.0;
-      
-      throw std::invalid_argument("Error. Width can't be <= 0");
-    }
+  if (width_ <= 0.0)
+  {
+    width_ = 0.0;
     
-    if (height_ <= 0.0)
-    {
-      height_ = 0.0;
+    throw std::invalid_argument("Error. Width can't be <= 0");
+  }
+  
+  if (height_ <= 0.0)
+  {
+    height_ = 0.0;
       
-      throw std::invalid_argument("Error. Height can't be <= 0");
-    }
+    throw std::invalid_argument("Error. Height can't be <= 0");
+  }
 }
  
 double Rectangle::getArea() const
