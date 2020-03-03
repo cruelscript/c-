@@ -8,7 +8,7 @@ Circle::Circle(const point_t &center, const double radius) :
   center_(center),
   radius_(radius)
 {
-  if(radius <= 0.0)
+  if (radius <= 0.0)
   {
     radius_ = 0.0;
    
