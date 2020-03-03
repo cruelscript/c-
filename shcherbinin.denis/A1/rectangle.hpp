@@ -1,8 +1,7 @@
 #ifndef A1__RECTANGLE_HPP_
 #define A1__RECTANGLE_HPP_
-
-#include <cassert>
 #include "shape.hpp"
+#include "base-types.hpp"
 
 class Rectangle : public Shape {
 
@@ -16,8 +15,6 @@ class Rectangle : public Shape {
   rectangle_t getFrameRect() const override;
   void move(const point_t &point) override;
   void move(double dX, double dY) override;
-
-  point_t getPoint() const override;
 
  private:
   rectangle_t rectangle_;

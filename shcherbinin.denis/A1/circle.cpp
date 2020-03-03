@@ -1,10 +1,15 @@
 #include "circle.hpp"
+#include <cassert>
+#include <cmath>
+#include "base-types.hpp"
 
-Circle::Circle(double radius, double x, double y) : Circle(radius, {x, y})
+Circle::Circle(double radius, double x, double y) :
+    Circle(radius, {x, y})
 {}
 
-Circle::Circle(double radius, const point_t &center) : radius_(radius),
-                                                       center_(center)
+Circle::Circle(double radius, const point_t &center) :
+    radius_(radius),
+    center_(center)
 {
   assert(radius > 0.0);
 }
@@ -29,9 +34,4 @@ void Circle::move(double dX, double dY)
 {
   center_.x += dX;
   center_.y += dY;
-}
-
-point_t Circle::getPoint() const
-{
-  return center_;
 }

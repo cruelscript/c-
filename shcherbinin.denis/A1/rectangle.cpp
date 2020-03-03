@@ -1,9 +1,13 @@
 #include "rectangle.hpp"
+#include <cassert>
+#include "base-types.hpp"
 
-Rectangle::Rectangle(double width, double height, double x, double y) : Rectangle(width, height, {x, y})
+Rectangle::Rectangle(double width, double height, double x, double y) :
+    Rectangle(width, height, {x, y})
 {}
 
-Rectangle::Rectangle(double width, double height, const point_t &center) : rectangle_({width, height, center})
+Rectangle::Rectangle(double width, double height, const point_t &center) :
+    rectangle_({width, height, center})
 {
   assert(width > 0.0);
   assert(height > 0.0);
@@ -28,9 +32,4 @@ void Rectangle::move(double dX, double dY)
 {
   rectangle_.pos.x += dX;
   rectangle_.pos.y += dY;
-}
-
-point_t Rectangle::getPoint() const
-{
-  return rectangle_.pos;
 }
