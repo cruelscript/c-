@@ -1,15 +1,14 @@
 #include "rectangle.hpp"
 
 #include <iostream>
+#include <cassert>
 
-Rectangle::Rectangle(const point_t& pos, double width, double height) :
-  center_(pos),
+Rectangle::Rectangle(const point_t& center, double width, double height) :
+  center_(center),
   width_(width),
   height_(height)
 {
-  if (width <= 0 && height <= 0) {
-    std::cout << "Width and height of rectangle are incorrect" << std::endl;
-  }
+  assert((width_ > 0.0) && (height_ > 0.0));
 }
 
 Rectangle::Rectangle(double x, double y, double width, double height) :
@@ -21,9 +20,9 @@ double Rectangle::getArea() const
   return width_ * height_;
 }
 
-rectangle_t Rectangle::getFrameRect()const 
+rectangle_t Rectangle::getFrameRect() const 
 {
-  return { width_,height_,center_ };
+  return {width_, height_, center_};
 }
 
 point_t Rectangle::getPos() const 

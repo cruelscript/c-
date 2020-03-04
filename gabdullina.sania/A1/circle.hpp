@@ -7,7 +7,7 @@
 class Circle:public Shape
 {
 public:
-  Circle(const point_t& pos, double radius);
+  Circle(const point_t& center, double radius);
   Circle(double x, double y, double radius);
 
   double getArea() const override;

@@ -3,16 +3,18 @@
 #include "circle.hpp"
 
 #include <iostream>
+#include <cassert>
 #include <cmath>
 
-Circle::Circle(const point_t& pos, double radius) :center_(pos),radius_(radius)
+Circle::Circle(const point_t& center, double radius) :
+  center_(center),
+  radius_(radius)
 {
-  if (radius_ < 0) {
-    std::cout << "Radius can't be negative" <<std::endl;
-  }
+  assert(radius_ >= 0.0);
 }
 
-Circle::Circle(double x, double y, double radius) :Circle({ x,y }, radius)
+Circle::Circle(double x, double y, double radius) :
+  Circle({x, y}, radius)
 {}
 
 double Circle::getArea() const 
