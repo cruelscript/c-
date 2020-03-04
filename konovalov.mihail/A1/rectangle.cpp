@@ -1,4 +1,4 @@
-#include "Rectangle.hpp"
+#include "rectangle.hpp"
 #include <cassert>
 
 Rectangle::Rectangle(const rectangle_t &rectangle) :

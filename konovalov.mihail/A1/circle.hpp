@@ -1,7 +1,7 @@
 #ifndef FIRSTLAB_CIRCLE_HPP
 #define FIRSTLAB_CIRCLE_HPP
 
-#include "Shape.hpp"
+#include "shape.hpp"
 
 class Circle : public Shape
 {
