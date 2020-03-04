@@ -16,8 +16,8 @@ void Circle::move(const point_t &point)
 
 void Circle::move(double dx, double dy)
 {
-  center_.x_ += dx;
-  center_.y_ += dy;
+  center_.x += dx;
+  center_.y += dy;
 }
 
 double Circle::getArea() const
