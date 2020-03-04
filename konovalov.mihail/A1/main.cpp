@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Rectangle.hpp"
-#include "Circle.hpp"
+#include "rectangle.hpp"
+#include "circle.hpp"
 
 inline void print(const Shape *shape)
 {
@@ -14,9 +14,9 @@ inline void print(const Shape *shape)
 
 int main()
 {
-  Shape *rectangle = new Rectangle({2.28, 3.32, {0.1, 0.0}});
-  Shape *circle = new Circle(8.9,{1.1, 3.2});
-  Shape *shapes[2] = {rectangle, circle};
+  Rectangle rectangle({2.28, 3.32, {0.1, 0.0}});
+  Circle circle(8.9, {1.1, 3.2});
+  Shape *shapes[2] = {&rectangle, &circle};
 
   for (Shape *shape: shapes)
   {

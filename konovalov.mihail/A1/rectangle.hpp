@@ -1,7 +1,7 @@
 #ifndef FIRSTLAB_RECTANGLE_HPP
 #define FIRSTLAB_RECTANGLE_HPP
 
-#include "Shape.hpp"
+#include "shape.hpp"
 
 class Rectangle : public Shape
 {
