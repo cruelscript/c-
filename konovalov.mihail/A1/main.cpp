@@ -5,10 +5,10 @@
 inline void print(const Shape *shape)
 {
   std::cout << "Shape: " << typeid(*shape).name() << "!!!" << "\n";
-  std::cout << "Frame rectangle(width, height): (" << shape->getFrameRect().width_
-            << ", " << shape->getFrameRect().height_ << ")" << "\n";
-  std::cout << "Frame rectangle position(x, y) : (" << shape->getFrameRect().pos_.x_ << ", "
-            << shape->getFrameRect().pos_.y_ << ")" << "\n";
+  std::cout << "Frame rectangle(width, height): (" << shape->getFrameRect().width
+            << ", " << shape->getFrameRect().height << ")" << "\n";
+  std::cout << "Frame rectangle position(x, y) : (" << shape->getFrameRect().pos.x << ", "
+            << shape->getFrameRect().pos.y << ")" << "\n";
   std::cout << "Area of shape: " << shape->getArea() << "\n";
 }
 
