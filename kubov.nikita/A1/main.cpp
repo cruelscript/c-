@@ -19,10 +19,10 @@ int main()
   Shape *figure = new Circle(center, 1.0);
   figure->print();
 
-  std::cout << "Area = " << figure->getArea() << std::endl;
+  std::cout << "Area = " << figure->getArea() << "\n";
   printInfoAboutFrameRect(figure);
 
-  std::cout << "Move circle to (3.0, 4.0)" << std::endl;
+  std::cout << "Move circle to (3.0, 4.0)" << "\n";
   point_t positionNew = {3.0, 4.0};
   figure->move(positionNew);
 
@@ -34,10 +34,10 @@ int main()
   figure = new Rectangle(center, 3.0, 4.0);
   figure->print();
 
-  std::cout << "Area = " << figure->getArea() << std::endl;
+  std::cout << "Area = " << figure->getArea() << "\n";
   printInfoAboutFrameRect(figure);
 
-  std::cout << "Move rectangle on x: +5.1, y: -2.3\n" << std::endl;
+  std::cout << "Move rectangle on x: +5.1, y: -2.3\n" << "\n";
   figure->move(5.1, -2.3);
 
   figure->print();

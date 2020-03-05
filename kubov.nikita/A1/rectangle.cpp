@@ -9,8 +9,6 @@ Rectangle::Rectangle(const point_t &center, const double width, const double hei
 {
   if (width_ <= 0.0)
   {
-    width_ = 0.0;
-    
     throw std::invalid_argument("Error. Width can't be <= 0");
   }
   
