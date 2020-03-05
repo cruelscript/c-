@@ -14,8 +14,6 @@ Rectangle::Rectangle(const point_t &center, const double width, const double hei
   
   if (height_ <= 0.0)
   {
-    height_ = 0.0;
-      
     throw std::invalid_argument("Error. Height can't be <= 0");
   }
 }
