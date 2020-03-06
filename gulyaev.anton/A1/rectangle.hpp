@@ -17,7 +17,7 @@ public:
 
   void move(const point_t &point) override;
 
-  void move(double x, double y) override;
+  void move(double deltaX, double deltaY) override;
 
   point_t getPoint() const override;
 

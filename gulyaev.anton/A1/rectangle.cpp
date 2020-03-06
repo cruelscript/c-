@@ -24,10 +24,10 @@ void Rectangle::move(const point_t &point)
   rectangle_.pos = point;
 }
 
-void Rectangle::move(double x, double y)
+void Rectangle::move(double deltaX, double deltaY)
 {
-  rectangle_.pos.x += x;
-  rectangle_.pos.y += y;
+  rectangle_.pos.x += deltaX;
+  rectangle_.pos.y += deltaY;
 }
 
 point_t Rectangle::getPoint() const

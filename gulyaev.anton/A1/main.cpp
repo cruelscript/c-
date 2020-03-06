@@ -4,9 +4,7 @@
 
 int main()
 {
-  Shape *figures[2];
-  figures[0] = new Rectangle(20., 10., 0., 0.);
-  figures[1] = new Circle(5., 30., 30.);
+  Shape *figures[2]{new Rectangle(20., 10., 0., 0.), new Circle(5., 30., 30.)};
   const char *myShapeType;
 
   for (int i = 0; i < 2; i++)
@@ -19,7 +17,6 @@ int main()
 
     figures[i]->move({2., 2.});
     std::cout << "Move " << myShapeType << " to position (2; 2)\n";
-
 
     std::cout << "Second position of " << myShapeType << " (" << figures[i]->getPoint().x << "; "
               << figures[i]->getPoint().y << ") \n";
