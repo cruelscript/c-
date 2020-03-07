@@ -6,7 +6,7 @@
 class Circle : public Shape
 {
 public:
-  explicit Circle(double radius = 0.0, const point_t& center = {});
+  explicit Circle(double radius, const point_t& center);
 
   double getArea() const override;
 
