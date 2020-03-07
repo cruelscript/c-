@@ -5,14 +5,14 @@
 
 int main()
 {
-  Circle circle1 {point_t{2.4, -1}, 3};
-  Circle circle2 {1.6, 3, 2.5};
-  Rectangle rectangle1 {point_t{1.5, 2}, 3.1, 5.7};
-  Rectangle rectangle2 {4, 2.9, 5.6, 9.1 };
+  Circle circle1(point_t{2.4, -1}, 3);
+  Circle circle2(1.6, 3, 2.5);
+  Rectangle rectangle1(point_t{1.5, 2}, 3.1, 5.7);
+  Rectangle rectangle2(4, 2.9, 5.6, 9.1);
 
   Shape* figures[] = {&circle1, &circle2, &rectangle1, &rectangle2};
-
-  for (int i = 0; i < 4; i++) 
+  
+  for (int i = 0; i < 4; i++)
   {
     std::cout << "Area of figure number " << i + 1 << 
       " is " << figures[i]->getArea() << "\n";

@@ -1,8 +1,5 @@
-#define _USE_MATH_DEFINES
-
 #include "circle.hpp"
 
-#include <iostream>
 #include <cassert>
 #include <cmath>
 
