@@ -7,7 +7,7 @@ class Rectangle : public Shape
 {
 public:
 
-  explicit Rectangle(const rectangle_t &rectangle = {});
+  explicit Rectangle(const rectangle_t &rectangle);
 
   double getArea() const override;
 
