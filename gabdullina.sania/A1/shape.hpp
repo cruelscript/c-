@@ -13,4 +13,5 @@ public:
   virtual void move(const point_t& center) = 0;
   virtual void move(double deltaX, double deltaY) = 0; 
 };
+
 #endif 
