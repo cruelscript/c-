@@ -1,10 +1,12 @@
-﻿#include "rectangle.hpp"
+﻿#include <iostream>
+#include <cassert>
+#include "rectangle.hpp"
 #include "circle.hpp"
-#include <iostream>
 
 int main()
 {
   point_t dot = { 1.1, 1.1 };
+
   Shape* rectangle = new Rectangle(dot, 12.345, 14.21);
   Shape* circle = new Circle(dot, 13.2);
 
