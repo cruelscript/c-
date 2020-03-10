@@ -14,4 +14,4 @@ private:
   double width_;
   double height_;
 };
-#endif //! RECTANGLE_HPP
+#endif

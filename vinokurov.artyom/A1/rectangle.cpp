@@ -23,7 +23,7 @@ rectangle_t Rectangle::getFrameRect() const
 
 void Rectangle::print() const
 {
-  std::cout << "\nWidth of the rectangle is " << width_ 
-    << ", height of the rectangle is " << height_ 
+  std::cout << "\nWidth of the rectangle is " << width_
+    << ", height of the rectangle is " << height_
     << ". The center of the rectangle is at x: " << pos_.x << ", y: " << pos_.y << "\n";
 }

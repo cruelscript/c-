@@ -1,6 +1,6 @@
 #include "shape.hpp"
 
-Shape::Shape(const point_t& point): 
+Shape::Shape(const point_t& point) :
   pos_(point) {}
 
 void Shape::move(const double x, const double y)

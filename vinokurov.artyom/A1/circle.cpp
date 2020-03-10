@@ -24,6 +24,6 @@ rectangle_t Circle::getFrameRect() const
 
 void Circle::print() const
 {
-  std::cout << "\nRadius of the circle is " << radius_ 
+  std::cout << "\nRadius of the circle is " << radius_
     << ". The center of the circle is at x: " << pos_.x << ", y: " << pos_.y << "\n";
 }

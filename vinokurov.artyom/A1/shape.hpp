@@ -16,4 +16,4 @@ public:
 protected:
   point_t pos_;
 };
-#endif //! SHAPE_HPP
+#endif
