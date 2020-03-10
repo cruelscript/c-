@@ -19,5 +19,8 @@ int main()
   circle->move(21.4, 43.5);
   circle->print();
 
+  delete rectangle;
+  delete circle;
+
   return 0;
 };
