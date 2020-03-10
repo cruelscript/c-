@@ -1,6 +1,7 @@
-﻿#include <iostream>
-#include "rectangle.hpp"
+﻿#include "rectangle.hpp"
 #include "circle.hpp"
+#include <iostream>
+
 int main()
 {
   point_t dot = { 1.1, 1.1 };
@@ -10,8 +11,8 @@ int main()
   circle->print();
   rectangle->print();
 
-  std::cout <<"\nArea of the rectangle is "<< rectangle->getArea();
-  std::cout <<"\nArea of the circle is "<< circle->getArea();
+  std::cout << "\nArea of the rectangle is " << rectangle->getArea();
+  std::cout << "\nArea of the circle is " << circle->getArea();
 
   std::cout << "\nFrame width of the circle is " << circle->getFrameRect().width << ", position x is " << circle->getFrameRect().pos.x;
 
@@ -19,4 +20,4 @@ int main()
   circle->print();
 
   return 0;
-}
+};
