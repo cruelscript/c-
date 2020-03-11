@@ -27,7 +27,7 @@ double kubov::Rectangle::getArea() const
   return width_ * height_;
 }
 
-rectangle_t kubov::Rectangle::getFrameRect() const
+kubov::rectangle_t kubov::Rectangle::getFrameRect() const
 {
   return {width_, height_, center_};
 }
