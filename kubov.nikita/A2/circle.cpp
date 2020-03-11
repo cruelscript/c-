@@ -21,7 +21,7 @@ double kubov::Circle::getArea() const
   return M_PI * radius_ * radius_;
 }
 
-rectangle_t kubov::Circle::getFrameRect() const
+kubov::rectangle_t kubov::Circle::getFrameRect() const
 {
   return {2.0 * radius_, 2.0 * radius_, center_};
 }
