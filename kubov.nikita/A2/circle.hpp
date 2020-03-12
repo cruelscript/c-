@@ -13,7 +13,7 @@ public:
   virtual double getArea() const override;
   virtual rectangle_t getFrameRect() const override;
   virtual void move(const point_t &positionNew) override;
-  virtual void move(const double &deltaX, const double &deltaY) override;
+  virtual void move(const double deltaX, const double deltaY) override;
   virtual void print() const override;
   virtual void scale(const double coefficient) override;
 

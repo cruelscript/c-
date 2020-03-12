@@ -1,6 +1,8 @@
-#define _USE_MATH_DEFINES
 #include "circle.hpp"
+
+#define _USE_MATH_DEFINES
 #include <cmath>
+
 #include <stdexcept>
 #include <iostream>
 
@@ -31,7 +33,7 @@ void kubov::Circle::move(const point_t &positionNew)
   center_ = positionNew;
 }
 
-void kubov::Circle::move(const double &deltaX, const double &deltaY)
+void kubov::Circle::move(const double deltaX, const double deltaY)
 {
   center_.x += deltaX;
   center_.y += deltaY;

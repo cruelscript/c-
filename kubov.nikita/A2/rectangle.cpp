@@ -1,4 +1,5 @@
 #include "rectangle.hpp"
+
 #include <stdexcept>
 #include <iostream>
 
@@ -37,7 +38,7 @@ void kubov::Rectangle::move(const point_t &positionNew)
   center_ = positionNew;
 }
 
-void kubov::Rectangle::move(const double &deltaX, const double &deltaY)
+void kubov::Rectangle::move(const double deltaX, const double deltaY)
 {
   center_.x += deltaX;
   center_.y += deltaY;

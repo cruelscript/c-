@@ -2,6 +2,7 @@
 #define BOOST_TEST_DYN_LINK
 
 #include <boost/test/included/unit_test.hpp>
+#include <boost/test/tools/floating_point_comparison.hpp>
 
 #include <stdexcept>
 #include <cmath>
@@ -11,7 +12,7 @@
 
 BOOST_AUTO_TEST_SUITE(Recatangle_Tests)
 
-  BOOST_AUTO_TEST_CASE(test_invalid_argument_rectangle)
+  BOOST_AUTO_TEST_CASE(Test_Invalid_Argument_Rectangle)
   {
     BOOST_CHECK_THROW(kubov::Rectangle rectangle({0.0, 0.0}, -3.0, 5.0), std::invalid_argument);
   }
@@ -20,8 +21,8 @@ BOOST_AUTO_TEST_SUITE(Recatangle_Tests)
   {
     kubov::Rectangle rectangle({0.0, 0.0}, 2.0, 5.5);
     rectangle.move({5.5, 7.4});
-    BOOST_CHECK_EQUAL(rectangle.getFrameRect().width, 2.0);
-    BOOST_CHECK_EQUAL(rectangle.getFrameRect().height, 5.5);
+    BOOST_CHECK_CLOSE_FRACTION(rectangle.getFrameRect().width, 2.0, 0.001);
+    BOOST_CHECK_CLOSE_FRACTION(rectangle.getFrameRect().height, 5.5, 0.001);
   }
 
 
@@ -29,15 +30,15 @@ BOOST_AUTO_TEST_SUITE(Recatangle_Tests)
   {
     kubov::Rectangle rectangle({0.0, 0.0}, 2.0, 5.5);
     rectangle.move({6.4, 4.5});
-    BOOST_CHECK_EQUAL(rectangle.getArea(), 11.0);
+    BOOST_CHECK_CLOSE_FRACTION(rectangle.getArea(), 11.0, 0.001);
   }
 
   BOOST_AUTO_TEST_CASE(Test_Move_Delta_Side_Rectangle)
   {
     kubov::Rectangle rectangle({0.0, 0.0}, 2.0, 5.5);
     rectangle.move(7.5, 2.8);
-    BOOST_CHECK_EQUAL(rectangle.getFrameRect().width, 2.0);
-    BOOST_CHECK_EQUAL(rectangle.getFrameRect().height, 5.5);
+    BOOST_CHECK_CLOSE_FRACTION(rectangle.getFrameRect().width, 2.0, 0.001);
+    BOOST_CHECK_CLOSE_FRACTION(rectangle.getFrameRect().height, 5.5, 0.001);
   }
 
   BOOST_AUTO_TEST_CASE(Test_Move_Delta_Area_Rectangle)
@@ -68,8 +69,8 @@ BOOST_AUTO_TEST_SUITE(Circle_Tests)
   {
     kubov::Circle circle({0.0, 0.0}, 2.0);
     circle.move({5.5, 7.4});
-    BOOST_CHECK_EQUAL(circle.getFrameRect().width, 4.0);
-    BOOST_CHECK_EQUAL(circle.getFrameRect().height, 4.0);
+    BOOST_CHECK_CLOSE_FRACTION(circle.getFrameRect().width, 4.0, 0.001);
+    BOOST_CHECK_CLOSE_FRACTION(circle.getFrameRect().height, 4.0, 0.001);
   }
 
   BOOST_AUTO_TEST_CASE(Test_Move_Point_Area_Circle)
@@ -83,8 +84,8 @@ BOOST_AUTO_TEST_SUITE(Circle_Tests)
   {
     kubov::Circle circle({0.0, 0.0}, 2.0);
     circle.move(7.5, 2.8);
-    BOOST_CHECK_EQUAL(circle.getFrameRect().width, 4.0);
-    BOOST_CHECK_EQUAL(circle.getFrameRect().height, 4.0);
+    BOOST_CHECK_CLOSE_FRACTION(circle.getFrameRect().width, 4.0, 0.001);
+    BOOST_CHECK_CLOSE_FRACTION(circle.getFrameRect().height, 4.0, 0.001);
   }
 
   BOOST_AUTO_TEST_CASE(Test_Move_Delta_Area_Circle)
