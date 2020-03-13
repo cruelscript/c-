@@ -1,28 +1,27 @@
 ﻿#include <iostream>
-#include <cassert>
 #include "rectangle.hpp"
 #include "circle.hpp"
 
 int main()
 {
-  point_t dot = { 1.1, 1.1 };
+  point_t dot = {1.1, 1.1};
 
-  Shape* rectangle = new Rectangle(dot, 12.345, 14.21);
-  Shape* circle = new Circle(dot, 13.2);
+  Rectangle rectangle(dot, 12.345, 14.21);
+  Circle circle(dot, 13.2);
 
-  circle->print();
-  rectangle->print();
+  Shape* figures[2] = {&rectangle, &circle};
 
-  std::cout << "\nArea of the rectangle is " << rectangle->getArea();
-  std::cout << "\nArea of the circle is " << circle->getArea();
-
-  std::cout << "\nFrame width of the circle is " << circle->getFrameRect().width << ", position x is " << circle->getFrameRect().pos.x;
-
-  circle->move(21.4, 43.5);
-  circle->print();
-
-  delete rectangle;
-  delete circle;
-
+  for (Shape* shape : figures)
+  {
+    shape->print();
+    std::cout << "\nArea of the figure is " << shape->getArea();
+    std::cout << "\nFrame width of the figure is " << shape->getFrameRect().width 
+      << ", position is at x: " << shape->getFrameRect().pos.x;
+    shape->move(21.4, 43.6);
+    shape->print();
+    shape->move({ -1.6, -70.6567 });
+    shape->print();
+  }
+  
   return 0;
 };
