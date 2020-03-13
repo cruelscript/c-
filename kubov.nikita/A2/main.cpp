@@ -4,6 +4,11 @@
 
 void printInfoAboutFrameRect(kubov::Shape *figure)
 {
+  if(figure == nullptr)
+  {
+    throw std::invalid_argument("The pointer to the shape is empty");
+  }
+
   std::cout << "\nFrame rectangle\n";
   std::cout << "Height = " << figure->getFrameRect().height << "\nWidth = " << figure->getFrameRect().width << "\n";
   std::cout << "Center: " << "(" << figure->getFrameRect().pos.x << ", "
