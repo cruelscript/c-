@@ -6,7 +6,7 @@ void printInfoAboutFrameRect(kubov::Shape *figure)
 {
   if(figure == nullptr)
   {
-    throw std::invalid_argument("The pointer to the shape is empty");
+    throw std::invalid_argument("In function was passed nullptr");
   }
 
   std::cout << "\nFrame rectangle\n";
@@ -17,46 +17,62 @@ void printInfoAboutFrameRect(kubov::Shape *figure)
 
 int main()
 {
-  kubov::point_t center = {1.1, 1.5};
+  kubov::Shape *figure = nullptr;
 
-  kubov::Shape *figure = new kubov::Circle(center, 1.0);
-  figure->print();
+  try
+  {
+    kubov::point_t center = {1.1, 1.5};
 
-  std::cout << "Area = " << figure->getArea() << "\n";
-  printInfoAboutFrameRect(figure);
+    figure = new kubov::Circle(center, 1.0);
+    figure->print();
 
-  std::cout << "Move circle to (3.0, 4.0)" << "\n";
-  kubov::point_t positionNew = {3.0, 4.0};
-  figure->move(positionNew);
+    std::cout << "Area = " << figure->getArea() << "\n";
+    printInfoAboutFrameRect(figure);
 
-  figure->print();
-  printInfoAboutFrameRect(figure);
+    std::cout << "Move circle to (3.0, 4.0)" << "\n";
+    kubov::point_t positionNew = {3.0, 4.0};
+    figure->move(positionNew);
 
-  std::cout << "Circle area before using method scale: " << figure->getArea() << "\n";
-  figure->scale(2.0);
-  std::cout << "Circle area after using method scale with coefficient 2.0: " << figure->getArea() << "\n\n";
+    figure->print();
+    printInfoAboutFrameRect(figure);
 
-  delete figure;
+    std::cout << "Circle area before using method scale: " << figure->getArea() << "\n";
+    figure->scale(2.0);
+    std::cout << "Circle area after using method scale with coefficient 2.0: " << figure->getArea() << "\n\n";
 
+    delete figure;
 
-  figure = new kubov::Rectangle(center, 3.0, 4.0);
-  figure->print();
+    figure = new kubov::Rectangle(center, 3.0, 4.0);
+    figure->print();
 
-  std::cout << "Area = " << figure->getArea() << "\n";
-  printInfoAboutFrameRect(figure);
+    std::cout << "Area = " << figure->getArea() << "\n";
+    printInfoAboutFrameRect(figure);
 
-  std::cout << "Move rectangle on x: +5.1, y: -2.3\n" << "\n";
-  figure->move(5.1, -2.3);
+    std::cout << "Move rectangle on x: +5.1, y: -2.3\n" << "\n";
+    figure->move(5.1, -2.3);
 
-  figure->print();
-  printInfoAboutFrameRect(figure);
+    figure->print();
+    printInfoAboutFrameRect(figure);
 
-  std::cout << "Rectangle area before using method scale is " << figure->getArea() << "\n";
-  figure->scale(2.0);
-  std::cout << "Rectangle area after using method scale with coefficient 2.0 is : " << figure->getArea() << "\n";
+    std::cout << "Rectangle area before using method scale is " << figure->getArea() << "\n";
+    figure->scale(2.0);
+    std::cout << "Rectangle area after using method scale with coefficient 2.0 is : " << figure->getArea() << "\n";
 
-  delete figure;
-  
+    delete figure;
+  }
+  catch(std::invalid_argument &error)
+  {
+    std::cerr << error.what() << "\n";
+    delete figure;
+    return 1;
+  }
+  catch(std::bad_alloc &error)
+  {
+    std::cerr << error.what() << "\n";
+    delete figure;
+    return 2;
+  }
+
   return 0;
 }
 
