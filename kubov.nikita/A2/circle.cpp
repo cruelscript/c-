@@ -12,8 +12,6 @@ kubov::Circle::Circle(const point_t &center, const double radius) :
 {
   if (radius <= 0.0)
   {
-    radius_ = 0.0;
-   
     throw std::invalid_argument("Error. Radius can't be <= 0.0");
   }
 }
