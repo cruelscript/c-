@@ -1,10 +1,13 @@
 #include <iostream>
+#include <cassert>
 #include <typeinfo>
 #include "rectangle.hpp"
 #include "circle.hpp"
 
 inline void print(const Shape *shape)
 {
+  assert(shape != nullptr);
+
   std::cout << "Shape: " << typeid(*shape).name() << "!!!" << "\n";
   std::cout << "Frame rectangle(width, height): (" << shape->getFrameRect().width
             << ", " << shape->getFrameRect().height << ")" << "\n";
