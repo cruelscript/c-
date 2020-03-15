@@ -11,8 +11,8 @@ public:
   virtual double getArea() const = 0;
   virtual rectangle_t getFrameRect() const = 0;
   virtual void print() const = 0;
-  virtual void move(const double x, const double y) final;
-  virtual void move(const point_t& point) final;
+  virtual void move(const double x, const double y);
+  virtual void move(const point_t& point);
 protected:
   point_t pos_;
 };

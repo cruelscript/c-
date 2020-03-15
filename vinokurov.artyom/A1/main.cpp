@@ -15,8 +15,12 @@ int main()
   {
     shape->print();
     std::cout << "\nArea of the figure is " << shape->getArea();
-    std::cout << "\nFrame width of the figure is " << shape->getFrameRect().width 
-      << ", position is at x: " << shape->getFrameRect().pos.x;
+
+    std::cout << "\nFrame width of the figure is " << shape->getFrameRect().width
+      << ", frame height is " << shape->getFrameRect().height
+      << ", position is at x: " << shape->getFrameRect().pos.x
+      << ", at y: " << shape->getFrameRect().pos.y;
+
     shape->move(21.4, 43.6);
     shape->print();
     shape->move({ -1.6, -70.6567 });
