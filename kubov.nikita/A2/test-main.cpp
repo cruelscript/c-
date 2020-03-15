@@ -21,6 +21,10 @@ BOOST_AUTO_TEST_SUITE(Recatangle_Tests)
   {
     kubov::Rectangle rectangle({0.0, 0.0}, 2.0, 5.5);
     rectangle.move({5.5, 7.4});
+
+    BOOST_REQUIRE_MESSAGE(rectangle.getFrameRect().pos.x != 0.0, "Error in method move");
+    BOOST_REQUIRE_MESSAGE(rectangle.getFrameRect().pos.y != 0.0, "Error in method move");
+
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getFrameRect().width, 2.0, 0.001);
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getFrameRect().height, 5.5, 0.001);
   }
@@ -30,6 +34,10 @@ BOOST_AUTO_TEST_SUITE(Recatangle_Tests)
   {
     kubov::Rectangle rectangle({0.0, 0.0}, 2.0, 5.5);
     rectangle.move({6.4, 4.5});
+
+    BOOST_REQUIRE_MESSAGE(rectangle.getFrameRect().pos.x != 0.0, "Error in method move");
+    BOOST_REQUIRE_MESSAGE(rectangle.getFrameRect().pos.y != 0.0, "Error in method move");
+
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getArea(), 11.0, 0.001);
   }
 
@@ -37,6 +45,10 @@ BOOST_AUTO_TEST_SUITE(Recatangle_Tests)
   {
     kubov::Rectangle rectangle({0.0, 0.0}, 2.0, 5.5);
     rectangle.move(7.5, 2.8);
+
+    BOOST_REQUIRE_MESSAGE(rectangle.getFrameRect().pos.x != 0.0, "Error in method move");
+    BOOST_REQUIRE_MESSAGE(rectangle.getFrameRect().pos.y != 0.0, "Error in method move");
+
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getFrameRect().width, 2.0, 0.001);
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getFrameRect().height, 5.5, 0.001);
   }
@@ -45,6 +57,10 @@ BOOST_AUTO_TEST_SUITE(Recatangle_Tests)
   {
     kubov::Rectangle rectangle({0.0, 0.0}, 2.0, 5.5);
     rectangle.move(4.4, 6.4);
+
+    BOOST_REQUIRE_MESSAGE(rectangle.getFrameRect().pos.x != 0.0, "Error in method move");
+    BOOST_REQUIRE_MESSAGE(rectangle.getFrameRect().pos.y != 0.0, "Error in method move");
+
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getArea(), 11.0, 0.001);
   }
 
@@ -69,6 +85,10 @@ BOOST_AUTO_TEST_SUITE(Circle_Tests)
   {
     kubov::Circle circle({0.0, 0.0}, 2.0);
     circle.move({5.5, 7.4});
+
+    BOOST_REQUIRE_MESSAGE(circle.getFrameRect().pos.x != 0.0, "Error in method move");
+    BOOST_REQUIRE_MESSAGE(circle.getFrameRect().pos.y != 0.0, "Error in method move");
+
     BOOST_CHECK_CLOSE_FRACTION(circle.getFrameRect().width, 4.0, 0.001);
     BOOST_CHECK_CLOSE_FRACTION(circle.getFrameRect().height, 4.0, 0.001);
   }
@@ -77,6 +97,10 @@ BOOST_AUTO_TEST_SUITE(Circle_Tests)
   {
     kubov::Circle circle({0.0, 0.0}, 2.0);
     circle.move({6.4, 4.5});
+
+    BOOST_REQUIRE_MESSAGE(circle.getFrameRect().pos.x != 0.0, "Error in method move");
+    BOOST_REQUIRE_MESSAGE(circle.getFrameRect().pos.y != 0.0, "Error in method move");
+
     BOOST_CHECK_CLOSE_FRACTION(circle.getArea(), M_PI * 2.0 * 2.0, 0.001);
   }
 
@@ -84,6 +108,10 @@ BOOST_AUTO_TEST_SUITE(Circle_Tests)
   {
     kubov::Circle circle({0.0, 0.0}, 2.0);
     circle.move(7.5, 2.8);
+
+    BOOST_REQUIRE_MESSAGE(circle.getFrameRect().pos.x != 0.0, "Error in method move");
+    BOOST_REQUIRE_MESSAGE(circle.getFrameRect().pos.y != 0.0, "Error in method move");
+
     BOOST_CHECK_CLOSE_FRACTION(circle.getFrameRect().width, 4.0, 0.001);
     BOOST_CHECK_CLOSE_FRACTION(circle.getFrameRect().height, 4.0, 0.001);
   }
@@ -92,6 +120,10 @@ BOOST_AUTO_TEST_SUITE(Circle_Tests)
   {
     kubov::Circle circle({0.0, 0.0}, 2.0);
     circle.move(4.4, 6.4);
+
+    BOOST_REQUIRE_MESSAGE(circle.getFrameRect().pos.x != 0.0, "Error in method move");
+    BOOST_REQUIRE_MESSAGE(circle.getFrameRect().pos.y != 0.0, "Error in method move");
+
     BOOST_CHECK_CLOSE_FRACTION(circle.getArea(), M_PI * 2.0 * 2.0, 0.001);
   }
 

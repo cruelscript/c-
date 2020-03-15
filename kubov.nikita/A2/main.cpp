@@ -2,7 +2,7 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-void printInfoAboutFrameRect(kubov::Shape *figure)
+void printInfoAboutFrameRect(const kubov::Shape *figure)
 {
   if(figure == nullptr)
   {
