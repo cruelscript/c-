@@ -11,7 +11,7 @@ Rectangle::Rectangle(const point_t& center, double width, double height) :
 }
 
 Rectangle::Rectangle(double x, double y, double width, double height) :
-  Rectangle({x,y}, width, height)
+  Rectangle({x, y}, width, height)
 {}
 
 double Rectangle::getArea() const 
