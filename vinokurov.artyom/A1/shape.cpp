@@ -5,8 +5,8 @@ Shape::Shape(const point_t& point) :
 
 void Shape::move(const double x, const double y)
 {
-  pos_.x += x;
-  pos_.y += y;
+  pos_.x = x;
+  pos_.y = y;
 }
 
 void Shape::move(const point_t & point)
