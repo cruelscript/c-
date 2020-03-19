@@ -10,7 +10,7 @@ public:
   rectangle_t getFrameRect() const override;
   void move(const point_t& newCenter) override;
   void move(double shiftX, double shiftY) override;
-  const char* printName() const override;
+  const char* getName() const override;
 
 private:
   double radius_;

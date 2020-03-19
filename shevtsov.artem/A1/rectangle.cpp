@@ -30,7 +30,7 @@ void Rectangle::move(double shiftX, double shiftY)
   move({center_.x + shiftX, center_.y + shiftY});
 }
 
-const char* Rectangle::printName() const
+const char* Rectangle::getName() const
 {
   return "Rectangle";
 }

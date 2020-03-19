@@ -31,7 +31,7 @@ void Circle::move(double shiftX, double shiftY)
   center_.y += shiftY;
 }
 
-const char* Circle::printName() const
+const char* Circle::getName() const
 {
   return "Circle";
 }

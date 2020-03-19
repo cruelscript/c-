@@ -7,7 +7,7 @@ void print(const Shape* shape)
 {
   assert(shape != nullptr);
 
-  std::cout << "Name of shape: " << shape->printName() << '\n';
+  std::cout << "Name of shape: " << shape->getName() << '\n';
   std::cout << " - Area: " << shape->getArea() << '\n';
 
   rectangle_t term = shape->getFrameRect();
