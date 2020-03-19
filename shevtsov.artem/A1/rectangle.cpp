@@ -27,7 +27,8 @@ void Rectangle::move(const point_t& newCenter)
 
 void Rectangle::move(double shiftX, double shiftY)
 {
-  move({center_.x + shiftX, center_.y + shiftY});
+  center_.x += shiftX;
+  center_.y += shiftY;
 }
 
 const char* Rectangle::getName() const
