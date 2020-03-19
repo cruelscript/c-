@@ -40,12 +40,12 @@ void kubov::Rectangle::move(const double deltaX, const double deltaY)
   center_.y += deltaY;
 }
 
-void kubov::Rectangle::print() const
+void kubov::Rectangle::print(std::ostream &out) const
 {
-  std::cout << "This is rectangle\n";
-  std::cout << "Width: " << width_ << "\n";
-  std::cout << "Height: " << height_ << "\n";
-  std::cout << "Center: (" << center_.x << ", " << center_.y << ")\n";
+  out << "This is rectangle\n";
+  out << "Width: " << width_ << "\n";
+  out << "Height: " << height_ << "\n";
+  out << "Center: (" << center_.x << ", " << center_.y << ")\n";
 }
 
 void kubov::Rectangle::scale(const double coefficient)

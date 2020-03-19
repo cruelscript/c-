@@ -24,7 +24,7 @@ int main()
     kubov::point_t center = {1.1, 1.5};
 
     figure = new kubov::Circle(center, 1.0);
-    figure->print();
+    figure->print(std::cout);
 
     std::cout << "Area = " << figure->getArea() << "\n";
     printInfoAboutFrameRect(figure);
@@ -33,7 +33,7 @@ int main()
     kubov::point_t positionNew = {3.0, 4.0};
     figure->move(positionNew);
 
-    figure->print();
+    figure->print(std::cout);
     printInfoAboutFrameRect(figure);
 
     std::cout << "Circle area before using method scale: " << figure->getArea() << "\n";
@@ -43,7 +43,7 @@ int main()
     delete figure;
 
     figure = new kubov::Rectangle(center, 3.0, 4.0);
-    figure->print();
+    figure->print(std::cout);
 
     std::cout << "Area = " << figure->getArea() << "\n";
     printInfoAboutFrameRect(figure);
@@ -51,7 +51,7 @@ int main()
     std::cout << "Move rectangle on x: +5.1, y: -2.3\n" << "\n";
     figure->move(5.1, -2.3);
 
-    figure->print();
+    figure->print(std::cout);
     printInfoAboutFrameRect(figure);
 
     std::cout << "Rectangle area before using method scale is " << figure->getArea() << "\n";

@@ -37,11 +37,11 @@ void kubov::Circle::move(const double deltaX, const double deltaY)
   center_.y += deltaY;
 }
 
-void kubov::Circle::print() const
+void kubov::Circle::print(std::ostream &out) const
 {
-  std::cout << "This is circle\n";
-  std::cout << "Radius: " << radius_ << "\n";
-  std::cout << "Center: (" << center_.x << ", " << center_.y << ")\n";
+  out << "This is circle\n";
+  out << "Radius: " << radius_ << "\n";
+  out << "Center: (" << center_.x << ", " << center_.y << ")\n";
 }
 
 void kubov::Circle::scale(const double coefficient)
