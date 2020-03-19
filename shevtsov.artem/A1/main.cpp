@@ -3,7 +3,7 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-void print(Shape* shape)
+void print(const Shape* shape)
 {
   assert(shape != nullptr);
 

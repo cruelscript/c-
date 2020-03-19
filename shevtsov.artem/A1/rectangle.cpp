@@ -1,5 +1,5 @@
-#include <cassert>
 #include "rectangle.hpp"
+#include <cassert>
 
 Rectangle::Rectangle(double width, double height, const point_t& center):
   width_(width),
