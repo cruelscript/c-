@@ -13,7 +13,7 @@ namespace kubov
     double width;
     double height;
     point_t pos;
-};
+  };
 }
 #endif
 

@@ -16,7 +16,7 @@ namespace kubov
     virtual void move(const double deltaX, const double deltaY) = 0;
     virtual void print(std::ostream &out) const = 0;
     virtual void scale(const double coefficient) = 0;
-};
+  };
 }
 #endif
 

@@ -19,8 +19,8 @@ namespace kubov
   private:
     point_t center_;
     double radius_;
-
-};
+ 
+  };
 }
 #endif
 

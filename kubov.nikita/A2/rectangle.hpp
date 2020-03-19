@@ -21,7 +21,7 @@ namespace kubov
     double width_;
     double height_;
 
-};
+  };
 }
 #endif
 
