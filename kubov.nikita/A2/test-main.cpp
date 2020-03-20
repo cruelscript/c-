@@ -22,8 +22,8 @@ BOOST_AUTO_TEST_SUITE(Recatangle_Tests)
     kubov::Rectangle rectangle({0.0, 0.0}, 2.0, 5.5);
     rectangle.move({5.5, 7.4});
 
-    BOOST_REQUIRE(rectangle.getFrameRect().pos.x != 0.0);
-    BOOST_REQUIRE(rectangle.getFrameRect().pos.y != 0.0);
+    BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.x, 5.5, 0.001);
+    BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.y, 7.4, 0.001);
 
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getFrameRect().width, 2.0, 0.001);
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getFrameRect().height, 5.5, 0.001);
@@ -35,8 +35,8 @@ BOOST_AUTO_TEST_SUITE(Recatangle_Tests)
     kubov::Rectangle rectangle({0.0, 0.0}, 2.0, 5.5);
     rectangle.move({6.4, 4.5});
 
-    BOOST_REQUIRE(rectangle.getFrameRect().pos.x != 0.0);
-    BOOST_REQUIRE(rectangle.getFrameRect().pos.y != 0.0);
+    BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.x, 6.4, 0.001);
+    BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.y, 4.5, 0.001);
 
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getArea(), 11.0, 0.001);
   }
@@ -46,8 +46,8 @@ BOOST_AUTO_TEST_SUITE(Recatangle_Tests)
     kubov::Rectangle rectangle({0.0, 0.0}, 2.0, 5.5);
     rectangle.move(7.5, 2.8);
 
-    BOOST_REQUIRE(rectangle.getFrameRect().pos.x != 0.0);
-    BOOST_REQUIRE(rectangle.getFrameRect().pos.y != 0.0);
+    BOOST_REQUIRE_CLOSE_FRACRION(rectangle.getFrameRect().pos.x, 7.5, 0.001);
+    BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.y, 2.8, 0.001);
 
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getFrameRect().width, 2.0, 0.001);
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getFrameRect().height, 5.5, 0.001);
@@ -58,8 +58,8 @@ BOOST_AUTO_TEST_SUITE(Recatangle_Tests)
     kubov::Rectangle rectangle({0.0, 0.0}, 2.0, 5.5);
     rectangle.move(4.4, 6.4);
 
-    BOOST_REQUIRE(rectangle.getFrameRect().pos.x != 0.0);
-    BOOST_REQUIRE(rectangle.getFrameRect().pos.y != 0.0);
+    BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.x, 4.4, 0.001);
+    BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.y, 6.4, 0.001);
 
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getArea(), 11.0, 0.001);
   }
@@ -86,8 +86,8 @@ BOOST_AUTO_TEST_SUITE(Circle_Tests)
     kubov::Circle circle({0.0, 0.0}, 2.0);
     circle.move({5.5, 7.4});
 
-    BOOST_REQUIRE(circle.getFrameRect().pos.x != 0.0);
-    BOOST_REQUIRE(circle.getFrameRect().pos.y != 0.0);
+    BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.x, 5.5, 0.001);
+    BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.y, 7.4, 0.001);
 
     BOOST_CHECK_CLOSE_FRACTION(circle.getFrameRect().width, 4.0, 0.001);
     BOOST_CHECK_CLOSE_FRACTION(circle.getFrameRect().height, 4.0, 0.001);
@@ -98,8 +98,8 @@ BOOST_AUTO_TEST_SUITE(Circle_Tests)
     kubov::Circle circle({0.0, 0.0}, 2.0);
     circle.move({6.4, 4.5});
 
-    BOOST_REQUIRE(circle.getFrameRect().pos.x != 0.0);
-    BOOST_REQUIRE(circle.getFrameRect().pos.y != 0.0);
+    BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.x, 6.4, 0.001);
+    BOOST_REQUIRE_CLOSE_FRACRION(circle.getFrameRect().pos.y, 4.5, 0.001);
 
     BOOST_CHECK_CLOSE_FRACTION(circle.getArea(), M_PI * 2.0 * 2.0, 0.001);
   }
@@ -109,8 +109,8 @@ BOOST_AUTO_TEST_SUITE(Circle_Tests)
     kubov::Circle circle({0.0, 0.0}, 2.0);
     circle.move(7.5, 2.8);
 
-    BOOST_REQUIRE(circle.getFrameRect().pos.x != 0.0);
-    BOOST_REQUIRE(circle.getFrameRect().pos.y != 0.0);
+    BOOST_REQUIRE_CLSOE_FRACTION(circle.getFrameRect().pos.x, 7.5, 0.001);
+    BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.y, 2.8, 0.001);
 
     BOOST_CHECK_CLOSE_FRACTION(circle.getFrameRect().width, 4.0, 0.001);
     BOOST_CHECK_CLOSE_FRACTION(circle.getFrameRect().height, 4.0, 0.001);
@@ -121,8 +121,8 @@ BOOST_AUTO_TEST_SUITE(Circle_Tests)
     kubov::Circle circle({0.0, 0.0}, 2.0);
     circle.move(4.4, 6.4);
 
-    BOOST_REQUIRE(circle.getFrameRect().pos.x != 0.0);
-    BOOST_REQUIRE(circle.getFrameRect().pos.y != 0.0);
+    BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.x, 4.4, 0.001);
+    BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.y, 6.4, 0.001);
 
     BOOST_CHECK_CLOSE_FRACTION(circle.getArea(), M_PI * 2.0 * 2.0, 0.001);
   }
