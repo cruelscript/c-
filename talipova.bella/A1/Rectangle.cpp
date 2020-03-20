@@ -1,4 +1,4 @@
-#include "Rectangle.hpp"
+#include "rectangle.hpp"
 #include "base-types.hpp"
 #include <cassert>
 

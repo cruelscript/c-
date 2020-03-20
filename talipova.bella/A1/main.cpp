@@ -1,7 +1,7 @@
 #include <iostream>
-#include "Shape.hpp"
-#include "Rectangle.hpp"
-#include "Circle.hpp"
+#include "shape.hpp"
+#include "rectangle.hpp"
+#include "circle.hpp"
 
 void test(Shape& shape);
 
