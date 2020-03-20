@@ -11,6 +11,9 @@ public:
   virtual rectangle_t getFrameRect() = 0;
   virtual void move(const point_t & destination) = 0;
   virtual void move(double deltaX, double deltaY) = 0;
+
+private:
+  point_t pos_;
 }
 
 #endif
