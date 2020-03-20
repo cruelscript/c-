@@ -1,6 +1,5 @@
 #ifndef CIRCLE_HPP
 #define CIRCLE_HPP
-
 #include "Shape.hpp"
 
 class Circle :

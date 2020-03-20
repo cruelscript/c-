@@ -3,7 +3,6 @@
 #include <cmath>
 #include <cassert>
 
-
 Circle::Circle(const point_t &pos, const double radius) :
   pos_(pos),
   radius_(radius)
