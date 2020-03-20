@@ -23,11 +23,6 @@ int main()
   Circle testCorrectCircle2({ -2.35, 30 }, 3.14);
   test(testCorrectCircle2);
   std::cout << "\n__________\n";
-  std::cout << "Testing an incorrect rectangle with width = -3 and height = 4\n\n";
-  Rectangle testIncorrectRect(1, 2, -3, 4);
-  std::cout << "\n__________\n";
-  std::cout << "Testing an incorrect circle with radius = 0\n\n";
-  Circle testIncorrectCircle(0, 1, 0);
   return 0;
 }
 
