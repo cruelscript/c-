@@ -14,9 +14,9 @@ public:
   void move(const point_t& point) override;
   point_t getPosition() const override;
 private:
+  point_t pos_;
   double width_;
   double height_;
-  point_t pos_;
 };
 
 #endif
