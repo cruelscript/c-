@@ -1,0 +1,26 @@
+#include "Circle.hpp"
+#define _USE_MATH_DEFINES
+#include <cmath>
+#include <cassert>
+
+
+Circle::Circle(const point_t pos, const double radius) :
+  Shape(pos),
+  radius_(radius)
+{
+  assert(radius > 0 && "Error: Radius <= 0.\n");
+}
+
+Circle::Circle(const double x, const double y, const double radius) :
+  Circle({x, y}, radius)
+{}
+
+rectangle_t Circle::getFrameRect() const
+{
+  return { pos_, radius_ * 2, radius_ * 2 };
+}
+
+double Circle::getArea() const
+{
+  return M_PI * radius_ * radius_;
+};
