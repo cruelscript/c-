@@ -3,7 +3,7 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-void test(Shape& shape);
+void test(Shape &shape);
 
 int main()
 {
@@ -26,7 +26,7 @@ int main()
   return 0;
 }
 
-void test(Shape& ob)
+void test(Shape &ob)
 {
   std::cout << "Position: x = " << ob.getPosition().x << ", y = " << ob.getPosition().y << '\n';
   std::cout << "Frame rectangle's position: x = " << ob.getFrameRect().pos.x << ", y = " << ob.getFrameRect().pos.y << '\n';
