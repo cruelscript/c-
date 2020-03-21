@@ -1,6 +1,7 @@
 #include "rectangle.hpp"
 
 #include <cassert>
+#include <iostream>
 
 Rectangle::Rectangle(const point_t & position, double width, double height) :
   Shape(position),
@@ -19,6 +20,11 @@ double Rectangle::getArea() const
 rectangle_t Rectangle::getFrameRect() const
 {
   return rectangle_t{width_, height_, pos_};
+}
+
+void Rectangle::print() const
+{
+  std::cout << "Rectangle " << width_ << "x" << height_;
 }
 
 double Rectangle::getWidth() const

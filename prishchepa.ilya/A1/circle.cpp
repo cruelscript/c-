@@ -1,6 +1,7 @@
 #include "circle.hpp"
 
 #include <cassert>
+#include <iostream>
 
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -20,6 +21,11 @@ double Circle::getArea() const
 rectangle_t Circle::getFrameRect() const
 {
   return rectangle_t{radius_ * 2.0, radius_ * 2.0, pos_};
+}
+
+void Circle::print() const
+{
+  std::cout << "Circle r=" << radius_;
 }
 
 double Circle::getRadius() const

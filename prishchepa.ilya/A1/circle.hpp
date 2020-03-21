@@ -9,6 +9,7 @@ public:
   Circle(const point_t & position, double radius);
   double getArea() const override;
   rectangle_t getFrameRect() const override;
+  void print() const override;
   double getRadius() const;
 
 private:

@@ -9,6 +9,7 @@ public:
   Rectangle(const point_t & position, double width, double height);
   double getArea() const override;
   rectangle_t getFrameRect() const override;
+  void print() const override;
   double getWidth() const;
   double getHeight() const;
 
