@@ -17,21 +17,19 @@ void print(const Shape* shape)
 
 int main()
 {
-  point_t center {2, 3};
-  Shape* array[3] = {new Rectangle(4.33, 2, {-1.4, 1.33}),
-                     new Circle(1.1, {1.0, 1.9}),
-                     new Circle(2.9, {-3.5, 2.1})};
+  Rectangle rectangleOne(4.33, 2, {-1.4, 1.33});
+  Circle circleOne(1.1, {1.0, 1.9});
+  Circle circleTwo(2.9, {-3.5, 2.1});
+
+  Shape* array[3] = {&rectangleOne, &circleOne, &circleTwo};
+
+  point_t center{2, 3};
 
   for (int i = 0; i < 3; ++i)
   {
     print(array[i]);
     array[i]->move(center);
     print(array[i]);
-  }
-
-  for (int i = 0; i < 3; ++i)
-  {
-    delete array[i];
   }
 
   return 0;
