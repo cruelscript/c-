@@ -1,8 +1,8 @@
 #ifndef RECTANGLE
 #define RECTANGLE
 
-#include "shape.h"
-#include "base-types.h"
+#include "shape.hpp"
+#include "base-types.hpp"
 class Rectangle: public Shape
 {
 public:
