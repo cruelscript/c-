@@ -50,14 +50,14 @@ int main()
     shapes[i]->print();
     std::cout << "\n  ";
     printFrameRectangle(shapes[i]->getFrameRect());
-    std::cout << "  Area " << shapes[i]->getArea() << "\n";
+    std::cout << "  Area: " << shapes[i]->getArea() << "\n";
     std::cout << "  Position: ";
     printPoint(shapes[i]->getPosition());
     std::cout << "\n";
     point_t newPosition{2.1 * (i + 1), 2.0 * (2 - i)};
     std::cout << "Moving to point ";
     printPoint(newPosition);
-    std::cout << ")...\n";
+    std::cout << "...\n";
     shapes[i]->move(newPosition);
     std::cout << "  Position: ";
     printPoint(shapes[i]->getPosition());
