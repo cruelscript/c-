@@ -4,12 +4,13 @@
 
 int main()
 {
-  Shape *figures[2]{new Rectangle(20., 10., 0., 0.), new Circle(5., 30., 30.)};
-  const char *myShapeType;
+  Rectangle rectangle(20., 10., 0., 0.);
+  Circle circle(5., 35., 30.);
+  Shape *figures[2] = {&rectangle, &circle};
 
   for (int i = 0; i < 2; i++)
   {
-    myShapeType = (i == 0 ? "rectangle" : "circle");
+    const char *myShapeType = (i == 0 ? "rectangle" : "circle");
     std::cout << "Area of " << myShapeType << " " << figures[i]->getArea() << "\n";
 
     std::cout << "First position of " << myShapeType << " (" << figures[i]->getPoint().x << "; "
@@ -30,7 +31,6 @@ int main()
     std::cout << "Get frame rectangle: \nWidth: " << myShapeType << " " << figures[i]->getFrameRect().width
               << ", height: " << figures[i]->getFrameRect().height << ", position of x: "
               << figures[i]->getFrameRect().pos.x << ", position of y: " << figures[i]->getFrameRect().pos.x << "\n";
-    delete figures[i];
   }
   return 0;
 }

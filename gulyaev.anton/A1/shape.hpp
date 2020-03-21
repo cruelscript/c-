@@ -14,7 +14,7 @@ public:
 
   virtual void move(const point_t &point) = 0;
 
-  virtual void move(double x, double y) = 0;
+  virtual void move(double deltaX, double deltaY) = 0;
 
   virtual point_t getPoint() const = 0;
 };
