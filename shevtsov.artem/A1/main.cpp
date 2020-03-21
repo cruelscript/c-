@@ -12,7 +12,10 @@ void print(const Shape* shape)
 
   rectangle_t term = shape->getFrameRect();
 
-  std::cout << " - Center of frame rectangle: (" << term.pos.x << "; " << term.pos.y << ")\n";
+  std::cout << " - Frame rectangle:\n";
+  std::cout << " -- Center (x, y): (" << term.pos.x << "; " << term.pos.y << ")\n";
+  std::cout << " -- Width: " << term.width << '\n';
+  std::cout << " -- Height: " << term.height << '\n';
 }
 
 int main()
@@ -28,8 +31,11 @@ int main()
   for (int i = 0; i < 3; ++i)
   {
     print(array[i]);
+    array[i]->move(-1, -1);
+    print(array[i]);
     array[i]->move(center);
     print(array[i]);
+    std::cout << '\n';
   }
 
   return 0;
