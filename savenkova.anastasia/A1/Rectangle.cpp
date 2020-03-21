@@ -1,8 +1,8 @@
-#include "Rectangle.h"
+#include "Rectangle.hpp"
 
 #include <cassert>
-#include "base-types.h"
-#include "shape.h"
+#include "base-types.hpp"
+#include "shape.hpp"
 
 Rectangle::Rectangle(const point_t &center, const double &w, const double &h) :
   center_(center),

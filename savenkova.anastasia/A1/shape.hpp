@@ -1,7 +1,7 @@
 #ifndef SHAPE
 #define SHAPE
 
-#include "base-types.h"
+#include "base-types.hpp"
 class Shape
 {
 public:

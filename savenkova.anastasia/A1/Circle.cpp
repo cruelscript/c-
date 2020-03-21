@@ -1,9 +1,9 @@
-#include "Circle.h"
+#include "Circle.hpp"
 #define _USE_MATH_DEFINES
 #include <cassert>
 #include <cmath>
-#include "base-types.h"
-#include "shape.h"
+#include "base-types.hpp"
+#include "shape.hpp"
 
 Circle::Circle(const point_t &center, const double &radius) :
   center_(center),
