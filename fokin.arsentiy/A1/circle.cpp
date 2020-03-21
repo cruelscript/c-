@@ -4,7 +4,7 @@
 #include <cmath>
 #include <cassert>
 
-Circle::Circle(const point_t& center, const double radius) :
+Circle::Circle(const point_t &center, const double radius) :
   center_{ center.x, center.y },
   radius_{ radius }
 {
@@ -32,7 +32,7 @@ double Circle::getRadius() const
   return radius_;
 }
 
-void Circle::move(const point_t& newCenter)
+void Circle::move(const point_t &newCenter)
 {
   center_ = newCenter;
 }

@@ -1,7 +1,7 @@
 #include "rectangle.hpp"
 #include <cassert>
 
-Rectangle::Rectangle(const double width, const double height, const point_t& center) :
+Rectangle::Rectangle(const double width, const double height, const point_t &center) :
   rect_{ width, height, center }
 {
   assert(width > 0 && "Error! Width must be a positive value. Exiting...\n");
@@ -18,7 +18,7 @@ rectangle_t Rectangle::getFrameRect() const
   return rect_;
 }
 
-void Rectangle::move(const point_t& newPos)
+void Rectangle::move(const point_t &newPos)
 {
   rect_.pos = newPos;
 }
