@@ -5,10 +5,10 @@
 #include <cassert>
 
 Circle::Circle(const point_t &center, const double radius) :
-  center_{ center.x, center.y },
+  center_{ center },
   radius_{ radius }
 {
-  assert(radius > 0 && "Error! Radius must be a positive value. Exiting...\n");
+  assert(radius > 0);
 }
 
 double Circle::getArea() const
@@ -18,8 +18,7 @@ double Circle::getArea() const
 
 rectangle_t Circle::getFrameRect() const
 {
-  rectangle_t rect_{ radius_ * 2, radius_ * 2, center_ };
-  return rect_;
+  return { radius_ * 2, radius_ * 2, center_ };
 }
 
 point_t Circle::getCenter() const

@@ -4,8 +4,8 @@
 Rectangle::Rectangle(const double width, const double height, const point_t &center) :
   rect_{ width, height, center }
 {
-  assert(width > 0 && "Error! Width must be a positive value. Exiting...\n");
-  assert(height > 0 && "Error! Height must be a positive value. Exiting...\n");
+  assert(width > 0);
+  assert(height > 0);
 }
 
 double Rectangle::getArea() const
