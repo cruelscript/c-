@@ -10,8 +10,8 @@ int main()
 
   for (Shape *figure : figures)
   {
-    std::cout << "Frame position (x,y): (" << figure->getFrameRect().pos.x
-      << "; " << figure->getFrameRect().pos.y << ")\n"
+    std::cout << "Frame position (x, y): (" << figure->getFrameRect().pos.x
+      << ", " << figure->getFrameRect().pos.y << ")\n"
       << "Frame width of figure is " << figure->getFrameRect().width << "\n"
       << "Frame height of figure is " << figure->getFrameRect().height << "\n\n";
 
@@ -20,13 +20,13 @@ int main()
     figure->move(3.4, 6.0);
 
     std::cout << "Frame position after moving figure along\
- abscissa and ordinates (x,y): (" << figure->getFrameRect().pos.x
-      << "; " << figure->getFrameRect().pos.y << ")\n";
+ abscissa and ordinates (x, y): (" << figure->getFrameRect().pos.x
+      << ", " << figure->getFrameRect().pos.y << ")\n";
 
-    figure->move({ 2.4,-5.5 });
+    figure->move({ 2.4, -5.5 });
 
-    std::cout << "Frame position after moving figure to a new point (x,y): ("
-      << figure->getFrameRect().pos.x << "; " << figure->getFrameRect().pos.y
+    std::cout << "Frame position after moving figure to a new point (x, y): ("
+      << figure->getFrameRect().pos.x << ", " << figure->getFrameRect().pos.y
       << ")\n\n\n\n";
   }
 

@@ -12,26 +12,6 @@ Circle::Circle(const point_t &center, const double &radius) :
   assert(radius > 0.0);
 }
 
-Circle::Circle(const Circle &circle) :
-  center_(circle.center_),
-  radius_(circle.radius_)
-{
-  assert(circle.radius_ > 0.0);
-}
-
-Circle::Circle(Circle &&circle) :
-  center_(circle.center_),
-  radius_(circle.radius_)
-{
-  assert(circle.radius_ > 0.0);
-  circle.center_ = { 0.0,0.0 };
-  circle.radius_ = 0.0;
-}
-
-Circle::~Circle()
-{
-}
-
 double Circle::getArea() const 
 {
   return M_PI * radius_ * radius_;
