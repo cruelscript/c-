@@ -13,20 +13,20 @@ int main()
     const char *myShapeType = (i == 0 ? "rectangle" : "circle");
     std::cout << "Area of " << myShapeType << " " << figures[i]->getArea() << "\n";
 
-    std::cout << "First position of " << myShapeType << " (" << figures[i]->getPoint().x << "; "
-              << figures[i]->getPoint().y << ") \n";
+    std::cout << "First position of " << myShapeType << " (" << figures[i]->getFrameRect().pos.x << "; "
+              << figures[i]->getFrameRect().pos.y << ") \n";
 
     figures[i]->move({2., 2.});
     std::cout << "Move " << myShapeType << " to position (2; 2)\n";
 
-    std::cout << "Second position of " << myShapeType << " (" << figures[i]->getPoint().x << "; "
-              << figures[i]->getPoint().y << ") \n";
+    std::cout << "Second position of " << myShapeType << " (" << figures[i]->getFrameRect().pos.x << "; "
+              << figures[i]->getFrameRect().pos.y << ") \n";
 
     figures[i]->move(2., 2.);
     std::cout << "Move " << myShapeType << " by x: 2 and y: 2\n";
 
-    std::cout << "Third position of " << myShapeType << " (" << figures[i]->getPoint().x << "; "
-              << figures[i]->getPoint().y << ") \n";
+    std::cout << "Third position of " << myShapeType << " (" << figures[i]->getFrameRect().pos.x << "; "
+              << figures[i]->getFrameRect().pos.y << ") \n";
 
     std::cout << "Get frame rectangle: \nWidth: " << myShapeType << " " << figures[i]->getFrameRect().width
               << ", height: " << figures[i]->getFrameRect().height << ", position of x: "

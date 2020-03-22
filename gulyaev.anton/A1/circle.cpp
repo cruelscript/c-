@@ -2,10 +2,12 @@
 #include <cassert>
 #include <cmath>
 
-Circle::Circle(double radius, double x, double y) : Circle(radius, {x, y})
+Circle::Circle(double radius, double x, double y) :
+  Circle(radius, {x, y})
 {}
 
-Circle::Circle(double radius, const point_t &center) : radius_(radius),
+Circle::Circle(double radius, const point_t &center) :
+  radius_(radius),
   center_(center)
 {
   assert(radius > 0.0);
@@ -31,9 +33,4 @@ void Circle::move(double deltaX, double deltaY)
 {
   center_.x += deltaX;
   center_.y += deltaY;
-}
-
-point_t Circle::getPoint() const
-{
-  return center_;
 }

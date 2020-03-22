@@ -13,4 +13,5 @@ struct rectangle_t
   double height = 0;
   point_t pos;
 };
+
 #endif //PROJECT1_BASE_TYPES_HPP

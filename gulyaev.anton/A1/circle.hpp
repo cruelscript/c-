@@ -18,8 +18,6 @@ public:
 
   void move(double deltaX, double deltaY) override;
 
-  point_t getPoint() const override;
-
 private:
   double radius_;
   point_t center_;

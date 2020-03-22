@@ -2,7 +2,6 @@
 #define PROJECT1_RECTANGLE_HPP
 
 #include "shape.hpp"
-#include "base-types.hpp"
 
 class Rectangle : public Shape
 {
@@ -18,8 +17,6 @@ public:
   void move(const point_t &point) override;
 
   void move(double deltaX, double deltaY) override;
-
-  point_t getPoint() const override;
 
 private:
   rectangle_t rectangle_;
