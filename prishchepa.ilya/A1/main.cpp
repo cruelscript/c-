@@ -21,7 +21,7 @@ int main()
   Circle circle({10.0, 10.0}, 5.5);
   Rectangle rectangle({55.5, 55.5}, 10.0, 20.0);
 
-  circle.print();
+  circle.print(std::cout);
   std::cout << "\n  Position: ";
   printPoint(circle.getPosition());
   std::cout << "\n  Radius: " << circle.getRadius();
@@ -31,7 +31,7 @@ int main()
 
   std::cout << "\n";
 
-  rectangle.print();
+  rectangle.print(std::cout);
   std::cout << "\n  Position: ";
   printPoint(rectangle.getPosition());
   std::cout << "\n  Width: " << rectangle.getWidth();
@@ -47,7 +47,7 @@ int main()
   for (int i = 0; i < 2; i++)
   {
     std::cout << "Figure #" << i << ": ";
-    shapes[i]->print();
+    shapes[i]->print(std::cout);
     std::cout << "\n  ";
     printFrameRectangle(shapes[i]->getFrameRect());
     std::cout << "  Area: " << shapes[i]->getArea() << "\n";

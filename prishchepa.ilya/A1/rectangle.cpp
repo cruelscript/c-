@@ -22,9 +22,9 @@ rectangle_t Rectangle::getFrameRect() const
   return rectangle_t{width_, height_, pos_};
 }
 
-void Rectangle::print() const
+void Rectangle::print(std::ostream & out) const
 {
-  std::cout << "Rectangle " << width_ << "x" << height_;
+  out << "Rectangle " << width_ << "x" << height_;
 }
 
 double Rectangle::getWidth() const

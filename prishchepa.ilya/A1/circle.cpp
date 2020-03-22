@@ -23,9 +23,9 @@ rectangle_t Circle::getFrameRect() const
   return {radius_ * 2.0, radius_ * 2.0, pos_};
 }
 
-void Circle::print() const
+void Circle::print(std::ostream & out) const
 {
-  std::cout << "Circle r=" << radius_;
+  out << "Circle r=" << radius_;
 }
 
 double Circle::getRadius() const
