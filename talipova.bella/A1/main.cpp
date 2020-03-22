@@ -9,6 +9,7 @@ void test(Shape &shape);
 
 int main()
 {
+  std::srand(std::time(0));
   std::cout << "Testing a correct rectangle with width = 3 and height = 4\n\n";
   Rectangle testCorrectRect(1, 2, 3, 4);
   test(testCorrectRect);
@@ -38,7 +39,6 @@ void test(Shape &ob)
   std::cout << "Moving the object to a point: x = " << point.x << ", y = " << point.y << '\n';
   ob.move(point);
   std::cout << "Position: x = " << ob.getPosition().x << ", y = " << ob.getPosition().y << '\n';
-  std::srand(clock());
   double dx = std::rand() % 10;
   double dy = -(std::rand() % 10);
   std::cout << "Moving the object along the abscissa by: " << dx << '\n';
