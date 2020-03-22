@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "shape.hpp"
 #include "rectangle.hpp"
 #include "circle.hpp"
@@ -36,8 +38,9 @@ void test(Shape &ob)
   std::cout << "Moving the object to a point: x = " << point.x << ", y = " << point.y << '\n';
   ob.move(point);
   std::cout << "Position: x = " << ob.getPosition().x << ", y = " << ob.getPosition().y << '\n';
-  double dx = rand() % 10;
-  double dy = -(rand() % 10);
+  std::srand(clock());
+  double dx = std::rand() % 10;
+  double dy = -(std::rand() % 10);
   std::cout << "Moving the object along the abscissa by: " << dx << '\n';
   std::cout << "Moving the object along the ordinate by: " << dy << '\n';
   ob.move(dx, dy);
