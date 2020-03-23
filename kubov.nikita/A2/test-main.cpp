@@ -10,14 +10,14 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-BOOST_AUTO_TEST_SUITE(Recatangle_Tests)
+BOOST_AUTO_TEST_SUITE(RecatangleTests)
 
-  BOOST_AUTO_TEST_CASE(Test_Invalid_Argument_Rectangle)
+  BOOST_AUTO_TEST_CASE(TestInvalidArgumentRectangle)
   {
     BOOST_CHECK_THROW(kubov::Rectangle rectangle({0.0, 0.0}, -3.0, 5.0), std::invalid_argument);
   }
 
-  BOOST_AUTO_TEST_CASE(Test_Move_Point_Side_Rectangle)
+  BOOST_AUTO_TEST_CASE(TestMovePointSideRectangle)
   {
     kubov::Rectangle rectangle({0.0, 0.0}, 2.0, 5.5);
     rectangle.move({5.5, 7.4});
@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_SUITE(Recatangle_Tests)
   }
 
 
-  BOOST_AUTO_TEST_CASE(Test_Move_Point_Area_Rectangle)
+  BOOST_AUTO_TEST_CASE(TestMovePointAreaRectangle)
   {
     kubov::Rectangle rectangle({0.0, 0.0}, 2.0, 5.5);
     rectangle.move({6.4, 4.5});
@@ -41,30 +41,38 @@ BOOST_AUTO_TEST_SUITE(Recatangle_Tests)
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getArea(), 11.0, 0.001);
   }
 
-  BOOST_AUTO_TEST_CASE(Test_Move_Delta_Side_Rectangle)
+  BOOST_AUTO_TEST_CASE(TestMoveDeltaSideRectangle)
   {
-    kubov::Rectangle rectangle({0.0, 0.0}, 2.0, 5.5);
-    rectangle.move(7.5, 2.8);
+    kubov::point_t center = {0.0, 0.0};
+    kubov::Rectangle rectangle(center, 2.0, 5.5);
 
-    BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.x, 7.5, 0.001);
-    BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.y, 2.8, 0.001);
+    double deltaX = 7.5;
+    double deltaY = 2.8;
+    rectangle.move(deltaX, deltaY);
+
+    BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.x, center.x + deltaX, 0.001);
+    BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.y, center.y + deltaY, 0.001);
 
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getFrameRect().width, 2.0, 0.001);
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getFrameRect().height, 5.5, 0.001);
   }
 
-  BOOST_AUTO_TEST_CASE(Test_Move_Delta_Area_Rectangle)
+  BOOST_AUTO_TEST_CASE(TestMoveDeltaAreaRectangle)
   {
-    kubov::Rectangle rectangle({0.0, 0.0}, 2.0, 5.5);
-    rectangle.move(4.4, 6.4);
+    kubov::point_t center = {0.0, 0.0};
+    kubov::Rectangle rectangle(center, 2.0, 5.5);
 
-    BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.x, 4.4, 0.001);
-    BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.y, 6.4, 0.001);
+    double deltaX = 4.4;
+    double deltaY = 6.4;
+    rectangle.move(deltaX, deltaY);
+
+    BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.x, center.x + deltaX, 0.001);
+    BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.y, center.y + deltaY, 0.001);
 
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getArea(), 11.0, 0.001);
   }
 
-  BOOST_AUTO_TEST_CASE(Test_Scale_Area_Rectangle)
+  BOOST_AUTO_TEST_CASE(TestScaleAreaRectangle)
   {
     kubov::Rectangle rectangle({0.0, 0.0}, 2.0, 4.2);
     rectangle.scale(2.0);
@@ -74,14 +82,14 @@ BOOST_AUTO_TEST_SUITE(Recatangle_Tests)
 BOOST_AUTO_TEST_SUITE_END()
 
 
-BOOST_AUTO_TEST_SUITE(Circle_Tests)
+BOOST_AUTO_TEST_SUITE(CircleTests)
 
-  BOOST_AUTO_TEST_CASE(Test_Invalid_Argument_Circle)
+  BOOST_AUTO_TEST_CASE(TestInvalidArgumentCircle)
   {
     BOOST_CHECK_THROW(kubov::Circle circle({0.0, 0.0}, -3.0), std::invalid_argument);
   }
 
-  BOOST_AUTO_TEST_CASE(Test_Move_Point_Radius_Circle)
+  BOOST_AUTO_TEST_CASE(TestMovePointRadiusCircle)
   {
     kubov::Circle circle({0.0, 0.0}, 2.0);
     circle.move({5.5, 7.4});
@@ -93,7 +101,7 @@ BOOST_AUTO_TEST_SUITE(Circle_Tests)
     BOOST_CHECK_CLOSE_FRACTION(circle.getFrameRect().height, 4.0, 0.001);
   }
 
-  BOOST_AUTO_TEST_CASE(Test_Move_Point_Area_Circle)
+  BOOST_AUTO_TEST_CASE(TestMovePointAreaCircle)
   {
     kubov::Circle circle({0.0, 0.0}, 2.0);
     circle.move({6.4, 4.5});
@@ -104,30 +112,38 @@ BOOST_AUTO_TEST_SUITE(Circle_Tests)
     BOOST_CHECK_CLOSE_FRACTION(circle.getArea(), M_PI * 2.0 * 2.0, 0.001);
   }
 
-  BOOST_AUTO_TEST_CASE(Test_Move_Delta_Radius_Circle)
+  BOOST_AUTO_TEST_CASE(TestMoveDeltaRadiusCircle)
   {
-    kubov::Circle circle({0.0, 0.0}, 2.0);
-    circle.move(7.5, 2.8);
+    kubov::point_t center = {0.0, 0.0};
+    kubov::Circle circle(center, 2.0);
 
-    BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.x, 7.5, 0.001);
-    BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.y, 2.8, 0.001);
+    double deltaX = 7.5;
+    double deltaY = 2.8;
+    circle.move(deltaX, deltaY);
+
+    BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.x, center.x + deltaX, 0.001);
+    BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.y, center.y + deltaY, 0.001);
 
     BOOST_CHECK_CLOSE_FRACTION(circle.getFrameRect().width, 4.0, 0.001);
     BOOST_CHECK_CLOSE_FRACTION(circle.getFrameRect().height, 4.0, 0.001);
   }
 
-  BOOST_AUTO_TEST_CASE(Test_Move_Delta_Area_Circle)
+  BOOST_AUTO_TEST_CASE(TestMoveDeltaAreaCircle)
   {
-    kubov::Circle circle({0.0, 0.0}, 2.0);
-    circle.move(4.4, 6.4);
+    kubov::point_t center = {0.0, 0.0};
+    kubov::Circle circle(center, 2.0);
 
-    BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.x, 4.4, 0.001);
-    BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.y, 6.4, 0.001);
+    double deltaX = 4.4;
+    double deltaY = 6.4;
+    circle.move(deltaX, deltaY);
+
+    BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.x, center.x + deltaX, 0.001);
+    BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.y, center.y + deltaY, 0.001);
 
     BOOST_CHECK_CLOSE_FRACTION(circle.getArea(), M_PI * 2.0 * 2.0, 0.001);
   }
 
-  BOOST_AUTO_TEST_CASE(Test_Scale_Area_Circle)
+  BOOST_AUTO_TEST_CASE(TestScaleAreaCircle)
   {
     kubov::Circle circle({0.0, 0.0}, 2.0);
     circle.scale(2.0);
