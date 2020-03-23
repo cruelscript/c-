@@ -1,7 +1,7 @@
 #ifndef RECTANGLE_HPP
 #define RECTANGLE_HPP
 
-#include <iostream>
+#include <iosfwd>
 #include "shape.hpp"
 
 class Rectangle : public Shape

@@ -4,7 +4,7 @@
 
 #include <cassert>
 #include <cmath>
-#include <iostream>
+#include <ostream>
 
 Circle::Circle(const point_t & position, double radius) :
   Shape(position),
