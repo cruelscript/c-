@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "shape.hpp"
-#include "rectangle.hpp"
 #include "circle.hpp"
+#include "rectangle.hpp"
+#include "shape.hpp"
 
 void printPoint(const point_t & point)
 {

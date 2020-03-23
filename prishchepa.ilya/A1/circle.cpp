@@ -1,10 +1,10 @@
 #include "circle.hpp"
 
-#include <cassert>
-#include <iostream>
-
 #define _USE_MATH_DEFINES
+
+#include <cassert>
 #include <cmath>
+#include <iostream>
 
 Circle::Circle(const point_t & position, double radius) :
   Shape(position),
