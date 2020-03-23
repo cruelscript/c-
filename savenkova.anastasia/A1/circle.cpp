@@ -3,7 +3,6 @@
 #include <cassert>
 #include <cmath>
 #include "base-types.hpp"
-#include "shape.hpp"
 
 Circle::Circle(const point_t &center, const double &radius) :
   center_(center),
