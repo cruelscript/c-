@@ -19,7 +19,7 @@ double Rectangle::getArea() const
 
 rectangle_t Rectangle::getFrameRect() const
 {
-  return rectangle_t{width_, height_, pos_};
+  return {width_, height_, pos_};
 }
 
 void Rectangle::print(std::ostream & out) const
