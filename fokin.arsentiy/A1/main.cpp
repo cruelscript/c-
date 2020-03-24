@@ -17,14 +17,14 @@ int main()
 
   Circle testCircle{ { 5.2, -7.5 }, 4.0 };
   std::cout << "Circle's area: " << testCircle.getArea() << "\n";
-  std::cout << "Circle's radius: " << testCircle.getRadius() << "\n";
   frameRectangle = testCircle.getFrameRect();
   std::cout << "Height of frame rectangle: " << frameRectangle.height << "\n";
   std::cout << "Width of frame rectangle: " << frameRectangle.width << "\n";
   std::cout << "Center of circle and frame rectangle: (" << frameRectangle.pos.x << ", " << frameRectangle.pos.y << ")\n";
   testCircle.move({ 6.0, -1.6 });
   testCircle.move(-6.0, 1.6);
-  std::cout << "New center of circle: (" << testCircle.getCenter().x << ", " << testCircle.getCenter().y << ")\n\n";
+  frameRectangle = testCircle.getFrameRect();
+  std::cout << "New center of test circle and frame rectangle: (" << frameRectangle.pos.x << ", " << frameRectangle.pos.y << ")\n\n";
 
   Shape* shapes[2] = { &testRectangle, &testCircle };
   for (int i = 0; i < 2; i++)

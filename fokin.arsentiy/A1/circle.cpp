@@ -21,16 +21,6 @@ rectangle_t Circle::getFrameRect() const
   return { radius_ * 2, radius_ * 2, center_ };
 }
 
-point_t Circle::getCenter() const
-{
-  return center_;
-}
-
-double Circle::getRadius() const
-{
-  return radius_;
-}
-
 void Circle::move(const point_t &newCenter)
 {
   center_ = newCenter;
