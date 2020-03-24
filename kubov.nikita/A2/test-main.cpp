@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_SUITE(RecatangleTests)
 
   BOOST_AUTO_TEST_CASE(TestMoveDeltaSideRectangle)
   {
-    kubov::point_t center = {0.0, 0.0};
+    const kubov::point_t center = {5.0, 7.0};
     kubov::Rectangle rectangle(center, 2.0, 5.5);
 
     double deltaX = 7.5;
@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_SUITE(RecatangleTests)
 
   BOOST_AUTO_TEST_CASE(TestMoveDeltaAreaRectangle)
   {
-    kubov::point_t center = {0.0, 0.0};
+    const kubov::point_t center = {5.0, 7.0};
     kubov::Rectangle rectangle(center, 2.0, 5.5);
 
     double deltaX = 4.4;
@@ -114,7 +114,7 @@ BOOST_AUTO_TEST_SUITE(CircleTests)
 
   BOOST_AUTO_TEST_CASE(TestMoveDeltaRadiusCircle)
   {
-    kubov::point_t center = {0.0, 0.0};
+    const kubov::point_t center = {5.0, 7.0};
     kubov::Circle circle(center, 2.0);
 
     double deltaX = 7.5;
@@ -130,7 +130,7 @@ BOOST_AUTO_TEST_SUITE(CircleTests)
 
   BOOST_AUTO_TEST_CASE(TestMoveDeltaAreaCircle)
   {
-    kubov::point_t center = {0.0, 0.0};
+    const kubov::point_t center = {5.0, 7.0};
     kubov::Circle circle(center, 2.0);
 
     double deltaX = 4.4;
