@@ -5,7 +5,6 @@
 int main()
 {
 	point_t mid = { 0.0, 0.0 };
-
 	Rectangle rect(10.10, 12.12, mid);
 	std::cout << "Your rectangle: ";
 	rect.print();
@@ -16,7 +15,6 @@ int main()
 	rect.move(11.3, 7.0);
 	std::cout << " \nYour rectangle after move: ";
 	rect.print();
-
 	Circle circle(5.12, mid);
 	std::cout << "Your circle: ";
 	circle.print();
@@ -27,6 +25,5 @@ int main()
 	circle.move(11.3, 7.0);
 	std::cout << " \nYour circle after move: ";
 	circle.print();
-
 	return 0;
 };
