@@ -12,8 +12,8 @@ void Shape::move(const point_t &destinationPoint)
 
 void Shape::move(double dX, double dY)
 {
-  center_.x_ += dX;
-  center_.y_ += dY;
+  center_.x += dX;
+  center_.y += dY;
 }
 
 point_t Shape::getPos() const
