@@ -4,7 +4,7 @@
 
 int main()
 {
-	point_t mid = { 0.0, 0.0 };
+  point_t mid = { 0.0, 0.0 };
 
 	Rectangle rect(10.10, 12.12, mid);
 	std::cout << "Your rectangle: ";
