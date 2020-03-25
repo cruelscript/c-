@@ -3,7 +3,8 @@
 
 #include "shape.hpp"
 
-class Circle : public Shape {
+class Circle : public Shape
+{
 public:
   Circle(const point_t &, double);
 
