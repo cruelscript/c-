@@ -3,14 +3,11 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 
-
-int main() {
+int main()
+{
   Rectangle rectangle(point_t{2, 1.5}, 2, 5);
   Circle circle(point_t{1, 1}, 1);
-
-
   Shape *figures[] = {&rectangle, &circle};
-
   for (int i = 0; i < 2; i++) {
     std::string nameObj = typeid(*figures[i]).name();
     nameObj = nameObj.substr(1);
@@ -33,6 +30,5 @@ int main() {
 
   std::cout << "Position " << std::string(typeid(*figures[1]).name()).substr(1) << "after moving to offset (2, 3) is ("
             << figures[1]->getPos().x_ << "; " << figures[1]->getPos().y_ << ")\n";
-
   return 0;
 }
