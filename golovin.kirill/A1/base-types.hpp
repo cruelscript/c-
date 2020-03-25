@@ -4,15 +4,15 @@
 class point_t
 {
 public:
-  double x_;
-  double y_;
+  double x;
+  double y;
 };
 
 class rectangle_t
 {
 public:
-  double width_;
-  double height_;
+  double width;
+  double height;
   point_t pos;
 };
 
