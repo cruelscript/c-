@@ -19,9 +19,9 @@ int main()
     figures[i]->move({1, 2});
     figures[i]->move(1, 2);
     std::cout << "Position " << std::string(typeid(*figures[i]).name()).substr(1) << "after moving in (1, 2) is ("
-              << figures[i]->getPos().x << "; " << figures[i]->getPos().y << ")\n";
+              << figures[i]->getFrameRect().pos.x << "; " << figures[i]->getFrameRect().pos.y << ")\n";
     std::cout << "Position " << std::string(typeid(*figures[i]).name()).substr(1) << "after moving to offset (1, 2) is ("
-              << figures[i]->getPos().x << "; " << figures[i]->getPos().y << ")\n\n";
+              << figures[i]->getFrameRect().pos.x << "; " << figures[i]->getFrameRect().pos.y << ")\n\n";
   }
   return 0;
 }

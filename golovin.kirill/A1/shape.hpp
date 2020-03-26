@@ -16,8 +16,6 @@ public:
 
   void move(double dX, double dY);
 
-  point_t getPos() const;
-
 protected:
   point_t center_;
 
