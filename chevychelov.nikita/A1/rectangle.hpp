@@ -13,8 +13,8 @@ public:
   void move(const double dx, const double dy) override;
   void move(const point_t& position) override;
 private:
-  double height_;
   double width_;
+  double height_;
   point_t pos_;
 };
 #endif // !RECTANGLE_HPP_
