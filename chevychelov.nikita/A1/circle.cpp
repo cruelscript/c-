@@ -4,10 +4,10 @@
 #include <cmath>
 #include <iostream>
 
-Circle::Circle(const double radius, const point_t& pos)
+Circle::Circle(const double radius, const point_t& pos):
+  radius_(radius),
+  pos_(pos)
 {
-  radius_ = radius;
-  pos_ = pos;
   assert(radius > 0.0);
 }
 
