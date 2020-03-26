@@ -11,6 +11,6 @@ public:
   virtual rectangle_t getFrameRect() const = 0;
   virtual void move(const double dx, const double dy) = 0;
   virtual void move(const point_t& position) = 0;
-	virtual void print() const = 0;
+  virtual void print() const = 0;
 };
 #endif // !SHAPE_HPP_

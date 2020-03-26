@@ -5,7 +5,7 @@
 Rectangle::Rectangle(const double width, const double height, const point_t& pos):
   width_(width),
   height_(height),
-	pos_(pos)
+  pos_(pos)
 {
   assert(width > 0.0);
   assert(height > 0.0);
