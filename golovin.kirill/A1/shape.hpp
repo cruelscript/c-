@@ -14,7 +14,7 @@ public:
 
   void move(const point_t &);
 
-  void move(double, double);
+  void move(double dX, double dY);
 
   point_t getPos() const;
 
