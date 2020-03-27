@@ -16,7 +16,8 @@ public:
   void print() const override;
 private:
   point_t center_;
-  double height_;
   double width_;
+  double height_;
+
 };
 #endif
