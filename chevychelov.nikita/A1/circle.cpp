@@ -1,8 +1,7 @@
 #include "circle.hpp"
-#define _USE_MATH_DEFINES
 #include <cassert>
-#include <cmath>
-#include <iostream>
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 Circle::Circle(const double radius, const point_t& pos):
   radius_(radius),
@@ -21,9 +20,9 @@ rectangle_t Circle::getFrameRect() const
   return { 2 * radius_, 2 * radius_, pos_ };
 }
 
-void Circle::print() const
+void Circle::print(std::ostream& out) const
 {
-  std::cout << "\n Radius of circle: " << radius_
+  out << "\n Radius of circle: " << radius_
     << "\n The center of circle x: " << pos_.x << " y: " << pos_.y << "\n";
 }
 

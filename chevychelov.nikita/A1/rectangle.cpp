@@ -21,9 +21,9 @@ rectangle_t Rectangle::getFrameRect() const
   return { width_, height_, pos_ };
 }
 
-void Rectangle::print() const
+void Rectangle::print(std::ostream& out) const
 {
-  std::cout << "\n Rectangle parametrs are: \n Width: " << width_
+  out << "\n Rectangle parametrs are: \n Width: " << width_
     << "\n Hight: " << height_
     << "\n The center of rectangle x: " << pos_.x << " y: " << pos_.y << "\n";
 }

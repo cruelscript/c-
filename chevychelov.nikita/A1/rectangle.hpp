@@ -9,7 +9,7 @@ public:
   Rectangle(const double width, const double height, const point_t& pos);
   double getArea() const override;
   rectangle_t getFrameRect() const override;
-  void print() const override;
+  void print(std::ostream& out) const override;
   void move(const double dx, const double dy) override;
   void move(const point_t& position) override;
 private:

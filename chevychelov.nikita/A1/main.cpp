@@ -11,17 +11,17 @@ int main()
   for (Shape* shape : figures)
   {
     std::cout << "Your figures: ";
-    shape->print();
+    shape->print(std::cout);
     std::cout << " Area of rectangle: " << shape->getArea();
     std::cout << " \n Frame rectangle: " << " Width: " << shape->getFrameRect().width
       << " Height: " << rect.getFrameRect().height << " X: " << shape->getFrameRect().pos.x
       << " Y: " << shape->getFrameRect().pos.y;
     shape->move(11.3, 7.0);
     std::cout << " \nYour rectangle after move: ";
-    shape->print();
+    shape->print(std::cout);
     shape->move(mid);
     std::cout << "Your rectangle after move back: ";
-    shape->print();
+    shape->print(std::cout);
   }
   return 0;
 };
