@@ -13,7 +13,7 @@ public:
   rectangle_t getFrameRect() const override;
   void move(const double dx, const double dy) override;
   void move(const point_t&) override;
-  void print() const override;
+  void print(std::ostream&) const override;
 private:
   point_t center_;
   double width_;
