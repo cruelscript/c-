@@ -4,7 +4,8 @@
 Rectangle::Rectangle(const point_t& center, const double width, const double height) :
   center_(center),
   width_(width),
-  height_(height) {
+  height_(height) 
+{
   assert(width_ > 0);
   assert(height_ > 0);
 }
@@ -26,12 +27,13 @@ void Rectangle::move(const point_t& moveTo)
 
 void Rectangle::move(const double dx, const double dy) 
 {
-  center_ = {center_.x + dx, center_.y + dy};
+  center_.x += dx;
+  center_.y += dy;
 }
 
-void Rectangle::print() const 
+void Rectangle::print(std::ostream& out) const
 {
-  std::cout << "Rectangle\n" << "height: " << height_ << '\n' 
+  out << "Rectangle\n" << "height: " << height_ << '\n' 
   << "width: " << width_ << '\n' 
   << "center: " << '(' << center_.x << ", " << center_.y << ")\n";
 }
