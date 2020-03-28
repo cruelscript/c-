@@ -1,10 +1,13 @@
 #include "circle.hpp"
+
+#define _USE_MATH_DEFINES
+#include "math.h"
 #include <cassert>
-#define M_PI 3.14159265358979323846
 
 Circle::Circle(const point_t& center, const double radius) :
   center_(center),
-  radius_(radius) {
+  radius_(radius) 
+{
   assert(radius_ > 0);
 }
 
@@ -20,7 +23,8 @@ rectangle_t Circle::getFrameRect() const
 
 void Circle::move(const double dx, const double dy) 
 {
-  center_ = {center_.x + dx, center_.y + dy};
+  center_.x += dx;
+  center_.y += dy;
 }
 
 void Circle::move(const point_t& moveTo) 
@@ -28,8 +32,8 @@ void Circle::move(const point_t& moveTo)
   center_ = moveTo;
 }
 
-void Circle::print() const 
+void Circle::print(std::ostream& out) const 
 {
-  std::cout << "Circle\n" << "radius: " << radius_ 
+  out << "Circle\n" << "radius: " << radius_ 
   << '\n' << "center: " << '(' << center_.x << ", " << center_.y << ")\n";
 }
