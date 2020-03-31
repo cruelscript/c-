@@ -29,12 +29,12 @@ int main()
 
   std::cout << "Calculating the bounding box data of a rectangle\n";
   rectangle_t boundingBoxForRect = rectangle->getFrameRect();
-  std::cout << "Width: " << boundingBoxForRect.width_ << "\tHeight: "
-      << boundingBoxForRect.height_ << "\tPosition: " << boundingBoxForRect.pos_ << "\n\n";
+  std::cout << "Width: " << boundingBoxForRect.width << "\tHeight: "
+      << boundingBoxForRect.height << "\tPosition: " << boundingBoxForRect.pos << "\n\n";
   std::cout << "Calculating the bounding box data of a circle\n";
   rectangle_t boundingBoxForCirc = circle->getFrameRect();
-  std::cout << "Width: " << boundingBoxForCirc.width_ << "\tHeight: "
-      << boundingBoxForCirc.height_ << "\tPosition: " << boundingBoxForCirc.pos_ << "\n\n";
+  std::cout << "Width: " << boundingBoxForCirc.width << "\tHeight: "
+      << boundingBoxForCirc.height << "\tPosition: " << boundingBoxForCirc.pos << "\n\n";
 
   std::cout << "Calculating the area of a rectangle\n";
   std::cout << "Rectangle area: " << rectangle->getArea() << "\n\n";
