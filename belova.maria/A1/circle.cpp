@@ -28,8 +28,8 @@ void Circle::move(const point_t &center)
 
 void Circle::move(const double dx, const double dy)
 {
-  center_.x_ += dx;
-  center_.y_ += dy;
+  center_.x += dx;
+  center_.y += dy;
 }
 
 rectangle_t Circle::getFrameRect() const

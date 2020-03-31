@@ -5,21 +5,21 @@
 
 struct point_t
 {
-  double x_;
-  double y_;
+  double x;
+  double y;
 
   friend std::ostream& operator<<(std::ostream &out, const point_t &point)
   {
-    out << '(' << point.x_ << ", " << point.y_ << ')';
+    out << '(' << point.x << ", " << point.y << ')';
     return out;
   }
 };
 
 struct rectangle_t
 {
-  point_t pos_;
-  double width_;
-  double height_;
+  point_t pos;
+  double width;
+  double height;
 };
 
 #endif
