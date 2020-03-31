@@ -50,5 +50,5 @@ double Rectangle::getArea() const
 void Rectangle::showData() const
 {
   std::cout << "Rectangle:\nCenter: " << getCenter() << "\tWidth: "
-    << getWidth() << "\tHeight: " << getHeight() << "\n";
+      << getWidth() << "\tHeight: " << getHeight() << "\n";
 }
