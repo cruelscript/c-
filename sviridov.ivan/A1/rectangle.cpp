@@ -1,5 +1,4 @@
 #include "rectangle.hpp"
-#include <iostream>
 #include <cassert>
 
 Rectangle::Rectangle(const point_t &centre, double width, double height) :
@@ -31,7 +30,7 @@ rectangle_t Rectangle::getFrameRect() const
   return {centre_, width_, height_};
 }
 
-void Rectangle::printCentre() const
+void Rectangle::printCentre(std::ostream &out) const
 {
-  std::cout << "Rectangle centre: (" << centre_.x << ", " << centre_.y << ")\n";
+  out << "Rectangle centre: (" << centre_.x << ", " << centre_.y << ")\n";
 }

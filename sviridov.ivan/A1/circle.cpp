@@ -1,5 +1,4 @@
 #include "circle.hpp"
-#include <iostream>
 #include <cassert>
 
 #define _USE_MATH_DEFINES
@@ -34,7 +33,7 @@ rectangle_t Circle::getFrameRect() const
   return { centre_, 2 * radius_, 2 * radius_};
 }
 
-void Circle::printCentre() const 
+void Circle::printCentre(std::ostream &out) const
 {
-  std::cout << "Circle centre: (" << centre_.x << ", " << centre_.y << ")\n";
+  out << "Circle centre: (" << centre_.x << ", " << centre_.y << ")\n";
 }

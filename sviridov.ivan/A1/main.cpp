@@ -16,18 +16,18 @@ int main()
   std::cout << "Rectangle's area: " << figure->getArea() <<  "\n\n";
   printFrameInfo(figure);
   figure->move(4.6, -6.7);
-  figure->printCentre();
+  figure->printCentre(std::cout);
   figure->move({-7.4, 5.9});
-  figure->printCentre();
+  figure->printCentre(std::cout);
 
   Circle circleTest({1.4, 12.3}, 6.7);
   figure = &circleTest;
   std::cout << "\nCircle area: " << figure->getArea() <<  "\n\n";
   printFrameInfo(figure);
   figure->move(11.6, -20.4);
-  figure->printCentre();
+  figure->printCentre(std::cout);
   figure->move({35.6, -13.9});
-  figure->printCentre();
+  figure->printCentre(std::cout);
 
   return 0;
 }

@@ -11,7 +11,7 @@ public:
   void move(double  dx, double dy) override;
   double getArea() const override;
   rectangle_t getFrameRect() const override;
-  void printCentre() const override;
+  void printCentre(std::ostream &out) const override;
 private:
   double radius_;
   point_t centre_;
