@@ -2,7 +2,7 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-void printFrameInfo(Shape* figure)
+void printFrameInfo(Shape *figure)
 {
   std::cout << "Frame height: " << figure->getFrameRect().height << "\n"
     << "Frame width: " << figure->getFrameRect().width << "\n"
@@ -12,7 +12,7 @@ void printFrameInfo(Shape* figure)
 int main()
 {
   Rectangle rectangleTest({6.7, 2.4}, 10.6, 5.1);
-  Shape* figure = &rectangleTest;
+  Shape *figure = &rectangleTest;
   std::cout << "Rectangle's area: " << figure->getArea() <<  "\n\n";
   printFrameInfo(figure);
   figure->move(4.6, -6.7);

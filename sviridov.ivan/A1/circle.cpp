@@ -6,14 +6,14 @@
 
 #include <cmath>
 
-Circle::Circle(const point_t& centre, double radius):
+Circle::Circle(const point_t &centre, double radius):
   radius_(radius),
   centre_(centre)
 {
   assert(radius > 0);
 }
 
-void Circle::move(const point_t& point)
+void Circle::move(const point_t &point)
 {
   centre_ = point;
 }
