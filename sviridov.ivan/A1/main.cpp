@@ -2,7 +2,7 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-void printFrameInfo(Shape *figure)
+void printFrameInfo(const Shape *figure)
 {
   std::cout << "Frame height: " << figure->getFrameRect().height << "\n"
     << "Frame width: " << figure->getFrameRect().width << "\n"
@@ -16,18 +16,22 @@ int main()
   std::cout << "Rectangle's area: " << figure->getArea() <<  "\n\n";
   printFrameInfo(figure);
   figure->move(4.6, -6.7);
-  figure->printCentre(std::cout);
+  std::cout << "Moving rectangle along axis abscissa and ordinate\n"
+    << "Rectangle centre is: (" << figure->getFrameRect().pos.x << ", " << figure->getFrameRect().pos.y << ")\n";
   figure->move({-7.4, 5.9});
-  figure->printCentre(std::cout);
+  std::cout << "Moving rectangle to a new point\n"
+    << "Rectangle centre is: (" << figure->getFrameRect().pos.x << ", " << figure->getFrameRect().pos.y << ")\n";
 
   Circle circleTest({1.4, 12.3}, 6.7);
   figure = &circleTest;
   std::cout << "\nCircle area: " << figure->getArea() <<  "\n\n";
   printFrameInfo(figure);
   figure->move(11.6, -20.4);
-  figure->printCentre(std::cout);
+  std::cout << "Moving circle along axis abscissa and ordinate\n"
+    << "Circle centre is: (" << figure->getFrameRect().pos.x << ", " << figure->getFrameRect().pos.y << ")\n";
   figure->move({35.6, -13.9});
-  figure->printCentre(std::cout);
+  std::cout << "Moving circle to a new point\n"
+    << "Circle centre is: (" << figure->getFrameRect().pos.x << ", " << figure->getFrameRect().pos.y << ")\n";
 
   return 0;
 }

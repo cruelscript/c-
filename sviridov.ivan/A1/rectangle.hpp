@@ -11,7 +11,6 @@ public:
   rectangle_t getFrameRect() const override;
   void move(const point_t &point) override;
   void move(const double dx, const double dy) override;
-  void printCentre(std::ostream &out) const override;
 private:
   double width_;
   double height_;

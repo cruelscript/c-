@@ -32,8 +32,3 @@ rectangle_t Circle::getFrameRect() const
 {
   return { centre_, 2 * radius_, 2 * radius_};
 }
-
-void Circle::printCentre(std::ostream &out) const
-{
-  out << "Circle centre: (" << centre_.x << ", " << centre_.y << ")\n";
-}

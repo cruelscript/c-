@@ -29,8 +29,3 @@ rectangle_t Rectangle::getFrameRect() const
 {
   return {centre_, width_, height_};
 }
-
-void Rectangle::printCentre(std::ostream &out) const
-{
-  out << "Rectangle centre: (" << centre_.x << ", " << centre_.y << ")\n";
-}
