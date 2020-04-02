@@ -1,6 +1,6 @@
 #ifndef SHAPE_HPP_
 #define SHAPE_HPP_
-#include <iostream>
+#include <iosfwd>
 #include "base-types.hpp"
 
 class Shape

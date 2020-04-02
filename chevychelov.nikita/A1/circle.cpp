@@ -2,6 +2,7 @@
 #include <cassert>
 #define _USE_MATH_DEFINES
 #include <cmath>
+#include <ostream>
 
 Circle::Circle(const double radius, const point_t& pos):
   radius_(radius),
