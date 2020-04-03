@@ -12,9 +12,9 @@ public:
 
   virtual rectangle_t getFrameRect() const = 0;
 
-  void move(const point_t &);
+  virtual void move(const point_t &);
 
-  void move(double dX, double dY);
+  virtual void move(double dX, double dY);
 
 protected:
   point_t center_;
