@@ -1,5 +1,6 @@
 #include "rectangle.hpp"
 #include <cassert>
+#include <ostream>
 
 Rectangle::Rectangle(const point_t& position, const double width, const double height) :
   Shape(position),
@@ -20,9 +21,9 @@ rectangle_t Rectangle::getFrameRect() const
   return { position_, width_, height_ };
 }
 
-void Rectangle::print() const
+void Rectangle::print(std::ostream & out) const
 {
-  std::cout << "Rectangle.\n";
-  std::cout << "Position: x = " << position_.x << ", y = " << position_.y << '\n';
-  std::cout << "height = " << height_ << " width = " << width_ << '\n';
+  out << "Rectangle.\n";
+  out << "Position: x = " << position_.x << ", y = " << position_.y << '\n';
+  out << "height = " << height_ << " width = " << width_ << '\n';
 }

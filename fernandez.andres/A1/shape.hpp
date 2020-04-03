@@ -1,7 +1,7 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 #include "base-types.hpp"
-#include <iostream>
+#include <iosfwd>
 
 class Shape
 {
@@ -16,7 +16,7 @@ public:
 
   virtual rectangle_t getFrameRect() const = 0;
 
-  virtual void print() const = 0;
+  virtual void print(std::ostream & out) const = 0;
 
 protected:
   Shape(const point_t& position);

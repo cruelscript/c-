@@ -1,7 +1,7 @@
 #ifndef RECTANGLE_HPP
 #define RECTANGLE_HPP
 #include "shape.hpp"
-#include <iostream>
+#include <iosfwd>
 
 class Rectangle : public Shape
 {
@@ -12,7 +12,7 @@ public:
 
   virtual rectangle_t getFrameRect() const override;
 
-  virtual void print() const override;
+  virtual void print(std::ostream & out) const override;
 
 private:
   double width_;
