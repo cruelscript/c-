@@ -37,5 +37,8 @@ int main()
   circle->move(-2, 6.7);
   std::cout << "Центр в точке: (" << circle->getFrameRect().pos.x << "; " << circle->getFrameRect().pos.y << ")\n\n";
 
+  delete rectangle;
+  delete circle;
+
   return 0;
 }
