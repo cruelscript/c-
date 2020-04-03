@@ -3,7 +3,7 @@
 #include <cassert>
 #include <ostream>
 
-Rectangle::Rectangle(const point_t& pos, double width, double height) :
+Rectangle::Rectangle(const point_t & pos, double width, double height) :
 	Shape(pos),
 	width_(width),
 	height_(height)
@@ -13,7 +13,7 @@ Rectangle::Rectangle(const point_t& pos, double width, double height) :
 }
 
 Rectangle::Rectangle(const double x, const double y, const double width, const double height) :
-	Rectangle({ x, y }, width, height)
+	Rectangle({x, y}, width, height)
 {}
 
 double Rectangle::getWidth() const
@@ -38,10 +38,15 @@ void Rectangle::setHeight(double height)
 
 rectangle_t Rectangle::getFrameRect() const
 {
-	return { width_, height_, pos_ };
+	return {width_, height_, pos_};
 }
 
 double Rectangle::getArea() const
 {
 	return width_ * height_;
+}
+
+void Rectangle::print(std::ostream & out) const
+{
+	out << "Rectangle width = " << width_ << ", height = " << height_;
 }
