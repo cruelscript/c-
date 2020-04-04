@@ -3,8 +3,6 @@
 
 #include "shape.hpp"
 
-#include <iostream>
-
 class Rectangle : public Shape
 {
 public:

@@ -1,10 +1,10 @@
 #include "circle.hpp"
 #include <cassert>
-
-#define PI 3.1415926535
+#define _USE_MATH_DEFINES
+#include <cmath>
 
 Circle::Circle(const double rad, const double x, const double y) :
-  Circle{ rad, { x,y } }
+  Circle{ rad, { x, y } }
 {}
 
 Circle::Circle(const double rad, const point_t &point) :
@@ -16,7 +16,7 @@ Circle::Circle(const double rad, const point_t &point) :
 
 double Circle::getArea() const
 {
-  return PI * radius_* radius_;
+  return M_PI * radius_* radius_;
 }
 
 rectangle_t Circle::getFrameRect() const
