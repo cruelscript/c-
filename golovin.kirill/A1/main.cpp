@@ -17,9 +17,9 @@ int main()
     std::cout << "Width frame Rectangle of " << nameObj << " is " << figures[i]->getFrameRect().width
               << " and height is " << figures[i]->getFrameRect().height << "\n\n";
     figures[i]->move({1, 2});
-    figures[i]->move(1, 2);
-    std::cout << "Position " << std::string(typeid(*figures[i]).name()).substr(1) << "after moving in (1, 2) is ("
+    std::cout << "Position " << std::string(typeid(*figures[i]).name()).substr(1) << "after moving in {1, 2} is ("
               << figures[i]->getFrameRect().pos.x << "; " << figures[i]->getFrameRect().pos.y << ")\n";
+    figures[i]->move(1, 2);
     std::cout << "Position " << std::string(typeid(*figures[i]).name()).substr(1) << "after moving to offset (1, 2) is ("
               << figures[i]->getFrameRect().pos.x << "; " << figures[i]->getFrameRect().pos.y << ")\n\n";
   }
