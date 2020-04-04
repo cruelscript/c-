@@ -1,8 +1,7 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
-
-#include "base-types.hpp"
 #include <iosfwd>
+#include "base-types.hpp"
 
 class Shape
 {
@@ -16,8 +15,8 @@ public:
   virtual void move(double deltaX, double deltaY);
 
   virtual void print(std::ostream & out) const = 0;
-  void printFrame(std::ostream & out, rectangle_t rect) const;
-  void outPoint(std::ostream & out) const;
+  void printFrame(std::ostream & out) const;
+  void printPoint(std::ostream & out) const;
 
 protected:
   point_t pos_;

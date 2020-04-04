@@ -12,7 +12,7 @@ Circle::Circle(const point_t & position, double radius) :
 }
 
 Circle::Circle(const double x, const double y, double radius) :
-  Circle({x,y}, radius)
+  Circle({x, y}, radius)
 {}
 
 double Circle::getRadius() const
@@ -38,4 +38,5 @@ rectangle_t Circle::getFrameRect() const
 void Circle::print(std::ostream & out) const
 {
   out << "Circle radius = " << radius_;
+  out << "\nPosition: (" << pos_.x << ";" << pos_.y << ")";
 }

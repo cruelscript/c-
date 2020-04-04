@@ -1,5 +1,4 @@
 #include "rectangle.hpp"
-
 #include <cassert>
 #include <ostream>
 
@@ -49,4 +48,5 @@ double Rectangle::getArea() const
 void Rectangle::print(std::ostream & out) const
 {
   out << "Rectangle width = " << width_ << ", height = " << height_;
+  out << "\nPosition: (" << pos_.x << ";" << pos_.y << ")";
 }
