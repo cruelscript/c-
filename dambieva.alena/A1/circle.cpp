@@ -1,8 +1,8 @@
+#define _USE_MATH_DEFINES
 #include "circle.hpp"
 #include <cassert>
+#include <cmath>
 #include <ostream>
-
-#define M_PI 3.14159265358979323846
 
 Circle::Circle(const point_t & position, double radius) :
   Shape(position),
