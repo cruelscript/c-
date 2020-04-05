@@ -1,5 +1,4 @@
 ﻿#include <iostream>
-#include <cassert>
 #include "rectangle.hpp"
 #include "circle.hpp"
 
@@ -26,20 +25,17 @@ int main()
   circle->move(-55.32, 9.4);
   rectangle->showData(std::cout);
   circle->showData(std::cout);
+  std::cout << "\n";
 
-  std::cout << "Calculating the bounding box data of a rectangle\n";
-  rectangle_t boundingBoxForRect = rectangle->getFrameRect();
-  std::cout << "Width: " << boundingBoxForRect.width << "\tHeight: " << boundingBoxForRect.height
-      << "\tPosition: " << '(' << boundingBoxForRect.pos.x << ", " << boundingBoxForRect.pos.y << ')' << "\n\n";
-  std::cout << "Calculating the bounding box data of a circle\n";
-  rectangle_t boundingBoxForCirc = circle->getFrameRect();
-  std::cout << "Width: " << boundingBoxForCirc.width << "\tHeight: " << boundingBoxForCirc.height
-      << "\tPosition: " << '(' << boundingBoxForCirc.pos.x << ", " << boundingBoxForCirc.pos.y << ')' << "\n\n";
-
-  std::cout << "Calculating the area of a rectangle\n";
-  std::cout << "Rectangle area: " << rectangle->getArea() << "\n\n";
-  std::cout << "Calculating the area of a circle\n";
-  std::cout << "Circle area: " << circle->getArea() << "\n";
+  Shape* shapes[2] = { &rect, &circ };
+  for (int i = 0; i < 2; i++)
+  {
+    std::cout << "Calculating the bounding box data of the " << i + 1 << " shape\n";
+    std::cout << "Width: " << shapes[i]->getFrameRect().width << "\tHeight: " << shapes[i]->getFrameRect().height
+      << "\tPosition: (" << shapes[i]->getFrameRect().pos.x << ", " << shapes[i]->getFrameRect().pos.y << ")\n";
+    std::cout << "Calculating the area of the " << i + 1 << " shape\n";
+    std::cout << "Area: " << shapes[i]->getArea() << "\n\n";
+  }
 
   return 0;
 }
