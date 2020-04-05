@@ -1,5 +1,7 @@
 #include "circle.hpp"
+
 #define _USE_MATH_DEFINES
+
 #include <cassert>
 #include <cmath>
 #include <ostream>
@@ -8,7 +10,7 @@ Circle::Circle(const point_t& position, const double radius) :
   Shape(position),
   radius_(radius)
 {
-  assert(radius_ > 0);
+  assert(radius_ > 0.0);
 }
 
 double Circle::getArea() const

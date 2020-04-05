@@ -1,7 +1,8 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
-#include "base-types.hpp"
+
 #include <iosfwd>
+#include "base-types.hpp"
 
 class Shape
 {
@@ -24,4 +25,3 @@ protected:
 };
 
 #endif
-
