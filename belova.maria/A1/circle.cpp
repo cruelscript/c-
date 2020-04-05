@@ -34,7 +34,7 @@ double Circle::getArea() const
 
 void Circle::showData(std::ostream& out) const
 {
-  std::cout << "Circle:\nCenter: " << '(' << center_.x << ", " << center_.y << ')'
+  out << "Circle:\nCenter: " << '(' << center_.x << ", " << center_.y << ')'
       << "\tRadius: " << radius_ << "\n\n";
 }
 
