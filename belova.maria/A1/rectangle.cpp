@@ -1,6 +1,6 @@
 #include "rectangle.hpp"
 #include <cassert>
-#include <iostream>
+#include <ostream>
 
 Rectangle::Rectangle(const point_t &center, const double w, const double h) :
   center_(center),
