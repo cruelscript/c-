@@ -1,18 +1,19 @@
 #ifndef RECTANGLE_HPP
 #define RECTANGLE_HPP
-#include "shape.hpp"
+
 #include <iosfwd>
+#include "shape.hpp"
 
 class Rectangle : public Shape
 {
 public:
   Rectangle(const point_t& position, const double width, const double height);
 
-  virtual double getArea() const;
+  double getArea() const;
 
-  virtual rectangle_t getFrameRect() const override;
+  rectangle_t getFrameRect() const override;
 
-  virtual void print(std::ostream & out) const override;
+  void print(std::ostream & out) const override;
 
 private:
   double width_;
