@@ -1,7 +1,8 @@
 #include "circle.hpp"
 
 #define _USE_MATH_DEFINES
-#include <math.h>
+#include <cmath>
+#include <stdexcept>
 #include <ostream>
 
 vinokurov::Circle::Circle(const point_t& pos, const double radius) :

@@ -1,5 +1,6 @@
 #include "rectangle.hpp"
 
+#include <stdexcept>
 #include <ostream>
 
 vinokurov::Rectangle::Rectangle(const point_t& pos, double width, double height) :

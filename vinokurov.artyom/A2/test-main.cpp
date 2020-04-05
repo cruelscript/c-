@@ -9,30 +9,42 @@
 
 const double ACCURACY = 1e-10;
 
-BOOST_AUTO_TEST_SUITE(rectangleTest)
+BOOST_AUTO_TEST_SUITE(RectangleTest)
 
 BOOST_AUTO_TEST_CASE(rectangleImmutabilityAfterPointMove)
 {
   vinokurov::Rectangle testRectangle({1.2, 2.1}, 5.7, 7.5);
-  testRectangle.move({4.8,-8.4});
 
-  BOOST_CHECK_CLOSE(testRectangle.getFrameRect().pos.x, 4.8, ACCURACY);
-  BOOST_CHECK_CLOSE(testRectangle.getFrameRect().pos.y, -8.4, ACCURACY);
+  double widthBefore = testRectangle.getFrameRect().width;
+  double heightBefore = testRectangle.getFrameRect().height;
+  vinokurov::point_t movePoint = {4.8, 8.4};
 
-  BOOST_CHECK_CLOSE(testRectangle.getFrameRect().width, 5.7, ACCURACY);
-  BOOST_CHECK_CLOSE(testRectangle.getFrameRect().height, 7.5, ACCURACY);
+  testRectangle.move(movePoint);
+
+  BOOST_CHECK_CLOSE(testRectangle.getFrameRect().pos.x, movePoint.x, ACCURACY);
+  BOOST_CHECK_CLOSE(testRectangle.getFrameRect().pos.y, movePoint.y, ACCURACY);
+
+  BOOST_CHECK_CLOSE(testRectangle.getFrameRect().width, widthBefore, ACCURACY);
+  BOOST_CHECK_CLOSE(testRectangle.getFrameRect().height, heightBefore, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(rectangleImmutabilityAfterDeltaMove)
 {
-  vinokurov::Rectangle testRectangle({1.2,2.1}, 5.7, 7.5);
-  testRectangle.move(4.8, -8.4);
+  vinokurov::point_t centerPos = {1.2, 2.1};
+  vinokurov::Rectangle testRectangle(centerPos, 5.7, 7.5);;
 
-  BOOST_CHECK_CLOSE(testRectangle.getFrameRect().pos.x, 1.2 + 4.8, ACCURACY);
-  BOOST_CHECK_CLOSE(testRectangle.getFrameRect().pos.y, 2.1 - 8.4, ACCURACY);
+  double widthBefore = testRectangle.getFrameRect().width;
+  double heightBefore = testRectangle.getFrameRect().height;
+  double deltaX = 4.8;
+  double deltaY = -8.4;
 
-  BOOST_CHECK_CLOSE(testRectangle.getFrameRect().width, 5.7, ACCURACY);
-  BOOST_CHECK_CLOSE(testRectangle.getFrameRect().height, 7.5, ACCURACY);
+  testRectangle.move(deltaX, deltaY);
+
+  BOOST_CHECK_CLOSE(testRectangle.getFrameRect().pos.x, centerPos.x + deltaX, ACCURACY);
+  BOOST_CHECK_CLOSE(testRectangle.getFrameRect().pos.y, centerPos.y + deltaY, ACCURACY);
+
+  BOOST_CHECK_CLOSE(testRectangle.getFrameRect().width, widthBefore, ACCURACY);
+  BOOST_CHECK_CLOSE(testRectangle.getFrameRect().height, heightBefore, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(rectangleAreaImmutabilityAfterPointMove)
@@ -81,30 +93,42 @@ BOOST_AUTO_TEST_CASE(rectangleExceptionInvalidScaling)
 BOOST_AUTO_TEST_SUITE_END()
 
 
-BOOST_AUTO_TEST_SUITE(circleTest)
+BOOST_AUTO_TEST_SUITE(CircleTest)
 
 BOOST_AUTO_TEST_CASE(circleImmutabilityAfterPointMove)
 {
   vinokurov::Circle testCircle({1.2, 2.1}, 5.5);
-  testCircle.move({4.8,-8.4});
 
-  BOOST_CHECK_CLOSE(testCircle.getFrameRect().pos.x, 4.8, ACCURACY);
-  BOOST_CHECK_CLOSE(testCircle.getFrameRect().pos.y, -8.4, ACCURACY);
+  double widthBefore = testCircle.getFrameRect().width;
+  double heightBefore = testCircle.getFrameRect().height;
+  vinokurov::point_t movePoint = {4.8, -8.4};
 
-  BOOST_CHECK_CLOSE(testCircle.getFrameRect().width, 5.5 * 2, ACCURACY);
-  BOOST_CHECK_CLOSE(testCircle.getFrameRect().height, 5.5 * 2, ACCURACY);
+  testCircle.move(movePoint);
+
+  BOOST_CHECK_CLOSE(testCircle.getFrameRect().pos.x, movePoint.x, ACCURACY);
+  BOOST_CHECK_CLOSE(testCircle.getFrameRect().pos.y, movePoint.y, ACCURACY);
+
+  BOOST_CHECK_CLOSE(testCircle.getFrameRect().width, widthBefore, ACCURACY);
+  BOOST_CHECK_CLOSE(testCircle.getFrameRect().height, heightBefore, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(circleImmutabilityAfterDeltaMove)
 {
-  vinokurov::Circle testCircle({1.2, 2.1}, 5.5);
-  testCircle.move(4.8,-8.4);
+  vinokurov::point_t centerPos = {1.2, 2.1};
+  vinokurov::Circle testCircle(centerPos, 5.5);
 
-  BOOST_CHECK_CLOSE(testCircle.getFrameRect().pos.x, 1.2 + 4.8, ACCURACY);
-  BOOST_CHECK_CLOSE(testCircle.getFrameRect().pos.y, 2.1 - 8.4, ACCURACY);
+  double deltaX = 4.8;
+  double deltaY = -8.4;
+  double widthBefore = testCircle.getFrameRect().width;
+  double heightBefore = testCircle.getFrameRect().height;
 
-  BOOST_CHECK_CLOSE(testCircle.getFrameRect().width, 5.5 * 2, ACCURACY);
-  BOOST_CHECK_CLOSE(testCircle.getFrameRect().height, 5.5 * 2, ACCURACY);
+  testCircle.move(deltaX, deltaY);
+
+  BOOST_CHECK_CLOSE(testCircle.getFrameRect().pos.x, centerPos.x + deltaX, ACCURACY);
+  BOOST_CHECK_CLOSE(testCircle.getFrameRect().pos.y, centerPos.y + deltaY, ACCURACY);
+
+  BOOST_CHECK_CLOSE(testCircle.getFrameRect().width, widthBefore, ACCURACY);
+  BOOST_CHECK_CLOSE(testCircle.getFrameRect().height, heightBefore, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(circleAreaImmutabilityAfterPointMove)
