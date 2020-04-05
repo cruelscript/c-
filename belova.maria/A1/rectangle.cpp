@@ -34,6 +34,6 @@ double Rectangle::getArea() const
 
 void Rectangle::showData(std::ostream& out) const
 {
-  std::cout << "Rectangle:\nCenter: " << '(' << center_.x << ", " << center_.y << ')' << "\tWidth: "
+  out << "Rectangle:\nCenter: " << '(' << center_.x << ", " << center_.y << ')' << "\tWidth: "
       << width_ << "\tHeight: " << height_ << "\n";
 }
