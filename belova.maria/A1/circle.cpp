@@ -1,24 +1,14 @@
-#define _USE_MATH_DEFINES
 #include "circle.hpp"
 #include <cassert>
-#include <cmath>
 #include <iostream>
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
 
 Circle::Circle(const point_t &center, const double radius) :
   center_(center),
   radius_(radius)
 {
-  assert(radius_ > 0);
-}
-
-point_t Circle::getCenter() const
-{
-  return center_;
-}
-
-double Circle::getRadius() const
-{
-  return radius_;
+  assert(radius_ > 0.0);
 }
 
 void Circle::move(const point_t &center)
@@ -42,8 +32,10 @@ double Circle::getArea() const
   return M_PI * radius_ * radius_;
 }
 
-void Circle::showData() const
+void Circle::showData(std::ostream& out) const
 {
-  std::cout << "Circle:\nCenter: " << getCenter()
-      << "\tRadius: " << getRadius() << "\n\n";
+  std::cout << "Circle:\nCenter: " << '(' << center_.x << ", " << center_.y << ')'
+      << "\tRadius: " << radius_ << "\n\n";
 }
+
+#endif
