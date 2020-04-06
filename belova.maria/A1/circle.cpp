@@ -1,8 +1,8 @@
 #include "circle.hpp"
+#define _USE_MATH_DEFINES
+#include <cmath>
 #include <cassert>
 #include <ostream>
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
 
 Circle::Circle(const point_t &center, const double radius) :
   center_(center),
@@ -37,5 +37,3 @@ void Circle::showData(std::ostream& out) const
   out << "Circle:\nCenter: " << '(' << center_.x << ", " << center_.y << ')'
       << "\tRadius: " << radius_ << "\n";
 }
-
-#endif
