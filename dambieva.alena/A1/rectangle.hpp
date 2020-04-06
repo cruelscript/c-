@@ -8,6 +8,7 @@ class Rectangle : public Shape
 public:
   Rectangle(const point_t & pos, double width, double height);
   Rectangle(const double x, const double y, const double width, const double height);
+
   double getWidth() const;
   double getHeight() const;
   void setWidth(double width);

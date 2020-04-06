@@ -3,7 +3,7 @@
 #include "rectangle.hpp"
 #include "shape.hpp"
 
-void printInfo(Shape & object)
+void printInfo(const Shape & object)
 {
   std::cout << "\n";
   object.print(std::cout);
