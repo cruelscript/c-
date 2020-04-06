@@ -32,7 +32,7 @@ int main()
   {
     std::cout << "Calculating the bounding box data of the " << i + 1 << " shape\n";
     std::cout << "Width: " << shapes[i]->getFrameRect().width << "\tHeight: " << shapes[i]->getFrameRect().height
-      << "\tPosition: (" << shapes[i]->getFrameRect().pos.x << ", " << shapes[i]->getFrameRect().pos.y << ")\n";
+        << "\tPosition: (" << shapes[i]->getFrameRect().pos.x << ", " << shapes[i]->getFrameRect().pos.y << ")\n";
     std::cout << "Calculating the area of the " << i + 1 << " shape\n";
     std::cout << "Area: " << shapes[i]->getArea() << "\n\n";
   }
