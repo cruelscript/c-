@@ -1,7 +1,7 @@
 #define _USE_MATH_DEFINES
-#include <cmath>
 #include "circle.hpp"
 #include <cassert>
+#include <cmath>
 
 Circle::Circle(const point_t& center, const double radius) :
   center_(center),
@@ -29,10 +29,4 @@ void Circle::move(const double dx, const double dy)
 void Circle::move(const point_t& moveTo) 
 {
   center_ = moveTo;
-}
-
-void Circle::print(std::ostream& out) const 
-{
-  out << "Circle\n" << "radius: " << radius_ 
-  << '\n' << "center: " << '(' << center_.x << ", " << center_.y << ")\n";
 }

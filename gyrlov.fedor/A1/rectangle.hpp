@@ -1,7 +1,6 @@
 #ifndef RECTANGLE_HPP
 #define RECTANGLE_HPP
 
-#include <ostream>
 #include "shape.hpp"
 #include "base-types.hpp"
 
@@ -13,11 +12,9 @@ public:
   rectangle_t getFrameRect() const override;
   void move(const double dx, const double dy) override;
   void move(const point_t&) override;
-  void print(std::ostream&) const override;
 private:
   point_t center_;
   double width_;
   double height_;
-
 };
 #endif

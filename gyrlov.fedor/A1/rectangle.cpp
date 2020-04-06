@@ -6,8 +6,7 @@ Rectangle::Rectangle(const point_t& center, const double width, const double hei
   width_(width),
   height_(height) 
 {
-  assert(width_ > 0);
-  assert(height_ > 0);
+  assert((width_ > 0) && (height_ > 0));
 }
 
 double Rectangle::getArea() const 
@@ -29,11 +28,4 @@ void Rectangle::move(const double dx, const double dy)
 {
   center_.x += dx;
   center_.y += dy;
-}
-
-void Rectangle::print(std::ostream& out) const
-{
-  out << "Rectangle\n" << "height: " << height_ << '\n' 
-  << "width: " << width_ << '\n' 
-  << "center: " << '(' << center_.x << ", " << center_.y << ")\n";
 }

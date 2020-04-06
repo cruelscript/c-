@@ -1,7 +1,6 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 
-#include <ostream>
 #include "base-types.hpp"
 
 class Shape {
@@ -11,6 +10,5 @@ public:
   virtual rectangle_t getFrameRect() const = 0;
   virtual void move(const double dx, const double dy) = 0;
   virtual void move(const point_t&) = 0;
-  virtual void print(std::ostream&) const = 0;
 };
 #endif
