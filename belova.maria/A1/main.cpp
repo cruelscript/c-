@@ -10,26 +10,18 @@ int main()
   std::cout << "Shapes data\n";
   rect.showData(std::cout);
   circ.showData(std::cout);
-
-  Shape* rectangle = &rect;
-  Shape* circle = &circ;
-
-  std::cout << "Moving shapes to a specific point\n";
-  rectangle->move({ 35, 159 });
-  circle->move({ 17.962, 63.7 });
-  rectangle->showData(std::cout);
-  circle->showData(std::cout);
-
-  std::cout << "Moving shapes along the abscissas and ordinates\n";
-  rectangle->move(-34.8, -80);
-  circle->move(-55.32, 9.4);
-  rectangle->showData(std::cout);
-  circle->showData(std::cout);
   std::cout << "\n";
 
   Shape* shapes[2] = { &rect, &circ };
   for (int i = 0; i < 2; i++)
   {
+    std::cout << "Moving " << i + 1 << " shape to a specific point\n";
+    shapes[i]->move({ 17.962, 63.7 });
+    shapes[i]->showData(std::cout);
+    std::cout << "Moving " << i + 1 << " shape along the abscissas and ordinates\n";
+    shapes[i]->move(-55.32, 9.4);
+    shapes[i]->showData(std::cout);
+    std::cout << "\n";
     std::cout << "Calculating the bounding box data of the " << i + 1 << " shape\n";
     std::cout << "Width: " << shapes[i]->getFrameRect().width << "\tHeight: " << shapes[i]->getFrameRect().height
         << "\tPosition: (" << shapes[i]->getFrameRect().pos.x << ", " << shapes[i]->getFrameRect().pos.y << ")\n";
