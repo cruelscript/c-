@@ -14,7 +14,7 @@ int main()
     std::cout << shapeType << '\n';
 
     std::cout << "Frame position (x, y): (" << figure[i]->getFrameRect().pos.x
-    << ", " << figure[i]->getFrameRect().pos.y << ")\n"
+              << ", " << figure[i]->getFrameRect().pos.y << ")\n"
     << "Frame width of figure is " << figure[i]->getFrameRect().width << "\n"
     << "Frame height of figure is " << figure[i]->getFrameRect().height << "\n\n";
 
