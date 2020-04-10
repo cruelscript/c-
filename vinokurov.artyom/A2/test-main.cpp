@@ -79,15 +79,31 @@ BOOST_AUTO_TEST_CASE(rectangleExceptionInvalidWidth)
   BOOST_CHECK_THROW(vinokurov::Rectangle({1.1, 1.1}, -5.5, 5.5), std::invalid_argument);
 }
 
+BOOST_AUTO_TEST_CASE(rectangleExceptionZeroWidth)
+{
+  BOOST_CHECK_THROW(vinokurov::Rectangle({ 1.1, 1.1 }, 0.0, 5.5), std::invalid_argument);
+}
+
 BOOST_AUTO_TEST_CASE(rectangleExceptionInvalidHeight)
 {
   BOOST_CHECK_THROW(vinokurov::Rectangle({1.1, 1.1}, 5.5, -5.5), std::invalid_argument);
+}
+
+BOOST_AUTO_TEST_CASE(rectangleExceptionZeroHeight)
+{
+  BOOST_CHECK_THROW(vinokurov::Rectangle({ 1.1, 1.1 }, 5.5, 0.0), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(rectangleExceptionInvalidScaling)
 {
   vinokurov::Rectangle testRectangle({1.1,1.1}, 5.5, 5.5);
   BOOST_CHECK_THROW(testRectangle.scale(-7.7), std::invalid_argument);
+}
+
+BOOST_AUTO_TEST_CASE(rectangleExceptionZeroScaling)
+{
+  vinokurov::Rectangle testRectangle({ 1.1,1.1 }, 5.5, 5.5);
+  BOOST_CHECK_THROW(testRectangle.scale(0.0), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
@@ -163,10 +179,21 @@ BOOST_AUTO_TEST_CASE(circleExceptionInvalidRadius)
   BOOST_CHECK_THROW(vinokurov::Circle testCircle({1.1, 1.1}, -5.5), std::invalid_argument);
 }
 
+BOOST_AUTO_TEST_CASE(circleExceptionZeroRadius)
+{
+  BOOST_CHECK_THROW(vinokurov::Circle testCircle({ 1.1, 1.1 }, 0.0), std::invalid_argument);
+}
+
 BOOST_AUTO_TEST_CASE(circleExceptionInvalidScaling)
 {
   vinokurov::Circle testCircle({1.1,1.1}, 5.5);
   BOOST_CHECK_THROW(testCircle.scale(-7.7), std::invalid_argument);
+}
+
+BOOST_AUTO_TEST_CASE(circleExceptionZeroScaling)
+{
+  vinokurov::Circle testCircle({1.1, 1.1}, 5.5);
+  BOOST_CHECK_THROW(testCircle.scale(0.0), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

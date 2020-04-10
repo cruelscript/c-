@@ -2,7 +2,7 @@
 #define SHAPE_HPP
 
 #include "base-types.hpp"
-#include <ostream>
+#include <iosfwd>
 
 namespace vinokurov
 {
