@@ -1,5 +1,4 @@
 #include "shape.hpp"
-#include<iostream>
 
 Shape::Shape(const point_t& position) :
   position_(position)
