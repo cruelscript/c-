@@ -1,4 +1,3 @@
-#define _USE_MATH_DEFINES
 #include "circle.hpp"
 #include <cassert>
 #include <cmath>
@@ -15,16 +14,6 @@ Circle::Circle(const double x, const double y, double radius) :
   Circle({x, y}, radius)
 {}
 
-double Circle::getRadius() const
-{
-  return radius_;
-}
-
-void Circle::setRadius(double radius)
-{
-  radius_ = radius;
-}
-
 double Circle::getArea() const
 {
   return M_PI * radius_ * radius_;
@@ -39,4 +28,14 @@ void Circle::print(std::ostream & out) const
 {
   out << "Circle radius = " << radius_;
   out << "\nPosition: (" << pos_.x << ";" << pos_.y << ")";
+}
+
+double Circle::getRadius() const
+{
+  return radius_;
+}
+
+void Circle::setRadius(double radius)
+{
+  radius_ = radius;
 }
