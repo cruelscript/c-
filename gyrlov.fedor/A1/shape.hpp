@@ -3,7 +3,8 @@
 
 #include "base-types.hpp"
 
-class Shape {
+class Shape 
+{
 public:
   virtual ~Shape() = default;
   virtual double getArea() const = 0;
