@@ -4,6 +4,7 @@
 #include <cmath>
 #include <stdexcept>
 #include <ostream>
+#include "base-types.hpp"
 
 vinokurov::Circle::Circle(const point_t& pos, const double radius) :
   Shape(pos),

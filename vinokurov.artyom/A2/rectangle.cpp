@@ -2,6 +2,7 @@
 
 #include <stdexcept>
 #include <ostream>
+#include "base-types.hpp"
 
 vinokurov::Rectangle::Rectangle(const point_t& pos, double width, double height) :
   Shape(pos),
