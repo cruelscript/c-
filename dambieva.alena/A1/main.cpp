@@ -3,13 +3,20 @@
 #include "rectangle.hpp"
 #include "shape.hpp"
 
+void printFrame(const rectangle_t & object)
+{
+  std::cout << "Frame width = " << object.width;
+  std::cout << ", height = " << object.height << "\n";
+  std::cout << "Position: (" << object.pos.x << ";" << object.pos.y << ")";
+}
+
 void printInfo(const Shape & object)
 {
   std::cout << "\n";
   object.print(std::cout);
   std::cout << "\nShape's Area: " << object.getArea();
   std::cout << "\n\n";
-  object.printFrame(std::cout);
+  printFrame(object.getFrameRect());
   std::cout << "\n\n\n";
 }
 

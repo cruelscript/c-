@@ -16,13 +16,7 @@ void Shape::move(double deltaX, double deltaY)
   pos_.y += deltaY;
 }
 
-void Shape::printFrame(std::ostream & out) const
+point_t Shape::getPos() const
 {
-  out << "Frame width = " << getFrameRect().width << ", height = " << getFrameRect().height << "\n";
-  printPoint(out);
-}
-
-void Shape::printPoint(std::ostream & out) const
-{
-  out << "Position: (" << pos_.x << ";" << pos_.y << ")";
+  return pos_;
 }

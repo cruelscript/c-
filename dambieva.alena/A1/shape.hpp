@@ -15,9 +15,7 @@ public:
   virtual void move(double deltaX, double deltaY);
 
   virtual void print(std::ostream & out) const = 0;
-  void printFrame(std::ostream & out) const;
-  void printPoint(std::ostream & out) const;
-
+  point_t getPos() const;
 protected:
   point_t pos_;
 };
