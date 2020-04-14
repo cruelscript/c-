@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE(rectangleAreaImmutabilityAfterDeltaMove)
   BOOST_CHECK_CLOSE(areaBefore, testRectangle.getArea(), ACCURACY);
 }
 
-BOOST_AUTO_TEST_CASE(rectanleConstantAreaChangingAfterScaling)
+BOOST_AUTO_TEST_CASE(rectangleAreaChangingAfterScaling)
 {
   vinokurov::Rectangle testRectangle({1.1,1.1}, 5.5, 5.5);
   double areaBefore = testRectangle.getArea();
@@ -165,7 +165,7 @@ BOOST_AUTO_TEST_CASE(circleAreaImmutabilityAfterDeltaMove)
   BOOST_CHECK_CLOSE(areaBefore, testCircle.getArea(), ACCURACY);
 }
 
-BOOST_AUTO_TEST_CASE(circleConstantAreaChangingAfterScaling)
+BOOST_AUTO_TEST_CASE(circleAreaChangingAfterScaling)
 {
   vinokurov::Circle testCircle({1.1,1.1}, 5.5);
   double areaBefore = testCircle.getArea();
