@@ -5,6 +5,7 @@
 #include <cassert>
 #include <cmath>
 #include <ostream>
+#include "base-types.hpp"
 
 Circle::Circle(const point_t& position, const double radius) :
   Shape(position),

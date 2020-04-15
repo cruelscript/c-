@@ -3,13 +3,14 @@
 
 #include <iosfwd>
 #include "shape.hpp"
+#include "base-types.hpp"
 
 class Rectangle : public Shape
 {
 public:
   Rectangle(const point_t& position, const double width, const double height);
 
-  double getArea() const;
+  double getArea() const override;
 
   rectangle_t getFrameRect() const override;
 

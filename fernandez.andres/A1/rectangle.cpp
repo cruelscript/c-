@@ -1,6 +1,7 @@
 #include "rectangle.hpp"
 #include <cassert>
 #include <ostream>
+#include "base-types.hpp"
 
 Rectangle::Rectangle(const point_t& position, const double width, const double height) :
   Shape(position),
