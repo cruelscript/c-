@@ -3,7 +3,8 @@
 #include "shape.hpp"
 #include "base-types.hpp"
 
-class Circle : public Shape {
+class Circle : public Shape
+{
 
  public:
   Circle(double radius, double x, double y);

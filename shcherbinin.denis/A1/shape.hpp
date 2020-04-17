@@ -2,7 +2,8 @@
 #define A1__SHAPE_HPP_
 #include "base-types.hpp"
 
-class Shape {
+class Shape
+{
  public:
 
   virtual ~Shape() = default;

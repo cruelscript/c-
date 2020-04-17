@@ -3,7 +3,8 @@
 #include "shape.hpp"
 #include "base-types.hpp"
 
-class Rectangle : public Shape {
+class Rectangle : public Shape
+{
 
  public:
 

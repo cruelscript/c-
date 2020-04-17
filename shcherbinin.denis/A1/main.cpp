@@ -10,7 +10,8 @@ void demonstrate(Shape *shape, const char *shapeType)
             << shape->getFrameRect().pos.y << ')' << '\n';
   std::cout << "Frame rectangle sizes (w ; h): (" << shape->getFrameRect().width << " ; "
             << shape->getFrameRect().height << ')' << '\n';
-  std::cout << shapeType << "'s pos: (" << shape->getFrameRect().pos.x << " ; " << shape->getFrameRect().pos.y << ')' << '\n';
+  std::cout << shapeType << "'s pos: (" << shape->getFrameRect().pos.x << " ; " << shape->getFrameRect().pos.y << ')'
+            << '\n';
 
   shape->move({2.28, 3.22});
 
@@ -26,11 +27,12 @@ int main()
 {
   Circle circle = Circle(5.7, 0.0, 0.0);
   Rectangle rectangle = Rectangle(5.5, 7.5, 5.0, 5.0);
-  
+
   Shape *shapes[] = {&circle, &rectangle};
 
   const char *shapeType = nullptr;
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < 2; i++)
+  {
     shapeType = (i == 0 ? "circle" : "rectangle");
     demonstrate(shapes[i], shapeType);
   }
