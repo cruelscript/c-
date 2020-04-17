@@ -11,7 +11,7 @@ Rectangle::Rectangle(const point_t & pos, double width, double height) :
   assert(height > 0.0);
 }
 
-Rectangle::Rectangle(const double x, const double y, const double width, const double height) :
+Rectangle::Rectangle(double x, double y, double width, double height) :
   Rectangle({x, y}, width, height)
 {}
 
@@ -43,10 +43,12 @@ double Rectangle::getHeight() const
 
 void Rectangle::setWidth(double width)
 {
+  assert(width > 0.0);
   width_ = width;
 }
 
 void Rectangle::setHeight(double height)
 {
+  assert(height > 0.0);
   height_ = height;
 }

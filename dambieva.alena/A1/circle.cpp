@@ -11,7 +11,7 @@ Circle::Circle(const point_t & position, double radius) :
   assert(radius > 0.0);
 }
 
-Circle::Circle(const double x, const double y, double radius) :
+Circle::Circle(double x, double y, double radius) :
   Circle({x, y}, radius)
 {}
 
@@ -38,5 +38,6 @@ double Circle::getRadius() const
 
 void Circle::setRadius(double radius)
 {
+  assert(radius > 0.0);
   radius_ = radius;
 }

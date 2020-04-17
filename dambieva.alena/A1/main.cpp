@@ -32,15 +32,17 @@ int main()
 
   std::cout << "Decrease the center of the circle to (-2, -2)...\n";
   circle.move(-2.0, -2.0);
-  std::cout << "Change the radius of the circle to 6...\n\nUpdated Information:";
+  std::cout << "Change the radius of the circle to 6...";
   circle.setRadius(6.0);
+  std::cout << "\n\nUpdated Information:";
   printInfo(circle);
 
   std::cout << "Increase the center of the rectangle to (3, 3)...\n";
   rectangle.move(3.0, 3.0);
-  std::cout << "Change the height of the rectangle to 5, the width to 40...\n\nUpdated Information:";
+  std::cout << "Change the height of the rectangle to 5, the width to 40...";
   rectangle.setHeight(5.0);
   rectangle.setWidth(40.0);
+  std::cout << "\n\nUpdated Information:";
   printInfo(rectangle);
 
   point_t centerCircle {4.0, 5.0};
