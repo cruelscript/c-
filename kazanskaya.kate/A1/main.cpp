@@ -1,6 +1,6 @@
-#include<iostream>
 #include "circle.hpp"
 #include "rectangle.hpp"
+#include <iostream>
 
 int main()
 {
@@ -19,6 +19,11 @@ int main()
     {
       std::cout << "Width of figure: " << figures[0]->getFrameRect().width
         << "\nHeight of figure: " << figures[0]->getFrameRect().height << "\n";
+    }
+
+    if (i == 1)
+    {
+      std::cout << "Diameter of figure: " << figures[1]->getFrameRect().width << "\n";
     }
 
     std::cout << "\nArea of figure = " << figures[i]->getArea() << "\n\n";

@@ -24,8 +24,8 @@ void Rectangle::move(const point_t& newCenter)
   center_ = newCenter;
 }
 
-void Rectangle::move(const double& axisX, const double& axisY)
+void Rectangle::move(const double& dX, const double& dY)
 {
-  center_.x += axisX;
-  center_.y += axisY;
+  center_.x += dX;
+  center_.y += dY;
 }

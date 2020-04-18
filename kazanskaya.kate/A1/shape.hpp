@@ -9,7 +9,7 @@ public:
   virtual double getArea() const = 0;
   virtual rectangle_t getFrameRect() const = 0;
   virtual void move(const point_t& newCenter) = 0;
-  virtual void move(const double& axisX, const double& axisY) = 0;
+  virtual void move(const double& dX, const double& dY) = 0;
 };
 
 #endif

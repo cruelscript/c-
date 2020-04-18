@@ -24,8 +24,8 @@ void Circle::move(const point_t& newCenter)
 {
   center_ = newCenter;
 }
-void Circle::move(const double& axisX, const double& axisY)
+void Circle::move(const double& dX, const double& dY)
 {
-  center_.x += axisX;
-  center_.y += axisY;
+  center_.x += dX;
+  center_.y += dY;
 }
