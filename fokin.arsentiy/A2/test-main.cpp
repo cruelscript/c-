@@ -29,8 +29,6 @@ BOOST_AUTO_TEST_CASE(RectangleImmutabilityAfterMovingToPoint)
   double initialWidth = testRectangle.getFrameRect().width;
   double initialHeight = testRectangle.getFrameRect().height;
 
-  double initialArea = testRectangle.getArea();
-
   double newX = -5.1;
   double newY = 9.7;
 
@@ -38,6 +36,18 @@ BOOST_AUTO_TEST_CASE(RectangleImmutabilityAfterMovingToPoint)
 
   BOOST_CHECK_CLOSE_FRACTION(testRectangle.getFrameRect().width, initialWidth, EPSILON);
   BOOST_CHECK_CLOSE_FRACTION(testRectangle.getFrameRect().height, initialHeight, EPSILON);
+}
+
+BOOST_AUTO_TEST_CASE(RectangleCorrectCenterAndAreaAfterMovingToPoint)
+{
+  fokin::Rectangle testRectangle(4.0, 5.0, { 2.6, -1.4 });
+
+  double initialArea = testRectangle.getArea();
+
+  double newX = -5.1;
+  double newY = 9.7;
+
+  testRectangle.move({ newX, newY });
 
   BOOST_REQUIRE_CLOSE_FRACTION(testRectangle.getFrameRect().pos.x, newX, EPSILON);
   BOOST_REQUIRE_CLOSE_FRACTION(testRectangle.getFrameRect().pos.y, newY, EPSILON);
@@ -52,6 +62,19 @@ BOOST_AUTO_TEST_CASE(RectangleImmutabilityAfterShifting)
   double initialFrameWidth = testRectangle.getFrameRect().width;
   double initialFrameHeight = testRectangle.getFrameRect().height;
 
+  double dX = -5.1;
+  double dY = 9.7;
+
+  testRectangle.move(dX, dY);
+
+  BOOST_CHECK_CLOSE_FRACTION(testRectangle.getFrameRect().width, initialFrameWidth, EPSILON);
+  BOOST_CHECK_CLOSE_FRACTION(testRectangle.getFrameRect().height, initialFrameHeight, EPSILON);
+}
+
+BOOST_AUTO_TEST_CASE(RectangleCorrectCenterAndAreaAfterShifting)
+{
+  fokin::Rectangle testRectangle(4.0, 5.0, { 2.6, -1.4 });
+
   double initialX = testRectangle.getFrameRect().pos.x;
   double initialY = testRectangle.getFrameRect().pos.y;
 
@@ -61,9 +84,6 @@ BOOST_AUTO_TEST_CASE(RectangleImmutabilityAfterShifting)
   double dY = 9.7;
 
   testRectangle.move(dX, dY);
-
-  BOOST_CHECK_CLOSE_FRACTION(testRectangle.getFrameRect().width, initialFrameWidth, EPSILON);
-  BOOST_CHECK_CLOSE_FRACTION(testRectangle.getFrameRect().height, initialFrameHeight, EPSILON);
 
   BOOST_CHECK_CLOSE_FRACTION(testRectangle.getFrameRect().pos.x, initialX + dX, EPSILON);
   BOOST_CHECK_CLOSE_FRACTION(testRectangle.getFrameRect().pos.y, initialY + dY, EPSILON);
@@ -78,7 +98,7 @@ BOOST_AUTO_TEST_CASE(RectangleInvalidScaleCoefficient)
   BOOST_CHECK_THROW(testRectangle.scale(-2.2), std::invalid_argument);
 }
 
-BOOST_AUTO_TEST_CASE(RectangleCorrectAreaAfterScaling)
+BOOST_AUTO_TEST_CASE(RectangleCorrectCenterAndAreaAfterScaling)
 {
   fokin::Rectangle testRectangle(4.0, 5.0, { 2.6, -1.4 });
 
@@ -86,6 +106,7 @@ BOOST_AUTO_TEST_CASE(RectangleCorrectAreaAfterScaling)
   double initialY = testRectangle.getFrameRect().pos.y;
 
   double initialArea = testRectangle.getArea();
+
   double coefficient = 2.7;
   testRectangle.scale(coefficient);
 
@@ -112,8 +133,6 @@ BOOST_AUTO_TEST_CASE(CircleImmutabilityAfterMovingToPoint)
   double initialFrameWidth = testCircle.getFrameRect().width;
   double initialFrameHeight = testCircle.getFrameRect().height;
 
-  double initialArea = testCircle.getArea();
-
   double newX = -5.1;
   double newY = 9.7;
 
@@ -121,6 +140,18 @@ BOOST_AUTO_TEST_CASE(CircleImmutabilityAfterMovingToPoint)
 
   BOOST_CHECK_CLOSE_FRACTION(testCircle.getFrameRect().width, initialFrameWidth, EPSILON);
   BOOST_CHECK_CLOSE_FRACTION(testCircle.getFrameRect().height, initialFrameHeight, EPSILON);
+}
+
+BOOST_AUTO_TEST_CASE(CircleCorrectCenterAndAreaAfterMovingToPoint)
+{
+  fokin::Circle testCircle({ 1.0, 0.0 }, 2.0);
+
+  double initialArea = testCircle.getArea();
+
+  double newX = -5.1;
+  double newY = 9.7;
+
+  testCircle.move({ newX, newY });
 
   BOOST_CHECK_CLOSE_FRACTION(testCircle.getFrameRect().pos.x, newX, EPSILON);
   BOOST_CHECK_CLOSE_FRACTION(testCircle.getFrameRect().pos.y, newY, EPSILON);
@@ -135,6 +166,19 @@ BOOST_AUTO_TEST_CASE(CircleImmutabilityAfterShifting)
   double initialFrameWidth = testCircle.getFrameRect().width;
   double initialFrameHeight = testCircle.getFrameRect().height;
 
+  double dX = -5.1;
+  double dY = 9.7;
+
+  testCircle.move(dX, dY);
+
+  BOOST_CHECK_CLOSE_FRACTION(testCircle.getFrameRect().width, initialFrameWidth, EPSILON);
+  BOOST_CHECK_CLOSE_FRACTION(testCircle.getFrameRect().height, initialFrameHeight, EPSILON);
+}
+
+BOOST_AUTO_TEST_CASE(CircleCorrectCenterAndAreaAfterShifting)
+{
+  fokin::Circle testCircle({ 1.0, 0.0 }, 2.0);
+
   double initialX = testCircle.getFrameRect().pos.x;
   double initialY = testCircle.getFrameRect().pos.y;
 
@@ -144,9 +188,6 @@ BOOST_AUTO_TEST_CASE(CircleImmutabilityAfterShifting)
   double dY = 9.7;
 
   testCircle.move(dX, dY);
-
-  BOOST_CHECK_CLOSE_FRACTION(testCircle.getFrameRect().width, initialFrameWidth, EPSILON);
-  BOOST_CHECK_CLOSE_FRACTION(testCircle.getFrameRect().height, initialFrameHeight, EPSILON);
 
   BOOST_CHECK_CLOSE_FRACTION(testCircle.getFrameRect().pos.x, initialX + dX, EPSILON);
   BOOST_CHECK_CLOSE_FRACTION(testCircle.getFrameRect().pos.y, initialY + dY, EPSILON);
@@ -161,7 +202,7 @@ BOOST_AUTO_TEST_CASE(CircleInvalidScaleCoefficient)
   BOOST_CHECK_THROW(testCircle.scale(-2.2), std::invalid_argument);
 }
 
-BOOST_AUTO_TEST_CASE(CircleCorrectAreaAfterScaling)
+BOOST_AUTO_TEST_CASE(CircleCorrectCenterAndAreaAfterScaling)
 {
   fokin::Circle testCircle({ 1.0, 0.0 }, 2.0);
 
@@ -169,6 +210,7 @@ BOOST_AUTO_TEST_CASE(CircleCorrectAreaAfterScaling)
   double initialY = testCircle.getFrameRect().pos.y;
 
   double initialArea = testCircle.getArea();
+
   double coefficient = 2.7;
   testCircle.scale(coefficient);
 
