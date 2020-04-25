@@ -34,8 +34,8 @@ BOOST_AUTO_TEST_CASE(testRectangleSidesImmutabilityAfterMove)
   dambieva::point_t centerBefore = rectangle.getPos();
   double widthBefore = rectangle.getWidth();
   double heightBefore = rectangle.getHeight();
-  double deltaX = 7.0;
-  double deltaY = 2.0;
+  const double deltaX = 7.0;
+  const double deltaY = 2.0;
   rectangle.move(deltaX, deltaY);
 
   BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getPos().x, centerBefore.x + deltaX, EXACTNESS);
@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(testRectangleSidesProportionalChangeAfterScale)
   dambieva::point_t centerBefore = rectangle.getPos();
   double widthBefore = rectangle.getWidth();
   double heightBefore = rectangle.getHeight();
-  double const scaleIn = 3;
+  const double scaleIn = 3;
   rectangle.scale(scaleIn);
 
   BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getPos().x, centerBefore.x, EXACTNESS);
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(testRectangleAreaProportionalChangeAfterScale)
   dambieva::Rectangle rectangle(5.5, 5.5, 10.0, 20.0);
 
   double areaBefore = rectangle.getArea();
-  double const scaleIn = 3;
+  const double scaleIn = 3;
   rectangle.scale(scaleIn);
 
   BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getArea(), areaBefore * scaleIn * scaleIn, EXACTNESS);
@@ -116,8 +116,8 @@ BOOST_AUTO_TEST_CASE(testRectangleFrameImmutabilityAfterMove)
   dambieva::point_t centerBefore = rectangle.getPos();
   double frameWidthBefore = rectangle.getFrameRect().width;
   double frameHeightBefore = rectangle.getFrameRect().height;
-  double deltaX = 7.0;
-  double deltaY = 2.0;
+  const double deltaX = 7.0;
+  const double deltaY = 2.0;
   rectangle.move(deltaX, deltaY);
 
   BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.x, centerBefore.x + deltaX, EXACTNESS);
@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE(testRectangleFrameProportionalChangeAfterScale)
   dambieva::point_t centerBefore = rectangle.getPos();
   double frameWidthBefore = rectangle.getFrameRect().width;
   double frameHeightBefore = rectangle.getFrameRect().height;
-  double const scaleIn = 3;
+  const double scaleIn = 3;
   rectangle.scale(scaleIn);
 
   BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.x, centerBefore.x, EXACTNESS);
@@ -162,6 +162,26 @@ BOOST_AUTO_TEST_CASE(testRectangleExceptionInvalidHeight)
 BOOST_AUTO_TEST_CASE(testRectangleExceptionZeroHeight)
 {
   BOOST_CHECK_THROW(dambieva::Rectangle(5.5, 5.5, 10.0, 0.0), std::invalid_argument);
+}
+
+BOOST_AUTO_TEST_CASE(testRectangleWithPointExceptionInvalidWidth)
+{
+  BOOST_CHECK_THROW(dambieva::Rectangle({5.5, 5.5}, -10.0, 20.0), std::invalid_argument);
+}
+
+BOOST_AUTO_TEST_CASE(testRectangleWithPointExceptionZeroWidth)
+{
+  BOOST_CHECK_THROW(dambieva::Rectangle({5.5, 5.5}, 0.0, 20.0), std::invalid_argument);
+}
+
+BOOST_AUTO_TEST_CASE(testRectangleWithPointExceptionInvalidHeight)
+{
+  BOOST_CHECK_THROW(dambieva::Rectangle({5.5, 5.5}, 10.0, -20.0), std::invalid_argument);
+}
+
+BOOST_AUTO_TEST_CASE(testRectangleWithPointExceptionZeroHeight)
+{
+  BOOST_CHECK_THROW(dambieva::Rectangle({5.5, 5.5}, 10.0, 0.0), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(testRectangleExceptionInvalidScale)
@@ -228,8 +248,8 @@ BOOST_AUTO_TEST_CASE(TestCircleRadiusImmutabilityAfterMove)
   dambieva::point_t centerBefore = circle.getPos();
   double radiusBefore = circle.getRadius();
   double areaBefore = circle.getArea();
-  double deltaX = 7.0;
-  double deltaY = 2.0;
+  const double deltaX = 7.0;
+  const double deltaY = 2.0;
   circle.move(deltaX, deltaY);
 
   BOOST_REQUIRE_CLOSE_FRACTION(circle.getPos().x, centerBefore.x + deltaX, EXACTNESS);
@@ -246,7 +266,7 @@ BOOST_AUTO_TEST_CASE(TestCircleRadiusProportionalChangeAfterScale)
   dambieva::point_t centerBefore = circle.getPos();
   double radiusBefore = circle.getRadius();
   double areaBefore = circle.getArea();
-  double const scaleIn = 3;
+  const double scaleIn = 3;
   circle.scale(scaleIn);
 
   BOOST_REQUIRE_CLOSE_FRACTION(circle.getPos().x, centerBefore.x, EXACTNESS);
@@ -278,7 +298,7 @@ BOOST_AUTO_TEST_CASE(TestCircleAreaProportionalChangeAfterScale)
 {
   dambieva::Circle circle(10.0, 10.0, 5.5);
   double areaBefore = circle.getArea();
-  double const scaleIn = 3;
+  const double scaleIn = 3;
   circle.scale(scaleIn);
 
   BOOST_REQUIRE_CLOSE_FRACTION(circle.getArea(), areaBefore * scaleIn * scaleIn, EXACTNESS);
@@ -307,8 +327,8 @@ BOOST_AUTO_TEST_CASE(TestCircleFrameImmutabilityAfterMove)
   dambieva::point_t centerBefore = circle.getPos();
   double frameWidthBefore = circle.getFrameRect().width;
   double frameHeightBefore = circle.getFrameRect().height;
-  double deltaX = 7.0;
-  double deltaY = 2.0;
+  const double deltaX = 7.0;
+  const double deltaY = 2.0;
   circle.move(deltaX, deltaY);
 
   BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.x, centerBefore.x + deltaX, EXACTNESS);
@@ -325,7 +345,7 @@ BOOST_AUTO_TEST_CASE(TestCircleFrameProportionalChangeAfterScale)
   dambieva::point_t centerBefore = circle.getPos();
   double frameWidthBefore = circle.getFrameRect().width;
   double frameHeightBefore = circle.getFrameRect().height;
-  double const scaleIn = 3;
+  const double scaleIn = 3;
   circle.scale(scaleIn);
 
   BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.x, centerBefore.x, EXACTNESS);
@@ -343,6 +363,16 @@ BOOST_AUTO_TEST_CASE(testCircleExceptionInvalidRadius)
 BOOST_AUTO_TEST_CASE(testCircleExceptionZeroRadius)
 {
   BOOST_CHECK_THROW(dambieva::Circle(10.0, 10.0, 0.0), std::invalid_argument);
+}
+
+BOOST_AUTO_TEST_CASE(testCircleWithPointExceptionInvalidRadius)
+{
+  BOOST_CHECK_THROW(dambieva::Circle({10.0, 10.0}, -5.5), std::invalid_argument);
+}
+
+BOOST_AUTO_TEST_CASE(testCircleWithPointExceptionZeroRadius)
+{
+  BOOST_CHECK_THROW(dambieva::Circle({10.0, 10.0}, 0.0), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(testCircleExceptionInvalidScale)
