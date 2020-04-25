@@ -7,7 +7,7 @@
 #include "rectangle.hpp"
 #include "circle.hpp"
 
-const double EXACTNESS = 1e-6;
+const double ACCURACY = 1e-6;
 
 BOOST_AUTO_TEST_SUITE(RectangleTests)
 
@@ -20,11 +20,11 @@ BOOST_AUTO_TEST_CASE(testRectangleSidesImmutabilityAfterMoveToPoint)
   dambieva::point_t newCenter = {7.0, 2.0};
   rectangle.move(newCenter);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getPos().x, newCenter.x, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getPos().y, newCenter.y, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getPos().x, newCenter.x, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getPos().y, newCenter.y, ACCURACY);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getWidth(), widthBefore, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getHeight(), heightBefore, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getWidth(), widthBefore, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getHeight(), heightBefore, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(testRectangleSidesImmutabilityAfterMove)
@@ -38,11 +38,11 @@ BOOST_AUTO_TEST_CASE(testRectangleSidesImmutabilityAfterMove)
   const double deltaY = 2.0;
   rectangle.move(deltaX, deltaY);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getPos().x, centerBefore.x + deltaX, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getPos().y, centerBefore.y + deltaY, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getPos().x, centerBefore.x + deltaX, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getPos().y, centerBefore.y + deltaY, ACCURACY);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getWidth(), widthBefore, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getHeight(), heightBefore, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getWidth(), widthBefore, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getHeight(), heightBefore, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(testRectangleSidesProportionalChangeAfterScale)
@@ -55,11 +55,11 @@ BOOST_AUTO_TEST_CASE(testRectangleSidesProportionalChangeAfterScale)
   const double scaleIn = 3;
   rectangle.scale(scaleIn);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getPos().x, centerBefore.x, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getPos().y, centerBefore.y, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getPos().x, centerBefore.x, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getPos().y, centerBefore.y, ACCURACY);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getWidth(), widthBefore * scaleIn, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getHeight(), heightBefore * scaleIn, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getWidth(), widthBefore * scaleIn, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getHeight(), heightBefore * scaleIn, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(testRectangleAreaImmutabilityAfterMoveToPoint)
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(testRectangleAreaImmutabilityAfterMoveToPoint)
   double areaBefore = rectangle.getArea();
   rectangle.move({7.0, 2.0});
 
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getArea(), areaBefore, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getArea(), areaBefore, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(testRectangleAreaImmutabilityAfterMove)
@@ -79,7 +79,7 @@ BOOST_AUTO_TEST_CASE(testRectangleAreaImmutabilityAfterMove)
   double areaBefore = rectangle.getArea();
   rectangle.move(7.0, 2.0);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getArea(), areaBefore, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getArea(), areaBefore, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(testRectangleAreaProportionalChangeAfterScale)
@@ -90,7 +90,7 @@ BOOST_AUTO_TEST_CASE(testRectangleAreaProportionalChangeAfterScale)
   const double scaleIn = 3;
   rectangle.scale(scaleIn);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getArea(), areaBefore * scaleIn * scaleIn, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getArea(), areaBefore * scaleIn * scaleIn, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(testRectangleFrameImmutabilityAfterMoveToPoint)
@@ -102,11 +102,11 @@ BOOST_AUTO_TEST_CASE(testRectangleFrameImmutabilityAfterMoveToPoint)
   dambieva::point_t newCenter = {7.0, 2.0};
   rectangle.move(newCenter);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.x, newCenter.x, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.y, newCenter.y, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.x, newCenter.x, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.y, newCenter.y, ACCURACY);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().width, frameWidthBefore, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().height, frameHeightBefore, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().width, frameWidthBefore, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().height, frameHeightBefore, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(testRectangleFrameImmutabilityAfterMove)
@@ -120,11 +120,11 @@ BOOST_AUTO_TEST_CASE(testRectangleFrameImmutabilityAfterMove)
   const double deltaY = 2.0;
   rectangle.move(deltaX, deltaY);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.x, centerBefore.x + deltaX, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.y, centerBefore.y + deltaY, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.x, centerBefore.x + deltaX, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.y, centerBefore.y + deltaY, ACCURACY);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().width, frameWidthBefore, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().height, frameHeightBefore, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().width, frameWidthBefore, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().height, frameHeightBefore, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(testRectangleFrameProportionalChangeAfterScale)
@@ -137,11 +137,11 @@ BOOST_AUTO_TEST_CASE(testRectangleFrameProportionalChangeAfterScale)
   const double scaleIn = 3;
   rectangle.scale(scaleIn);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.x, centerBefore.x, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.y, centerBefore.y, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.x, centerBefore.x, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().pos.y, centerBefore.y, ACCURACY);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().width, frameWidthBefore * scaleIn, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().height, frameHeightBefore * scaleIn, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().width, frameWidthBefore * scaleIn, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(rectangle.getFrameRect().height, frameHeightBefore * scaleIn, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(testRectangleExceptionInvalidWidth)
@@ -234,11 +234,11 @@ BOOST_AUTO_TEST_CASE(TestCircleRadiusImmutabilityAfterMoveToPoint)
   dambieva::point_t newCenter = {7.0, 2.0};
   circle.move(newCenter);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getPos().x, newCenter.x, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getPos().y, newCenter.y, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getPos().x, newCenter.x, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getPos().y, newCenter.y, ACCURACY);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getRadius(), radiusBefore, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getArea(), areaBefore, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getRadius(), radiusBefore, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getArea(), areaBefore, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(TestCircleRadiusImmutabilityAfterMove)
@@ -252,11 +252,11 @@ BOOST_AUTO_TEST_CASE(TestCircleRadiusImmutabilityAfterMove)
   const double deltaY = 2.0;
   circle.move(deltaX, deltaY);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getPos().x, centerBefore.x + deltaX, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getPos().y, centerBefore.y + deltaY, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getPos().x, centerBefore.x + deltaX, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getPos().y, centerBefore.y + deltaY, ACCURACY);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getRadius(), radiusBefore, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getArea(), areaBefore, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getRadius(), radiusBefore, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getArea(), areaBefore, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(TestCircleRadiusProportionalChangeAfterScale)
@@ -269,11 +269,11 @@ BOOST_AUTO_TEST_CASE(TestCircleRadiusProportionalChangeAfterScale)
   const double scaleIn = 3;
   circle.scale(scaleIn);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getPos().x, centerBefore.x, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getPos().y, centerBefore.y, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getPos().x, centerBefore.x, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getPos().y, centerBefore.y, ACCURACY);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getRadius(), radiusBefore * scaleIn, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getArea(), areaBefore * scaleIn * scaleIn, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getRadius(), radiusBefore * scaleIn, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getArea(), areaBefore * scaleIn * scaleIn, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(TestCircleAreaImmutabilityAfterMoveToPoint)
@@ -282,7 +282,7 @@ BOOST_AUTO_TEST_CASE(TestCircleAreaImmutabilityAfterMoveToPoint)
   double areaBefore = circle.getArea();
   circle.move({7.0, 2.0});
 
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getArea(), areaBefore, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getArea(), areaBefore, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(TestCircleAreaImmutabilityAfterMove)
@@ -291,7 +291,7 @@ BOOST_AUTO_TEST_CASE(TestCircleAreaImmutabilityAfterMove)
   double areaBefore = circle.getArea();
   circle.move(7.0, 2.0);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getArea(), areaBefore, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getArea(), areaBefore, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(TestCircleAreaProportionalChangeAfterScale)
@@ -301,7 +301,7 @@ BOOST_AUTO_TEST_CASE(TestCircleAreaProportionalChangeAfterScale)
   const double scaleIn = 3;
   circle.scale(scaleIn);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getArea(), areaBefore * scaleIn * scaleIn, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getArea(), areaBefore * scaleIn * scaleIn, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(TestCircleFrameImmutabilityAfterMoveToPoint)
@@ -313,11 +313,11 @@ BOOST_AUTO_TEST_CASE(TestCircleFrameImmutabilityAfterMoveToPoint)
   dambieva::point_t newCenter = {7.0, 2.0};
   circle.move(newCenter);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.x, newCenter.x, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.y, newCenter.y, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.x, newCenter.x, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.y, newCenter.y, ACCURACY);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().width, frameWidthBefore, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().height, frameHeightBefore, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().width, frameWidthBefore, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().height, frameHeightBefore, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(TestCircleFrameImmutabilityAfterMove)
@@ -331,11 +331,11 @@ BOOST_AUTO_TEST_CASE(TestCircleFrameImmutabilityAfterMove)
   const double deltaY = 2.0;
   circle.move(deltaX, deltaY);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.x, centerBefore.x + deltaX, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.y, centerBefore.y + deltaY, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.x, centerBefore.x + deltaX, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.y, centerBefore.y + deltaY, ACCURACY);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().width, frameWidthBefore, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().height, frameHeightBefore, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().width, frameWidthBefore, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().height, frameHeightBefore, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(TestCircleFrameProportionalChangeAfterScale)
@@ -348,11 +348,11 @@ BOOST_AUTO_TEST_CASE(TestCircleFrameProportionalChangeAfterScale)
   const double scaleIn = 3;
   circle.scale(scaleIn);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.x, centerBefore.x, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.y, centerBefore.y, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.x, centerBefore.x, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().pos.y, centerBefore.y, ACCURACY);
 
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().width, frameWidthBefore * scaleIn, EXACTNESS);
-  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().height, frameHeightBefore * scaleIn, EXACTNESS);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().width, frameWidthBefore * scaleIn, ACCURACY);
+  BOOST_REQUIRE_CLOSE_FRACTION(circle.getFrameRect().height, frameHeightBefore * scaleIn, ACCURACY);
 }
 
 BOOST_AUTO_TEST_CASE(testCircleExceptionInvalidRadius)
