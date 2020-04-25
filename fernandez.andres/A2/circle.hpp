@@ -27,8 +27,8 @@ namespace fernandez
     point_t getPos() const override;
 
   private:
-    double radius_;
     point_t center_;
+    double radius_;
   };
 }
 

@@ -26,9 +26,9 @@ namespace fernandez
 
     point_t getPos() const override;
   private:
+    point_t position_;
     double width_;
     double height_;
-    point_t position_;
   };
 }
 
