@@ -16,4 +16,5 @@ namespace vinokurov
     point_t pos;
   };
 }
+
 #endif
