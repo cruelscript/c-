@@ -6,16 +6,16 @@ int main()
 {
   vinokurov::point_t dot = {1.1, 1.1};
 
-  vinokurov::Rectangle rectangle(dot, 12.345, 14.21);
-  vinokurov::Circle circle(dot, 13.2);
+  vinokurov::Rectangle rectangle(12.345, 14.21, dot);
+  vinokurov::Circle circle(13.2, dot);
 
   vinokurov::Shape* figures[2] = {&rectangle, &circle};
 
   for (vinokurov::Shape* shape : figures)
   {
     shape->print(std::cout);
-    std::cout << "\nArea of the figure is " << shape->getArea();
 
+    std::cout << "\nArea of the figure is " << shape->getArea();
     std::cout << "\nFrame width of the figure is " << shape->getFrameRect().width
       << ", frame height is " << shape->getFrameRect().height
       << ", position is at x: " << shape->getFrameRect().pos.x
