@@ -15,23 +15,27 @@ belova::Circle::Circle(const point_t &center, const double radius) :
   }
 }
 
-void belova::Circle::move(const point_t &center)
+belova::Circle::Circle(const double x, const double y, const double radius) :
+  Circle({ x, y }, radius)
+{}
+
+void belova::Circle::move(const point_t &center) noexcept
 {
   center_ = center;
 }
 
-void belova::Circle::move(const double dx, const double dy)
+void belova::Circle::move(const double dx, const double dy) noexcept
 {
   center_.x += dx;
   center_.y += dy;
 }
 
-belova::rectangle_t belova::Circle::getFrameRect() const
+belova::rectangle_t belova::Circle::getFrameRect() const noexcept
 {
   return { center_, radius_ * 2, radius_ * 2 };
 }
 
-double belova::Circle::getArea() const
+double belova::Circle::getArea() const noexcept
 {
   return M_PI * radius_ * radius_;
 }

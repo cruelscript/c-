@@ -11,9 +11,9 @@ namespace belova
   public:
     virtual ~Shape() = default;
     virtual void move(const point_t& center) = 0;
-    virtual void move(const double dx, const double dy) = 0;
+    virtual void move(const double dx, const double dy) noexcept = 0;
     virtual rectangle_t getFrameRect() const = 0;
-    virtual double getArea() const = 0;
+    virtual double getArea() const noexcept = 0;
     virtual void showData(std::ostream& out) const = 0;
     virtual void scale(const double coeff) = 0;
   };

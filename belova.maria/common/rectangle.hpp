@@ -11,10 +11,11 @@ namespace belova
   {
   public:
     Rectangle(const point_t& center, const double w, const double h);
-    void move(const point_t& center) override;
-    void move(const double dx, const double dy) override;
-    rectangle_t getFrameRect() const override;
-    double getArea() const override;
+    Rectangle(const double x, const double y, const double w, const double h);
+    void move(const point_t& center) noexcept override;
+    void move(const double dx, const double dy) noexcept override;
+    rectangle_t getFrameRect() const noexcept override;
+    double getArea() const noexcept override;
     void showData(std::ostream& out) const override;
     void scale(const double coeff) override;
   private:
