@@ -18,23 +18,27 @@ belova::Rectangle::Rectangle(const point_t& center, const double w, const double
   }
 }
 
-void belova::Rectangle::move(const point_t &center)
+belova::Rectangle::Rectangle(const double x, const double y, const double w, const double h) :
+  Rectangle({ x, y }, w, h)
+{}
+
+void belova::Rectangle::move(const point_t &center) noexcept
 {
   center_ = center;
 }
 
-void belova::Rectangle::move(const double dx, const double dy)
+void belova::Rectangle::move(const double dx, const double dy) noexcept
 {
   center_.x += dx;
   center_.y += dy;
 }
 
-belova::rectangle_t belova::Rectangle::getFrameRect() const
+belova::rectangle_t belova::Rectangle::getFrameRect() const noexcept
 {
   return { center_, width_, height_ };
 }
 
-double belova::Rectangle::getArea() const
+double belova::Rectangle::getArea() const noexcept
 {
   return width_ * height_;
 }

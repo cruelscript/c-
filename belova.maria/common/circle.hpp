@@ -11,10 +11,11 @@ namespace belova
   {
   public:
     Circle(const point_t& center, const double radius);
-    void move(const point_t& center) override;
-    void move(const double dx, const double dy) override;
-    rectangle_t getFrameRect() const override;
-    double getArea() const override;
+    Circle(const double x, const double y, const double radius);
+    void move(const point_t& center) noexcept override;
+    void move(const double dx, const double dy) noexcept override;
+    rectangle_t getFrameRect() const noexcept override;
+    double getArea() const noexcept override;
     void showData(std::ostream& out) const override;
     void scale(const double coeff) override;
   private:
