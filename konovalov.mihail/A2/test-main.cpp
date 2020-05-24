@@ -6,8 +6,8 @@
 
 #include <stdexcept>
 #include <cmath>
-#include "rectangle.hpp"
-#include "circle.hpp"
+#include "../common/rectangle.hpp"
+#include "../common/circle.hpp"
 
 static const double EPSILON = 1e-8;
 
@@ -16,19 +16,19 @@ BOOST_AUTO_TEST_SUITE(RectangleTestsCases)
   BOOST_AUTO_TEST_CASE(TestCorrectConstructorWork)
   {
     //check constructors work
-    BOOST_CHECK_NO_THROW(konovalov::Rectangle rectangle({1.0, 1.0, {0.0, 0.0}}));
+    BOOST_CHECK_NO_THROW(konovalov::Rectangle rectangle(1.0, 1.0, {0.0, 0.0}));
   }
 
   BOOST_AUTO_TEST_CASE(TestNotCorrectDataInConstructorWork)
   {
     //check constructors work
-    BOOST_CHECK_THROW(konovalov::Rectangle rectangle({-1.0, 1.1, {0.0, 1.1}}), std::invalid_argument);
-    BOOST_CHECK_THROW(konovalov::Rectangle rectangle({1.0, -1.1, {0.0, 1.1}}), std::invalid_argument);
+    BOOST_CHECK_THROW(konovalov::Rectangle rectangle(-1.0, 1.1, {0.0, 1.1}), std::invalid_argument);
+    BOOST_CHECK_THROW(konovalov::Rectangle rectangle(1.0, -1.1, {0.0, 1.1}), std::invalid_argument);
   }
 
   BOOST_AUTO_TEST_CASE(TestCorrectGetFrameRectWork)
   {
-    konovalov::Rectangle rectangle = konovalov::Rectangle({1.1, 1.2, {0.0, 0.1}});
+    konovalov::Rectangle rectangle = konovalov::Rectangle(1.1, 1.2, {0.0, 0.1});
 
     //check frame correct
     BOOST_CHECK_CLOSE_FRACTION(1.1, rectangle.getFrameRect().width, EPSILON);
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_SUITE(RectangleTestsCases)
 
   BOOST_AUTO_TEST_CASE(TestCorrectMoveCoordinateWork)
   {
-    konovalov::Rectangle rectangle = konovalov::Rectangle({1.0, 2.0, {1.1, 3.5}});
+    konovalov::Rectangle rectangle = konovalov::Rectangle(1.0, 2.0, {1.1, 3.5});
     double expectX = 7.1 + 1.1;
     double expectY = 3.4 + 3.5;
     rectangle.move(7.1, 3.4);
@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_SUITE(RectangleTestsCases)
 
   BOOST_AUTO_TEST_CASE(TestCorrectMovePointWork)
   {
-    konovalov::Rectangle rectangle = konovalov::Rectangle({1.0, 2.0, {1.0, 2.0}});
+    konovalov::Rectangle rectangle = konovalov::Rectangle(1.0, 2.0, {1.0, 2.0});
     rectangle.move({7.1, 3.4});
 
     //check correct point coordinate
@@ -71,7 +71,7 @@ BOOST_AUTO_TEST_SUITE(RectangleTestsCases)
 
   BOOST_AUTO_TEST_CASE(TestCorrectGetAreaWork)
   {
-    konovalov::Rectangle rectangle = konovalov::Rectangle({6.0, 2.0, {1.0, 2.0}});
+    konovalov::Rectangle rectangle = konovalov::Rectangle(6.0, 2.0, {1.0, 2.0});
     double expectArea = 6.0 * 2.0;
     //check correct area
     BOOST_CHECK_CLOSE_FRACTION(rectangle.getArea(), expectArea, EPSILON);
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_SUITE(RectangleTestsCases)
   BOOST_AUTO_TEST_CASE(TestAreaAfterMoving)
   {
     konovalov::point_t centerPoint = {1.0, 2.0};
-    konovalov::Rectangle rectangle = konovalov::Rectangle({3.0, 2.0, {centerPoint.x, centerPoint.y}});
+    konovalov::Rectangle rectangle = konovalov::Rectangle(3.0, 2.0, {centerPoint.x, centerPoint.y});
     double dx = 7.1;
     double dy = 3.4;
     double expectArea = 3.0 * 2.0;
@@ -96,7 +96,7 @@ BOOST_AUTO_TEST_SUITE(RectangleTestsCases)
 
   BOOST_AUTO_TEST_CASE(TestAreaAfterChangingPoint)
   {
-    konovalov::Rectangle rectangle = konovalov::Rectangle({3.0, 2.0, {1.0, 2.0}});
+    konovalov::Rectangle rectangle = konovalov::Rectangle(3.0, 2.0, {1.0, 2.0});
     konovalov::point_t newCenterPoint = {2.0, 3.0};
     double expectArea = 3.0 * 2.0;
     rectangle.move(newCenterPoint);
@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_SUITE(RectangleTestsCases)
 
   BOOST_AUTO_TEST_CASE(TestCorrectExceptionScaleWork)
   {
-    konovalov::Rectangle rectangle = konovalov::Rectangle({4.5, 2.0, {1.1, 1.2}});
+    konovalov::Rectangle rectangle = konovalov::Rectangle(4.5, 2.0, {1.1, 1.2});
     double coefficient = -1.1;
     //check correct exception
     BOOST_CHECK_THROW(rectangle.scale(coefficient), std::invalid_argument);
@@ -119,7 +119,7 @@ BOOST_AUTO_TEST_SUITE(RectangleTestsCases)
 
   BOOST_AUTO_TEST_CASE(TestCorrectScaleWork)
   {
-    konovalov::Rectangle rectangle = konovalov::Rectangle({4.5, 2.0, {1.1, 1.2}});
+    konovalov::Rectangle rectangle = konovalov::Rectangle(4.5, 2.0, {1.1, 1.2});
     double coefficient = 2.0;
     double expectArea = 4.5 * 2.0 * 2.0 * 2.0;
     rectangle.scale(coefficient);
