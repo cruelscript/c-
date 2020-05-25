@@ -4,7 +4,7 @@
 #include <ostream>
 #include <stdexcept>
 
-fokin::Circle::Circle(const fokin::point_t &center, const double radius) :
+fokin::Circle::Circle(const fokin::point_t& center, const double radius) :
   center_{ center },
   radius_{ radius }
 {
@@ -14,22 +14,27 @@ fokin::Circle::Circle(const fokin::point_t &center, const double radius) :
   }
 }
 
-double fokin::Circle::getArea() const
+double fokin::Circle::getArea() const noexcept
 {
   return radius_ * radius_ * M_PI;
 }
 
-fokin::rectangle_t fokin::Circle::getFrameRect() const
+fokin::point_t fokin::Circle::getCenter() const noexcept
+{
+  return center_;
+}
+
+fokin::rectangle_t fokin::Circle::getFrameRect() const noexcept
 {
   return { radius_ * 2, radius_ * 2, center_ };
 }
 
-void fokin::Circle::move(const fokin::point_t &newCenter)
+void fokin::Circle::move(const fokin::point_t& newCenter)
 {
   center_ = newCenter;
 }
 
-void fokin::Circle::move(const double dx, const double dy)
+void fokin::Circle::move(const double dx, const double dy) noexcept
 {
   center_.x += dx;
   center_.y += dy;

@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "rectangle.hpp"
 #include "circle.hpp"
 
@@ -8,8 +9,9 @@ int main()
 
   fokin::Circle testCircle({ 5.2, -7.5 }, 4.0);
 
-  fokin::Shape* shapes[2] = { &testRectangle, &testCircle };
-  for (int i = 0; i < 2; i++)
+  const int NUMBER_OF_SHAPES = 2;
+  fokin::Shape* shapes[NUMBER_OF_SHAPES] = { &testRectangle, &testCircle };
+  for (int i = 0; i < NUMBER_OF_SHAPES; i++)
   {
     std::cout << "Area of " << i + 1 << " figure: " << shapes[i]->getArea() << "\n";
     std::cout << "Center of " << i + 1 << " figure's frame rectangle: (" << shapes[i]->getFrameRect().pos.x << ", "
