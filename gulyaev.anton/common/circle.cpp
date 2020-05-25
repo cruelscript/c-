@@ -19,7 +19,7 @@ namespace gulyaev
     }
   }
   
-  double Circle::getArea() const
+  double Circle::getArea() const noexcept
   {
     return M_PI * radius_ * radius_;
   }
@@ -30,12 +30,12 @@ namespace gulyaev
     return {side, side, center_};
   }
   
-  void Circle::move(const point_t &point)
+  void Circle::move(const point_t &point) noexcept
   {
     center_ = point;
   }
   
-  void Circle::move(double deltaX, double deltaY)
+  void Circle::move(double deltaX, double deltaY) noexcept
   {
     center_.x += deltaX;
     center_.y += deltaY;

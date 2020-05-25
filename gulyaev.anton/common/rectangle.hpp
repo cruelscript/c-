@@ -14,20 +14,22 @@ namespace gulyaev
     
     Rectangle(double width, double height, const point_t &center);
     
-    double getArea() const override;
+    double getArea() const noexcept override;
     
     rectangle_t getFrameRect() const override;
+  
+    void move(const point_t &point) noexcept override;
     
-    void move(const point_t &point) override;
-    
-    void move(double deltaX, double deltaY) override;
+    void move(double deltaX, double deltaY) noexcept override;
     
     void scale(const double coefficient) override;
   
   private:
-    double width_;
-    double height_;
-    point_t pos_;
+    point_t top_[4];
+    
+    double getHeight() const noexcept;
+    double getWidth() const noexcept;
+    point_t getCenter() const noexcept;
   };
 }
 
