@@ -1,5 +1,7 @@
 #include "composite-shape.hpp"
 
+#define _USE_MATH_DEFINES
+#include <cmath>
 #include <stdexcept>
 #include <ostream>
 #include "base-types.hpp"
@@ -12,7 +14,6 @@ vinokurov::CompositeShape::CompositeShape() :
 
 vinokurov::CompositeShape::CompositeShape(const CompositeShape& copyShape) :
   size_(copyShape.size_),
-  center_(copyShape.center_),
   capacity_(copyShape.capacity_),
   array_(std::make_unique<shapePtr[]>(copyShape.size_))
 {
@@ -24,12 +25,10 @@ vinokurov::CompositeShape::CompositeShape(const CompositeShape& copyShape) :
 
 vinokurov::CompositeShape::CompositeShape(CompositeShape&& shape) :
   size_(shape.size_),
-  center_(shape.center_),
   capacity_(shape.capacity_),
   array_(std::move(shape.array_))
 {
   shape.size_ = 0;
-  shape.center_ = {0, 0};
   shape.capacity_ = 0;
 }
 
@@ -38,7 +37,6 @@ vinokurov::CompositeShape& vinokurov::CompositeShape::operator=(const CompositeS
   if(this != &copyShape)
   {
     size_ = copyShape.size_;
-    center_ = copyShape.center_;
     capacity_ = copyShape.capacity_;
     shapeArray temp(std::make_unique<shapePtr[]>(copyShape.size_));
 
@@ -56,17 +54,15 @@ vinokurov::CompositeShape& vinokurov::CompositeShape::operator=(CompositeShape&&
   if(this != &shape)
   {
     size_ = shape.size_;
-    center_ = shape.center_;
     array_ = std::move(shape.array_);
     capacity_ = shape.capacity_;
     shape.size_ = 0;
-    shape.center_ = {0, 0};
     shape.capacity_ = 0;
   }
   return *this;
 }
 
-vinokurov::CompositeShape::shapePtr& vinokurov::CompositeShape::operator[](unsigned int index) const
+vinokurov::CompositeShape::shapePtr vinokurov::CompositeShape::operator[](unsigned int index) const
 {
   if(index >= size_)
   {
@@ -87,7 +83,7 @@ void vinokurov::CompositeShape::add(const shapePtr& element)
   }
   else if(size_ >= capacity_)
   {
-    int const GROW_COEFFICIENT = 2;
+    const int GROW_COEFFICIENT = 2;
     shapeArray temp(std::make_unique<shapePtr[]>(GROW_COEFFICIENT * capacity_));
     capacity_ *= GROW_COEFFICIENT;
 
@@ -99,7 +95,6 @@ void vinokurov::CompositeShape::add(const shapePtr& element)
   }
   array_[size_] = element;
   size_++;
-  center_ = getFrameRect().pos;
 }
 
 void vinokurov::CompositeShape::remove()
@@ -110,7 +105,6 @@ void vinokurov::CompositeShape::remove()
   }
   array_[size_ - 1].reset();
   size_--;
-  center_ = (size_ > 0) ? getFrameRect().pos : point_t{0, 0};
 }
 
 double vinokurov::CompositeShape::getArea() const
@@ -131,44 +125,28 @@ vinokurov::rectangle_t vinokurov::CompositeShape::getFrameRect() const
     throw std::invalid_argument("CompositeShape: Error. Frame rectangle is not defined"); 
   }
   rectangle_t tempFrame = array_[0]->getFrameRect();
-  double leftX = tempFrame.pos.x - tempFrame.width / 2;
-  double rightX = tempFrame.pos.x + tempFrame.width / 2;
-  double topY = tempFrame.pos.y + tempFrame.height / 2;
-  double bottomY = tempFrame.pos.y - tempFrame.height / 2;
+  double minX = tempFrame.pos.x - tempFrame.width / 2;
+  double maxX = tempFrame.pos.x + tempFrame.width / 2;
+  double maxY = tempFrame.pos.y + tempFrame.height / 2;
+  double minY = tempFrame.pos.y - tempFrame.height / 2;
 
   for (size_t i = 1; i < size_; i++)
   {
     tempFrame = array_[i]->getFrameRect();
 
     double current = tempFrame.pos.x - tempFrame.width / 2;
-    leftX = (current < leftX) ? current : leftX;
+    minX = (current < minX) ? current : minX;
 
     current = tempFrame.pos.x + tempFrame.width / 2;
-    rightX = (current > rightX) ? current : rightX;
+    maxX = (current > maxX) ? current : maxX;
 
     current = tempFrame.pos.y + tempFrame.height / 2;
-    topY = (current > topY) ? current : topY;
+    maxY = (current > maxY) ? current : maxY;
 
     current = tempFrame.pos.y - tempFrame.height / 2;
-    bottomY = (current < bottomY) ? current : bottomY;
+    minY = (current < minY) ? current : minY;
   }
-  return {rightX - leftX, topY - bottomY,
-    {(rightX + leftX) / 2, (topY + bottomY) / 2}};
-}
-
-void vinokurov::CompositeShape::print(std::ostream& out) const
-{
-  rectangle_t frameRect = getFrameRect();
-
-  out << "\nWidth of the composite shape is " << frameRect.width
-    << ", height of the composite shape is " << frameRect.height
-    << ". The center of the composite shape is at (" << center_.x << ", " << center_.y << ")\n";
-
-  for(size_t i = 0; i < size_; i++)
-  {
-    out << i + 1 << " part of composite shape: ";
-    array_[i]->print(out);
-  }
+  return {maxX - minX, maxY - minY, {(maxX + minX) / 2, (maxY + minY) / 2}};
 }
 
 void vinokurov::CompositeShape::move(const double deltaX, const double deltaY)
@@ -177,29 +155,68 @@ void vinokurov::CompositeShape::move(const double deltaX, const double deltaY)
   {
     array_[i]->move(deltaX, deltaY);
   }
-  center_.x += deltaX;
-  center_.y += deltaY;
 }
 
-void vinokurov::CompositeShape::move(const point_t& point)
+void vinokurov::CompositeShape::move(const point_t& newCenter)
 {
-  double deltaX = point.x - center_.x;
-  double deltaY = point.y - center_.y;
-  move(deltaX, deltaY);
-  center_ = point;
+  point_t center = getFrameRect().pos;
+  move(newCenter.x - center.x, newCenter.y - center.y);
 }
 
-void vinokurov::CompositeShape::scale(const double coefficient)
+void vinokurov::CompositeShape::print(std::ostream& out) const
+{
+  rectangle_t frameRect = getFrameRect();
+
+  out << "\nWidth of the composite shape is " << frameRect.width;
+  out << "\nHeight of the composite shape is " << frameRect.height;
+  out << "\nCenter of the composite shape is at (" << frameRect.pos.x << ", " << frameRect.pos.y << ")\n";
+
+  for(size_t i = 0; i < size_; i++)
+  {
+    out << "\n" << i + 1 << " part of composite shape: ";
+    array_[i]->print(out);
+  }
+}
+
+void vinokurov::CompositeShape::scale(double coefficient)
 {
   if(coefficient <= 0.0)
   {
     throw std::invalid_argument("CompositeShape: Error. Scaling coefficient cannot be less than zero.");
   }
+  point_t center = getFrameRect().pos;
+
   for(size_t i = 0; i < size_; i++)
   {
-    double deltaX = array_[i]->getFrameRect().pos.x - center_.x;
-    double deltaY = array_[i]->getFrameRect().pos.y - center_.y;
-    array_[i]->move(center_.x + deltaX * coefficient, center_.y + deltaY * coefficient);
+    point_t shapeCenter = array_[i]->getFrameRect().pos;
+    array_[i]->move({center.x + (shapeCenter.x - center.x) * coefficient, 
+      center.y + (shapeCenter.y - center.y) * coefficient});
     array_[i]->scale(coefficient);
   }
+}
+
+void vinokurov::CompositeShape::rotate(double angle)
+{
+  point_t center = getFrameRect().pos;
+  double sinAngle = std::sin(angle * M_PI / 180);
+  double cosAngle = std::cos(angle * M_PI / 180);
+
+  for(size_t i = 0; i < size_; i++)
+  {
+    point_t shapeCenter = array_[i]->getFrameRect().pos;
+
+    array_[i]->move({center.x + (shapeCenter.x - center.x) * cosAngle - (shapeCenter.y - center.y) * sinAngle,
+      center.y + (shapeCenter.y - center.y) * cosAngle + (shapeCenter.x - center.x) * sinAngle});
+    array_[i]->rotate(angle);
+  }
+}
+
+const vinokurov::CompositeShape::shapeArray& vinokurov::CompositeShape::asArray() const
+{
+  return array_;
+}
+
+size_t vinokurov::CompositeShape::size()
+{
+  return size_;
 }

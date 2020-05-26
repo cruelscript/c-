@@ -16,6 +16,7 @@ namespace vinokurov
     void move(double deltaX, double deltaY) override;
     void print(std::ostream& out) const override;
     void scale(double coefficient) override;
+    void rotate(double angle) override;
   private:
     double radius_;
     point_t center_;

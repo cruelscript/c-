@@ -18,6 +18,7 @@ namespace vinokurov
     virtual void move(double deltaX, double deltaY) = 0;
     virtual void print(std::ostream& out) const = 0;
     virtual void scale(double coefficient) = 0;
+    virtual void rotate(double angle) = 0;
   };
 }
 

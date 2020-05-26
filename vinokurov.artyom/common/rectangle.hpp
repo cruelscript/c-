@@ -16,10 +16,12 @@ namespace vinokurov
     void move(double deltaX, double deltaY) override;
     void print(std::ostream& out) const override;
     void scale(double coefficient) override;
+    void rotate(double angle) override;
   private:
-    double width_;
-    double height_;
-    point_t center_;
+    point_t vertex_[4];
+    double width() const;
+    double height() const;
+    point_t center() const;
   };
 }
 

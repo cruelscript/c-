@@ -20,7 +20,7 @@ namespace vinokurov
 
     CompositeShape& operator=(const CompositeShape& copyShape);
     CompositeShape& operator=(CompositeShape&& moveShape);
-    shapePtr& operator[](unsigned int index)const;
+    shapePtr operator[](unsigned int index) const;
 
     void add(const shapePtr& element);
     void remove();
@@ -30,9 +30,12 @@ namespace vinokurov
     void move(double deltaX, double deltaY) override;
     void print(std::ostream& out) const override;
     void scale(double coefficient) override;
+    void rotate(double angle) override;
+    const shapeArray& asArray() const;
+    size_t size();
+
   private:
     size_t size_;
-    point_t center_;
     size_t capacity_;
     shapeArray array_;
   };

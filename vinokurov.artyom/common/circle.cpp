@@ -39,8 +39,8 @@ void vinokurov::Circle::move(double deltaX, double deltaY)
 
 void vinokurov::Circle::print(std::ostream& out) const
 {
-  out << "\nRadius of the circle is " << radius_
-    << ". The center of the circle is at x: " << center_.x << ", y: " << center_.y << "\n";
+  out << "\nRadius of the circle is " << radius_;
+  out << "\nCenter of the circle is at (" << center_.x << ", " << center_.y << ")\n";
 }
 
 void vinokurov::Circle::scale(double coefficient)
@@ -51,3 +51,6 @@ void vinokurov::Circle::scale(double coefficient)
   }
   radius_ *= coefficient;
 }
+
+void vinokurov::Circle::rotate(double)
+{}
