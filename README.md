@@ -139,3 +139,30 @@ Boost
 корню библиотеки.
 
 > Путь не должен содержать пробельные символы.
+Accepted Labs
+=============
+
+| Name                | A1 | A2 | A3 | A4 | B1 | B2 | B3 | B4 | B5 | B6 | B7 | B8 |
+|---------------------|----|----|----|----|----|----|----|----|----|----|----|----|
+| Belova Maria        | *  | *  | *  |    |    |    |    |    |    |    |    |    |
+| Chevychelov Nikita  | *  | *  |    |    |    |    |    |    |    |    |    |    |
+| Dambieva Alena      | *  | *  |    |    |    |    |    |    |    |    |    |    |
+| Fernandez Andres    | *  | *  |    |    |    |    |    |    |    |    |    |    |
+| Fokin Arsentiy      | *  | *  | *  |    |    |    |    |    |    |    |    |    |
+| Gabdullina Sania    | *  | *  | *  |    |    |    |    |    |    |    |    |    |
+| Golovin Kirill      | *  | *  |    |    |    |    |    |    |    |    |    |    |
+| Gromova Esenija     | *  | *  |    |    |    |    |    |    |    |    |    |    |
+| Gulyaev Anton       | *  | *  | *  |    |    |    |    |    |    |    |    |    |
+| Gyrlov Fedor        | *  | *  |    |    |    |    |    |    |    |    |    |    |
+| Kazanskaya Kate     | *  | *  |    |    |    |    |    |    |    |    |    |    |
+| Konovalov Mihail    | *  | *  | *  |    |    |    |    |    |    |    |    |    |
+| Kubov Nikita        | *  | *  | *  |    |    |    |    |    |    |    |    |    |
+| Potykanenko Artyom  | *  | *  |    |    |    |    |    |    |    |    |    |    |
+| Prishchepa Ilya     | *  | *  |    |    |    |    |    |    |    |    |    |    |
+| Savenkova Anastasia | *  | *  |    |    |    |    |    |    |    |    |    |    |
+| Shcherbinin Denis   | *  | *  |    |    |    |    |    |    |    |    |    |    |
+| Shevtsov Artem      | *  | *  |    |    |    |    |    |    |    |    |    |    |
+| Sviridov Ivan       | *  | *  |    |    |    |    |    |    |    |    |    |    |
+| Talipova Bella      | *  | *  | *  |    |    |    |    |    |    |    |    |    |
+| Vinokurov Artyom    | *  | *  | *  |    |    |    |    |    |    |    |    |    |
+| __Total__           |  21|  21|   8|   0|   0|   0|   0|   0|   0|   0|   0|   0|
