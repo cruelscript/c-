@@ -11,9 +11,9 @@ int main()
   vinokurov::Circle circle(13.2, dot);
 
   vinokurov::CompositeShape::shapePtr part1 = std::make_shared<vinokurov::Rectangle>(6, 4, dot);
-  dot = { 7, 4 };
+  dot = {7, 4};
   vinokurov::CompositeShape::shapePtr part2 = std::make_shared<vinokurov::Circle>(2, dot);
-  dot = { 2,5 };
+  dot = {2, 5};
   vinokurov::CompositeShape::shapePtr part3 = std::make_shared<vinokurov::Rectangle>(4, 2, dot);
 
   vinokurov::CompositeShape compShape;

@@ -15,24 +15,26 @@ namespace vinokurov
 
     CompositeShape();
     CompositeShape(const CompositeShape& shape);
-    CompositeShape(CompositeShape&& shape);
+    CompositeShape(CompositeShape&& shape) noexcept;
     ~CompositeShape() = default;
 
     CompositeShape& operator=(const CompositeShape& copyShape);
-    CompositeShape& operator=(CompositeShape&& moveShape);
+    CompositeShape& operator=(CompositeShape&& moveShape) noexcept;
     shapePtr operator[](unsigned int index) const;
 
     void add(const shapePtr& element);
     void remove();
-    double getArea() const override;
+
+    double getArea() const noexcept override;
     rectangle_t getFrameRect() const override;
     void move(const point_t& newCenter) override;
-    void move(double deltaX, double deltaY) override;
+    void move(double deltaX, double deltaY) noexcept override;
     void print(std::ostream& out) const override;
     void scale(double coefficient) override;
-    void rotate(double angle) override;
-    const shapeArray& asArray() const;
-    size_t size();
+    void rotate(double angle) noexcept override;
+
+    const shapeArray& asArray() const noexcept;
+    size_t size() const noexcept;
 
   private:
     size_t size_;

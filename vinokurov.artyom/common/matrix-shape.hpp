@@ -14,11 +14,11 @@ namespace vinokurov
 
     MatrixShape();
     MatrixShape(const MatrixShape& matrix);
-    MatrixShape(MatrixShape&& matrix);
+    MatrixShape(MatrixShape&& matrix) noexcept;
     ~MatrixShape() = default;
 
     MatrixShape& operator=(const MatrixShape& matrix);
-    MatrixShape& operator=(MatrixShape&& matrix);
+    MatrixShape& operator=(MatrixShape&& matrix) noexcept;
 
     void add(const shapePtr& shape);
     void add(const shapeArray& array, size_t size);
@@ -29,7 +29,7 @@ namespace vinokurov
     size_t cols_;
     shapeArray array_;
 
-    bool isOverlapped(const shapePtr& shape1, const shapePtr& shape2);
+    bool isOverlapped(const shapePtr& shape1, const shapePtr& shape2) const noexcept;
   };
 }
 

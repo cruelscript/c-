@@ -22,12 +22,12 @@ vinokurov::Rectangle::Rectangle(double width, double height, const point_t& cent
   vertex_[3] = {center.x + width / 2, center.y - height / 2};
 }
 
-double vinokurov::Rectangle::getArea() const
+double vinokurov::Rectangle::getArea() const noexcept
 {
   return width() * height();
 }
 
-vinokurov::rectangle_t vinokurov::Rectangle::getFrameRect() const
+vinokurov::rectangle_t vinokurov::Rectangle::getFrameRect() const noexcept
 {
   double maxX = vertex_[0].x;
   double maxY = vertex_[0].y;
@@ -56,13 +56,13 @@ vinokurov::rectangle_t vinokurov::Rectangle::getFrameRect() const
   return {maxX - minX, maxY - minY, {minX + (maxX - minX) / 2, minY + (maxY - minY) / 2}};
 }
 
-void vinokurov::Rectangle::move(const point_t& newCenter)
+void vinokurov::Rectangle::move(const point_t& newCenter) noexcept
 {
   point_t center = getFrameRect().pos;
   move(newCenter.x - center.x, newCenter.y - center.y);
 }
 
-void vinokurov::Rectangle::move(const double deltaX, const double deltaY)
+void vinokurov::Rectangle::move(const double deltaX, const double deltaY) noexcept
 {
   for(point_t& vertices : vertex_)
   {
@@ -93,7 +93,7 @@ void vinokurov::Rectangle::scale(const double coefficient)
   }
 }
 
-void vinokurov::Rectangle::rotate(double angle)
+void vinokurov::Rectangle::rotate(double angle) noexcept
 {
   angle *= M_PI / 180;
   point_t center_ = center();
@@ -105,19 +105,19 @@ void vinokurov::Rectangle::rotate(double angle)
   }
 }
 
-double vinokurov::Rectangle::width() const
+double vinokurov::Rectangle::width() const noexcept
 {
   return std::sqrt(std::pow(vertex_[2].x - vertex_[1].x, 2) 
     + std::pow(vertex_[2].y - vertex_[1].y, 2));
 }
 
-double vinokurov::Rectangle::height() const
+double vinokurov::Rectangle::height() const noexcept
 {
   return std::sqrt(std::pow(vertex_[0].x - vertex_[1].x, 2) 
     + std::pow(vertex_[1].y - vertex_[0].y, 2));
 }
 
-vinokurov::point_t vinokurov::Rectangle::center() const
+vinokurov::point_t vinokurov::Rectangle::center() const noexcept
 {
   return getFrameRect().pos;
 }

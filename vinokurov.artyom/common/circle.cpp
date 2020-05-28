@@ -16,22 +16,22 @@ vinokurov::Circle::Circle(double radius, const point_t& center) :
   }
 }
 
-double vinokurov::Circle::getArea() const
+double vinokurov::Circle::getArea() const noexcept
 {
   return M_PI * radius_ * radius_;
 }
 
-vinokurov::rectangle_t vinokurov::Circle::getFrameRect() const
+vinokurov::rectangle_t vinokurov::Circle::getFrameRect() const noexcept
 {
   return {2 * radius_, 2 * radius_, center_};
 }
 
-void vinokurov::Circle::move(const point_t& newCenter)
+void vinokurov::Circle::move(const point_t& newCenter) noexcept
 {
   center_ = newCenter;
 }
 
-void vinokurov::Circle::move(double deltaX, double deltaY)
+void vinokurov::Circle::move(double deltaX, double deltaY) noexcept
 {
   center_.x += deltaX;
   center_.y += deltaY;
@@ -52,5 +52,5 @@ void vinokurov::Circle::scale(double coefficient)
   radius_ *= coefficient;
 }
 
-void vinokurov::Circle::rotate(double)
+void vinokurov::Circle::rotate(double) noexcept
 {}

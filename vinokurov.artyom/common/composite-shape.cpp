@@ -23,7 +23,7 @@ vinokurov::CompositeShape::CompositeShape(const CompositeShape& copyShape) :
   }
 }
 
-vinokurov::CompositeShape::CompositeShape(CompositeShape&& shape) :
+vinokurov::CompositeShape::CompositeShape(CompositeShape&& shape) noexcept :
   size_(shape.size_),
   capacity_(shape.capacity_),
   array_(std::move(shape.array_))
@@ -49,7 +49,7 @@ vinokurov::CompositeShape& vinokurov::CompositeShape::operator=(const CompositeS
   return *this;
 }
 
-vinokurov::CompositeShape& vinokurov::CompositeShape::operator=(CompositeShape&& shape)
+vinokurov::CompositeShape& vinokurov::CompositeShape::operator=(CompositeShape&& shape) noexcept
 {
   if(this != &shape)
   {
@@ -107,7 +107,7 @@ void vinokurov::CompositeShape::remove()
   size_--;
 }
 
-double vinokurov::CompositeShape::getArea() const
+double vinokurov::CompositeShape::getArea() const noexcept
 {
   double sumArea = 0.0;
 
@@ -149,7 +149,7 @@ vinokurov::rectangle_t vinokurov::CompositeShape::getFrameRect() const
   return {maxX - minX, maxY - minY, {(maxX + minX) / 2, (maxY + minY) / 2}};
 }
 
-void vinokurov::CompositeShape::move(const double deltaX, const double deltaY)
+void vinokurov::CompositeShape::move(const double deltaX, const double deltaY) noexcept
 {
   for(size_t i = 0; i < size_; i++)
   {
@@ -195,28 +195,35 @@ void vinokurov::CompositeShape::scale(double coefficient)
   }
 }
 
-void vinokurov::CompositeShape::rotate(double angle)
+void vinokurov::CompositeShape::rotate(double angle) noexcept
 {
+  if(!array_ || size_ == 0)
+  {
+    return;
+  }
   point_t center = getFrameRect().pos;
   double sinAngle = std::sin(angle * M_PI / 180);
   double cosAngle = std::cos(angle * M_PI / 180);
 
   for(size_t i = 0; i < size_; i++)
   {
-    point_t shapeCenter = array_[i]->getFrameRect().pos;
+    if(array_[i])
+    {
+      point_t shapeCenter = array_[i]->getFrameRect().pos;
 
-    array_[i]->move({center.x + (shapeCenter.x - center.x) * cosAngle - (shapeCenter.y - center.y) * sinAngle,
-      center.y + (shapeCenter.y - center.y) * cosAngle + (shapeCenter.x - center.x) * sinAngle});
-    array_[i]->rotate(angle);
+      array_[i]->move({center.x + (shapeCenter.x - center.x) * cosAngle - (shapeCenter.y - center.y) * sinAngle,
+        center.y + (shapeCenter.y - center.y) * cosAngle + (shapeCenter.x - center.x) * sinAngle});
+      array_[i]->rotate(angle);      
+    }
   }
 }
 
-const vinokurov::CompositeShape::shapeArray& vinokurov::CompositeShape::asArray() const
+const vinokurov::CompositeShape::shapeArray& vinokurov::CompositeShape::asArray() const noexcept
 {
   return array_;
 }
 
-size_t vinokurov::CompositeShape::size()
+size_t vinokurov::CompositeShape::size() const noexcept
 {
   return size_;
 }

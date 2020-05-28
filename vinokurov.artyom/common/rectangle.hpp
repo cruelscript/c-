@@ -10,18 +10,18 @@ namespace vinokurov
   {
   public:
     Rectangle(double width, double height, const point_t& center);
-    double getArea() const override;
-    rectangle_t getFrameRect() const override;
-    void move(const point_t& newCenter) override;
-    void move(double deltaX, double deltaY) override;
+    double getArea() const noexcept override;
+    rectangle_t getFrameRect() const noexcept override;
+    void move(const point_t& newCenter) noexcept override;
+    void move(double deltaX, double deltaY) noexcept override;
     void print(std::ostream& out) const override;
     void scale(double coefficient) override;
-    void rotate(double angle) override;
+    void rotate(double angle) noexcept override;
   private:
     point_t vertex_[4];
-    double width() const;
-    double height() const;
-    point_t center() const;
+    double width() const noexcept;
+    double height() const noexcept;
+    point_t center() const noexcept;
   };
 }
 

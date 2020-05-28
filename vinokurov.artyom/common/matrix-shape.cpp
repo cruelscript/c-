@@ -22,7 +22,7 @@ vinokurov::MatrixShape::MatrixShape(const MatrixShape& matrix) :
   }
 }
 
-vinokurov::MatrixShape::MatrixShape(MatrixShape&& matrix) :
+vinokurov::MatrixShape::MatrixShape(MatrixShape&& matrix) noexcept :
   rows_(matrix.rows_),
   cols_(matrix.cols_),
   array_(std::move(matrix.array_))
@@ -45,7 +45,7 @@ vinokurov::MatrixShape& vinokurov::MatrixShape::operator=(const MatrixShape& mat
   return *this;
 }
 
-vinokurov::MatrixShape& vinokurov::MatrixShape::operator=(MatrixShape&& matrix)
+vinokurov::MatrixShape& vinokurov::MatrixShape::operator=(MatrixShape&& matrix) noexcept
 {
   if(this != &matrix)
   {
@@ -131,7 +131,7 @@ void vinokurov::MatrixShape::add(const shapeArray& array, size_t size)
   }
 }
 
-bool vinokurov::MatrixShape::isOverlapped(const shapePtr& shape1, const shapePtr& shape2)
+bool vinokurov::MatrixShape::isOverlapped(const shapePtr& shape1, const shapePtr& shape2) const noexcept
 {
   return !shape1 || !shape2 ? false :
     (std::fabs(shape1->getFrameRect().pos.x - shape2->getFrameRect().pos.x)
