@@ -43,8 +43,7 @@ int main()
     shape->print(std::cout);
   }
 
-  vinokurov::MatrixShape matrix;
-  matrix.add(compShape.asArray(), compShape.size());
+  vinokurov::MatrixShape matrix(compShape);
   matrix.print(std::cout);
 
   std::cout << "\nRemoving the last element...\n";

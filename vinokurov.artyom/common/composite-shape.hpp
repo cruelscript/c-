@@ -33,7 +33,7 @@ namespace vinokurov
     void scale(double coefficient) override;
     void rotate(double angle) noexcept override;
 
-    const shapeArray& asArray() const noexcept;
+    shapeArray& toArray() noexcept;
     size_t size() const noexcept;
 
   private:

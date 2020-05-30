@@ -18,7 +18,7 @@ namespace vinokurov
     void scale(double coefficient) override;
     void rotate(double angle) noexcept override;
   private:
-    point_t vertex_[4];
+    point_t vertices_[4];
     double width() const noexcept;
     double height() const noexcept;
     point_t center() const noexcept;

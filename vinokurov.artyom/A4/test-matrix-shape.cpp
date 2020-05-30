@@ -19,8 +19,7 @@ BOOST_AUTO_TEST_CASE(testMatrixShapeCopyConstructorNoThrow)
   vinokurov::CompositeShape copyCompositeShape;
   copyCompositeShape.add(testRectangle);
 
-  vinokurov::MatrixShape copyMatrix;
-  copyMatrix.add(copyCompositeShape.asArray(), copyCompositeShape.size());
+  vinokurov::MatrixShape copyMatrix(copyCompositeShape);
 
   BOOST_CHECK_NO_THROW(vinokurov::MatrixShape testMatrix(copyMatrix));
 }
@@ -33,8 +32,7 @@ BOOST_AUTO_TEST_CASE(testMatrixShapeMoveConstructorNoThrow)
   vinokurov::CompositeShape compositeShape;
   compositeShape.add(testRectangle);
 
-  vinokurov::MatrixShape matrix;
-  matrix.add(compositeShape.asArray(), compositeShape.size());
+  vinokurov::MatrixShape matrix(compositeShape);
 
   BOOST_CHECK_NO_THROW(vinokurov::MatrixShape testMatrix(std::move(matrix)));
 }
@@ -47,8 +45,7 @@ BOOST_AUTO_TEST_CASE(testMatrixShapeCopyAssignmentOperatorNoThrow)
   vinokurov::CompositeShape copyCompositeShape;
   copyCompositeShape.add(testRectangle);
 
-  vinokurov::MatrixShape copyMatrix;
-  copyMatrix.add(copyCompositeShape.asArray(), copyCompositeShape.size());
+  vinokurov::MatrixShape copyMatrix(copyCompositeShape);
 
   BOOST_CHECK_NO_THROW(vinokurov::MatrixShape testMatrix = copyMatrix);
 }
@@ -61,15 +58,21 @@ BOOST_AUTO_TEST_CASE(testMatrixShapeMoveAssignmentOperatorNoThrow)
   vinokurov::CompositeShape compositeShape;
   compositeShape.add(testRectangle);
 
-  vinokurov::MatrixShape matrix;
-  matrix.add(compositeShape.asArray(), compositeShape.size());
+  vinokurov::MatrixShape matrix(compositeShape);
 
   BOOST_CHECK_NO_THROW(vinokurov::MatrixShape testMatrix = std::move(matrix));
 }
 
+BOOST_AUTO_TEST_CASE(testMatrixShapeExceptionAddingEmptyShape)
+{
+  vinokurov::CompositeShape compositeShape;
+
+  BOOST_CHECK_THROW(vinokurov::MatrixShape matrix(compositeShape), std::invalid_argument);
+}
+
 BOOST_AUTO_TEST_CASE(testMatrixShapeExceptionAddingNullptr)
 {
-  vinokurov::CompositeShape matrix;
+  vinokurov::MatrixShape matrix;
 
   BOOST_CHECK_THROW(matrix.add(nullptr), std::invalid_argument);
 }

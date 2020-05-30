@@ -31,6 +31,21 @@ vinokurov::MatrixShape::MatrixShape(MatrixShape&& matrix) noexcept :
   matrix.cols_ = 0;
 }
 
+vinokurov::MatrixShape::MatrixShape(CompositeShape& compositeShape) :
+  rows_(1),
+  cols_(1),
+  array_(std::make_unique<shapePtr[]>(1))
+{
+  if(compositeShape.size() == 0)
+  {
+    throw std::invalid_argument("MatrixShape: Error. Unable to create matrix from empty composite shape.");
+  }
+  for(size_t i = 0; i < compositeShape.size(); i++)
+  {
+    add(compositeShape.toArray()[i]);
+  }
+}
+
 vinokurov::MatrixShape& vinokurov::MatrixShape::operator=(const MatrixShape& matrix)
 {
   if(this != &matrix)
@@ -120,14 +135,6 @@ void vinokurov::MatrixShape::add(const shapePtr& shape)
     }
     array_.swap(temp);
     array_[row * cols_ + (cols_ - 1)] = shape;
-  }
-}
-
-void vinokurov::MatrixShape::add(const shapeArray& array, size_t size)
-{
-  for(size_t i = 0; i < size; i++)
-  {
-    add(array[i]);
   }
 }
 

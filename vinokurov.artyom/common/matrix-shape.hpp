@@ -3,6 +3,7 @@
 
 #include <memory>
 #include "shape.hpp"
+#include "composite-shape.hpp"
 
 namespace vinokurov
 {
@@ -15,13 +16,13 @@ namespace vinokurov
     MatrixShape();
     MatrixShape(const MatrixShape& matrix);
     MatrixShape(MatrixShape&& matrix) noexcept;
+    explicit MatrixShape(CompositeShape& compositeShape);
     ~MatrixShape() = default;
 
     MatrixShape& operator=(const MatrixShape& matrix);
     MatrixShape& operator=(MatrixShape&& matrix) noexcept;
 
     void add(const shapePtr& shape);
-    void add(const shapeArray& array, size_t size);
     void print(std::ostream& out) const;
 
   private:

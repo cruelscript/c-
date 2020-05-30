@@ -6,7 +6,14 @@
 #include <ostream>
 #include "base-types.hpp"
 
-vinokurov::Rectangle::Rectangle(double width, double height, const point_t& center)
+vinokurov::Rectangle::Rectangle(double width, double height, const point_t& center) :
+  vertices_
+  {
+    {center.x - width / 2, center.y - height / 2},
+    {center.x - width / 2, center.y + height / 2},
+    {center.x + width / 2, center.y + height / 2},
+    {center.x + width / 2, center.y - height / 2}
+  }
 {
   if (height <= 0.0)
   {
@@ -16,10 +23,6 @@ vinokurov::Rectangle::Rectangle(double width, double height, const point_t& cent
   {
     throw std::invalid_argument("Rectangle: Error. Width cannot be less than zero.");
   }
-  vertex_[0] = {center.x - width / 2, center.y - height / 2};
-  vertex_[1] = {center.x - width / 2, center.y + height / 2};
-  vertex_[2] = {center.x + width / 2, center.y + height / 2};
-  vertex_[3] = {center.x + width / 2, center.y - height / 2};
 }
 
 double vinokurov::Rectangle::getArea() const noexcept
@@ -29,28 +32,28 @@ double vinokurov::Rectangle::getArea() const noexcept
 
 vinokurov::rectangle_t vinokurov::Rectangle::getFrameRect() const noexcept
 {
-  double maxX = vertex_[0].x;
-  double maxY = vertex_[0].y;
-  double minX = vertex_[0].x;
-  double minY = vertex_[0].y;
+  double maxX = vertices_[0].x;
+  double maxY = vertices_[0].y;
+  double minX = vertices_[0].x;
+  double minY = vertices_[0].y;
 
-  for(point_t vertices: vertex_)
+  for(point_t vertex: vertices_)
   {
-    if(vertices.x > maxX)
+    if(vertex.x > maxX)
     {
-      maxX = vertices.x;
+      maxX = vertex.x;
     }
-    if(vertices.x < minX)
+    if(vertex.x < minX)
     {
-      minX = vertices.x;
+      minX = vertex.x;
     }
-    if(vertices.y > maxY)
+    if(vertex.y > maxY)
     {
-      maxY = vertices.y;
+      maxY = vertex.y;
     }
-    if(vertices.y < minY)
+    if(vertex.y < minY)
     {
-      minY = vertices.y;
+      minY = vertex.y;
     }
   }
   return {maxX - minX, maxY - minY, {minX + (maxX - minX) / 2, minY + (maxY - minY) / 2}};
@@ -62,12 +65,12 @@ void vinokurov::Rectangle::move(const point_t& newCenter) noexcept
   move(newCenter.x - center.x, newCenter.y - center.y);
 }
 
-void vinokurov::Rectangle::move(const double deltaX, const double deltaY) noexcept
+void vinokurov::Rectangle::move(double deltaX, double deltaY) noexcept
 {
-  for(point_t& vertices : vertex_)
+  for(point_t& vertex : vertices_)
   {
-    vertices.x += deltaX;
-    vertices.y += deltaY;
+    vertex.x += deltaX;
+    vertex.y += deltaY;
   }
 }
 
@@ -78,7 +81,7 @@ void vinokurov::Rectangle::print(std::ostream& out) const
   out << "\nCenter of the rectangle is at (" << center().x << ", " << center().y << ")\n";
 }
 
-void vinokurov::Rectangle::scale(const double coefficient)
+void vinokurov::Rectangle::scale(double coefficient)
 {
   if(coefficient <= 0.0)
   {
@@ -86,10 +89,10 @@ void vinokurov::Rectangle::scale(const double coefficient)
   }
   point_t center_ = center();
 
-  for (point_t& vertices : vertex_)
+  for (point_t& vertex : vertices_)
   {
-    vertices = {center_.x + (vertices.x - center_.x) * coefficient,
-      center_.y + (vertices.y - center_.y) * coefficient};
+    vertex.x = center_.x + (vertex.x - center_.x) * coefficient;
+    vertex.y = center_.y + (vertex.y - center_.y) * coefficient;
   }
 }
 
@@ -98,23 +101,23 @@ void vinokurov::Rectangle::rotate(double angle) noexcept
   angle *= M_PI / 180;
   point_t center_ = center();
 
-  for(point_t& vertices: vertex_)
+  for(point_t& vertex: vertices_)
   {
-    vertices = {center_.x + (vertices.x - center_.x) * std::cos(angle) - (vertices.y - center_.y) * std::sin(angle),
-      center_.y + (vertices.y - center_.y) * std::cos(angle) + (vertices.x - center_.x) * std::sin(angle)};
+    vertex = {center_.x + (vertex.x - center_.x) * std::cos(angle) - (vertex.y - center_.y) * std::sin(angle),
+      center_.y + (vertex.y - center_.y) * std::cos(angle) + (vertex.x - center_.x) * std::sin(angle)};
   }
 }
 
 double vinokurov::Rectangle::width() const noexcept
 {
-  return std::sqrt(std::pow(vertex_[2].x - vertex_[1].x, 2) 
-    + std::pow(vertex_[2].y - vertex_[1].y, 2));
+  return std::sqrt(std::pow(vertices_[2].x - vertices_[1].x, 2) 
+    + std::pow(vertices_[2].y - vertices_[1].y, 2));
 }
 
 double vinokurov::Rectangle::height() const noexcept
 {
-  return std::sqrt(std::pow(vertex_[0].x - vertex_[1].x, 2) 
-    + std::pow(vertex_[1].y - vertex_[0].y, 2));
+  return std::sqrt(std::pow(vertices_[0].x - vertices_[1].x, 2) 
+    + std::pow(vertices_[1].y - vertices_[0].y, 2));
 }
 
 vinokurov::point_t vinokurov::Rectangle::center() const noexcept

@@ -218,7 +218,7 @@ void vinokurov::CompositeShape::rotate(double angle) noexcept
   }
 }
 
-const vinokurov::CompositeShape::shapeArray& vinokurov::CompositeShape::asArray() const noexcept
+vinokurov::CompositeShape::shapeArray& vinokurov::CompositeShape::toArray() noexcept
 {
   return array_;
 }
