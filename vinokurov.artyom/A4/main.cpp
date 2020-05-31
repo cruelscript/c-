@@ -42,7 +42,6 @@ int main()
     shape->rotate(15);
     shape->print(std::cout);
   }
-
   vinokurov::MatrixShape matrix(compShape);
   matrix.print(std::cout);
 

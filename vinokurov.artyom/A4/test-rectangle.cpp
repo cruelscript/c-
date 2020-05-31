@@ -66,6 +66,7 @@ BOOST_AUTO_TEST_CASE(testRectangleAreaImmutabilityAfterPointMove)
 {
   vinokurov::Rectangle testRectangle(5.5, 5.5, {1.1, 1.1});
   double areaBefore = testRectangle.getArea();
+
   testRectangle.move({2.2, 2.2});
 
   BOOST_CHECK_CLOSE(areaBefore, testRectangle.getArea(), EPSILON);
@@ -75,6 +76,7 @@ BOOST_AUTO_TEST_CASE(testRectangleAreaImmutabilityAfterDeltaMove)
 {
   vinokurov::Rectangle testRectangle(5.5, 5.5, {1.1, 1.1});
   double areaBefore = testRectangle.getArea();
+
   testRectangle.move(2.2, 2.2);
 
   BOOST_CHECK_CLOSE(areaBefore, testRectangle.getArea(), EPSILON);
@@ -84,6 +86,7 @@ BOOST_AUTO_TEST_CASE(testRectangleAreaImmutabilityAfterRotating)
 {
   vinokurov::Rectangle testRectangle(5.5, 5.5, {1.1, 1.1});
   double areaBefore = testRectangle.getArea();
+
   testRectangle.rotate(15);
 
   BOOST_CHECK_CLOSE(areaBefore, testRectangle.getArea(), EPSILON);
@@ -93,6 +96,7 @@ BOOST_AUTO_TEST_CASE(testRectangleAreaChangingAfterScaling)
 {
   vinokurov::Rectangle testRectangle(5.5, 5.5, {1.1, 1.1});
   double areaBefore = testRectangle.getArea();
+
   testRectangle.scale(7.7);
 
   BOOST_CHECK_CLOSE(areaBefore * 7.7 * 7.7, testRectangle.getArea(), EPSILON);
@@ -121,12 +125,14 @@ BOOST_AUTO_TEST_CASE(testRectangleExceptionZeroHeight)
 BOOST_AUTO_TEST_CASE(testRectangleExceptionInvalidScaling)
 {
   vinokurov::Rectangle testRectangle(5.5, 5.5, {1.1, 1.1});
+
   BOOST_CHECK_THROW(testRectangle.scale(-7.7), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(testRectangleExceptionZeroScaling)
 {
   vinokurov::Rectangle testRectangle(5.5, 5.5, {1.1, 1.1});
+
   BOOST_CHECK_THROW(testRectangle.scale(0.0), std::invalid_argument);
 }
 

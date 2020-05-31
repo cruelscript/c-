@@ -42,7 +42,7 @@ vinokurov::MatrixShape::MatrixShape(CompositeShape& compositeShape) :
   }
   for(size_t i = 0; i < compositeShape.size(); i++)
   {
-    add(compositeShape.toArray()[i]);
+    add(compositeShape[i]);
   }
 }
 

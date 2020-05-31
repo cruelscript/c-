@@ -218,11 +218,6 @@ void vinokurov::CompositeShape::rotate(double angle) noexcept
   }
 }
 
-vinokurov::CompositeShape::shapeArray& vinokurov::CompositeShape::toArray() noexcept
-{
-  return array_;
-}
-
 size_t vinokurov::CompositeShape::size() const noexcept
 {
   return size_;

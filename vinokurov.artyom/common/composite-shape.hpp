@@ -32,8 +32,6 @@ namespace vinokurov
     void print(std::ostream& out) const override;
     void scale(double coefficient) override;
     void rotate(double angle) noexcept override;
-
-    shapeArray& toArray() noexcept;
     size_t size() const noexcept;
 
   private:
