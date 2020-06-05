@@ -149,7 +149,7 @@ vinokurov::rectangle_t vinokurov::CompositeShape::getFrameRect() const
   return {maxX - minX, maxY - minY, {(maxX + minX) / 2, (maxY + minY) / 2}};
 }
 
-void vinokurov::CompositeShape::move(const double deltaX, const double deltaY) noexcept
+void vinokurov::CompositeShape::move(double deltaX, double deltaY) noexcept
 {
   for(size_t i = 0; i < size_; i++)
   {

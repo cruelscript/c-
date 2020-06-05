@@ -21,9 +21,12 @@ namespace vinokurov
 
     MatrixShape& operator=(const MatrixShape& matrix);
     MatrixShape& operator=(MatrixShape&& matrix) noexcept;
+    shapePtr operator()(size_t row, size_t col) const;
 
     void add(const shapePtr& shape);
     void print(std::ostream& out) const;
+    size_t getCols() const noexcept;
+    size_t getRows() const noexcept;
 
   private:
     size_t rows_;

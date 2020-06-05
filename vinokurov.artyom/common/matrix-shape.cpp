@@ -32,9 +32,7 @@ vinokurov::MatrixShape::MatrixShape(MatrixShape&& matrix) noexcept :
 }
 
 vinokurov::MatrixShape::MatrixShape(CompositeShape& compositeShape) :
-  rows_(1),
-  cols_(1),
-  array_(std::make_unique<shapePtr[]>(1))
+  MatrixShape()
 {
   if(compositeShape.size() == 0)
   {
@@ -71,6 +69,15 @@ vinokurov::MatrixShape& vinokurov::MatrixShape::operator=(MatrixShape&& matrix) 
     matrix.cols_ = 0;
   }
   return *this;
+}
+
+vinokurov::MatrixShape::shapePtr vinokurov::MatrixShape::operator()(size_t row, size_t col) const
+{
+  if(row >= rows_ || col >= cols_)
+  {
+    throw std::out_of_range("MatrixShape: Error. Index is out of range.");
+  }
+  return array_[row * cols_ + col];
 }
 
 void vinokurov::MatrixShape::add(const shapePtr& shape)
@@ -162,4 +169,14 @@ void vinokurov::MatrixShape::print(std::ostream& out) const
       }
     }
   }
+}
+
+size_t vinokurov::MatrixShape::getCols() const noexcept
+{
+  return cols_;
+}
+
+size_t vinokurov::MatrixShape::getRows() const noexcept
+{
+  return rows_;
 }
