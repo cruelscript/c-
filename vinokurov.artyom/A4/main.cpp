@@ -1,4 +1,6 @@
 ﻿#include <iostream>
+#include <memory>
+
 #include "rectangle.hpp"
 #include "circle.hpp"
 #include "composite-shape.hpp"

@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <memory>
 
 #include <boost/test/auto_unit_test.hpp>
 #include <boost/test/tools/floating_point_comparison.hpp>
@@ -101,6 +102,8 @@ BOOST_AUTO_TEST_CASE(testMatrixShapeCorrectFragmentation)
   BOOST_CHECK_CLOSE(matrix(1, 0)->getFrameRect().pos.y, part2Frame.pos.y, EPSILON);
   BOOST_CHECK_CLOSE(matrix(1, 0)->getFrameRect().width, part2Frame.width, EPSILON);
   BOOST_CHECK_CLOSE(matrix(1, 0)->getFrameRect().height, part2Frame.height, EPSILON);
+
+  BOOST_CHECK_EQUAL(matrix(1, 1), nullptr);
 }
 
 BOOST_AUTO_TEST_CASE(testMatrixShapeExceptionAddingEmptyShape)

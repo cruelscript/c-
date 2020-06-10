@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <memory>
 
 #include <boost/test/auto_unit_test.hpp>
 #include <boost/test/tools/floating_point_comparison.hpp>
