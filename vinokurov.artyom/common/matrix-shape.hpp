@@ -3,10 +3,12 @@
 
 #include <memory>
 #include "shape.hpp"
-#include "composite-shape.hpp"
 
 namespace vinokurov
 {
+  class Layer;
+  class CompositeShape;
+
   class MatrixShape
   {
   public:
@@ -14,14 +16,14 @@ namespace vinokurov
     typedef std::unique_ptr<shapePtr[]> shapeArray;
 
     MatrixShape();
-    MatrixShape(const MatrixShape& matrix);
-    MatrixShape(MatrixShape&& matrix) noexcept;
+    MatrixShape(const MatrixShape& rhs);
+    MatrixShape(MatrixShape&& rhs) noexcept;
     explicit MatrixShape(CompositeShape& compositeShape);
     ~MatrixShape() = default;
 
-    MatrixShape& operator=(const MatrixShape& matrix);
-    MatrixShape& operator=(MatrixShape&& matrix) noexcept;
-    shapePtr operator()(size_t row, size_t col) const;
+    MatrixShape& operator=(const MatrixShape& rhs);
+    MatrixShape& operator=(MatrixShape&& rhs) noexcept;
+    Layer operator[](unsigned int index) const;
 
     void add(const shapePtr& shape);
     void print(std::ostream& out) const;
@@ -33,7 +35,7 @@ namespace vinokurov
     size_t cols_;
     shapeArray array_;
 
-    bool isOverlapped(const shapePtr& shape1, const shapePtr& shape2) const noexcept;
+    static bool isOverlapped(const shapePtr& shape1, const shapePtr& shape2);
   };
 }
 

@@ -3,7 +3,10 @@
 #include <stdexcept>
 #include <ostream>
 #include <cmath>
+
 #include "base-types.hpp"
+#include "layer.hpp"
+#include "composite-shape.hpp"
 
 vinokurov::MatrixShape::MatrixShape() :
   rows_(1),
@@ -11,24 +14,24 @@ vinokurov::MatrixShape::MatrixShape() :
   array_(std::make_unique<shapePtr[]>(1))
 {}
 
-vinokurov::MatrixShape::MatrixShape(const MatrixShape& matrix) :
-  rows_(matrix.rows_),
-  cols_(matrix.cols_),
+vinokurov::MatrixShape::MatrixShape(const MatrixShape& rhs) :
+  rows_(rhs.rows_),
+  cols_(rhs.cols_),
   array_(std::make_unique<shapePtr[]>(cols_ * rows_))
 {
   for(size_t i = 0 ; i < cols_ * rows_; i++)
   {
-    array_[i] = matrix.array_[i];
+    array_[i] = rhs.array_[i];
   }
 }
 
-vinokurov::MatrixShape::MatrixShape(MatrixShape&& matrix) noexcept :
-  rows_(matrix.rows_),
-  cols_(matrix.cols_),
-  array_(std::move(matrix.array_))
+vinokurov::MatrixShape::MatrixShape(MatrixShape&& rhs) noexcept :
+  rows_(rhs.rows_),
+  cols_(rhs.cols_),
+  array_(std::move(rhs.array_))
 {
-  matrix.rows_ = 0;
-  matrix.cols_ = 0;
+  rhs.cols_ = 0;
+  rhs.rows_ = 0;
 }
 
 vinokurov::MatrixShape::MatrixShape(CompositeShape& compositeShape) :
@@ -44,40 +47,60 @@ vinokurov::MatrixShape::MatrixShape(CompositeShape& compositeShape) :
   }
 }
 
-vinokurov::MatrixShape& vinokurov::MatrixShape::operator=(const MatrixShape& matrix)
+vinokurov::MatrixShape& vinokurov::MatrixShape::operator=(const MatrixShape& rhs)
 {
-  if(this != &matrix)
+  if(this != &rhs)
   {
-    rows_ = matrix.rows_;
-    cols_ = matrix.cols_;
+    rows_ = rhs.rows_;
+    cols_ = rhs.cols_;
+    shapeArray temp(std::make_unique<shapePtr[]>(rows_ * cols_));
+
     for(size_t i = 0; i < rows_ * cols_; i++)
     {
-      array_[i] = matrix.array_[i];
+      temp[i] = rhs.array_[i];
     }
+    array_.swap(temp);
   }
   return *this;
 }
 
-vinokurov::MatrixShape& vinokurov::MatrixShape::operator=(MatrixShape&& matrix) noexcept
+vinokurov::MatrixShape& vinokurov::MatrixShape::operator=(MatrixShape&& rhs) noexcept
 {
-  if(this != &matrix)
+  if(this != &rhs)
   {
-    rows_ = matrix.rows_;
-    cols_ = matrix.cols_;
-    array_ = std::move(matrix.array_);
-    matrix.rows_ = 0;
-    matrix.cols_ = 0;
+    rows_ = rhs.rows_;
+    cols_ = rhs.cols_;
+    array_ = std::move(rhs.array_);
   }
+  rhs.cols_ = 0;
+  rhs.rows_ = 0;
+
   return *this;
 }
 
-vinokurov::MatrixShape::shapePtr vinokurov::MatrixShape::operator()(size_t row, size_t col) const
+vinokurov::Layer vinokurov::MatrixShape::operator[](unsigned int index) const
 {
-  if(row >= rows_ || col >= cols_)
+  if(index >= rows_)
   {
     throw std::out_of_range("MatrixShape: Error. Index is out of range.");
   }
-  return array_[row * cols_ + col];
+  size_t size = 0;
+
+  for(size_t i = 0; i < cols_; i++)
+  {
+    if(array_[index * cols_ + i])
+    {
+      size++;
+    }
+    else break;
+  }
+  shapeArray temp(std::make_unique<shapePtr[]>(size));
+
+  for(size_t i = 0; i < size; i++)
+  {
+    temp[i] = array_[index * cols_ + i];
+  }
+  return Layer(temp, size);
 }
 
 void vinokurov::MatrixShape::add(const shapePtr& shape)
@@ -96,7 +119,7 @@ void vinokurov::MatrixShape::add(const shapePtr& shape)
       {
         break;
       }
-      if(isOverlapped(array_[i*cols_ + j], shape))
+      if(isOverlapped(array_[i * cols_ + j], shape))
       {
         row = i + 1;
         break;
@@ -105,7 +128,8 @@ void vinokurov::MatrixShape::add(const shapePtr& shape)
   }
   if(row == rows_)
   {
-    shapeArray temp = std::make_unique<shapePtr[]>(cols_ * ++rows_);
+    shapeArray temp = std::make_unique<shapePtr[]>(cols_ * (rows_ + 1));
+    rows_++;
 
     for(size_t i = 0; i < (rows_ - 1) * cols_; i++)
     {
@@ -130,7 +154,8 @@ void vinokurov::MatrixShape::add(const shapePtr& shape)
   }
   if(!isAdded)
   {
-    shapeArray temp = std::make_unique<shapePtr[]>(++cols_ * rows_);
+    shapeArray temp = std::make_unique<shapePtr[]>((cols_ + 1) * rows_);
+    cols_++;
 
     for(size_t i = 0; i < rows_; i++)
     {
@@ -145,7 +170,7 @@ void vinokurov::MatrixShape::add(const shapePtr& shape)
   }
 }
 
-bool vinokurov::MatrixShape::isOverlapped(const shapePtr& shape1, const shapePtr& shape2) const noexcept
+bool vinokurov::MatrixShape::isOverlapped(const shapePtr& shape1, const shapePtr& shape2)
 {
   return !shape1 || !shape2 ? false :
     (std::fabs(shape1->getFrameRect().pos.x - shape2->getFrameRect().pos.x)
@@ -164,8 +189,8 @@ void vinokurov::MatrixShape::print(std::ostream& out) const
     {
       if(array_[i * cols_ + j])
       {
-      out << "Layer " << i + 1 << ":\nShape " << j + 1;
-      array_[i * cols_ + j]->print(out);        
+        out << "Layer " << i + 1 << ":\nShape " << j + 1;
+        array_[i * cols_ + j]->print(out);        
       }
     }
   }

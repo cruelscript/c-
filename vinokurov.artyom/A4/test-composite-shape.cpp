@@ -1,7 +1,7 @@
 #include <stdexcept>
 #include <memory>
 
-#include <boost/test/auto_unit_test.hpp>
+#include <boost/test/unit_test.hpp>
 #include <boost/test/tools/floating_point_comparison.hpp>
 
 #include "composite-shape.hpp"
@@ -433,10 +433,10 @@ BOOST_AUTO_TEST_CASE(testCompositeShapeEmptyCase)
   BOOST_CHECK_THROW(testCompositeShape.getFrameRect(), std::invalid_argument);
   BOOST_CHECK_THROW(testCompositeShape.scale(7), std::invalid_argument);
   BOOST_CHECK_THROW(testCompositeShape.move(vinokurov::point_t{5, 5}), std::invalid_argument);
+  BOOST_CHECK_THROW(testCompositeShape.rotate(90), std::invalid_argument);
 
   BOOST_CHECK_NO_THROW(testCompositeShape.getArea());
   BOOST_CHECK_NO_THROW(testCompositeShape.move(5, 5));
-  BOOST_CHECK_NO_THROW(testCompositeShape.rotate(90));
 
   BOOST_CHECK_CLOSE(testCompositeShape.getArea(), 0, EPSILON);
 }

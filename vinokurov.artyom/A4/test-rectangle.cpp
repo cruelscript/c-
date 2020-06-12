@@ -1,6 +1,6 @@
 #include <stdexcept>
 
-#include <boost/test/auto_unit_test.hpp>
+#include <boost/test/unit_test.hpp>
 #include <boost/test/tools/floating_point_comparison.hpp>
 
 #include "rectangle.hpp"

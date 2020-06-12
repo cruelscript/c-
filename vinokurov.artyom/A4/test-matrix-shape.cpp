@@ -1,13 +1,14 @@
 #include <stdexcept>
 #include <memory>
 
-#include <boost/test/auto_unit_test.hpp>
+#include <boost/test/unit_test.hpp>
 #include <boost/test/tools/floating_point_comparison.hpp>
 
 #include "composite-shape.hpp"
 #include "matrix-shape.hpp"
 #include "rectangle.hpp"
 #include "circle.hpp"
+#include "layer.hpp"
 
 const double EPSILON = 1e-10;
 
@@ -26,6 +27,30 @@ BOOST_AUTO_TEST_CASE(testMatrixShapeCopyConstructorNoThrow)
   BOOST_CHECK_NO_THROW(vinokurov::MatrixShape testMatrix(copyMatrix));
 }
 
+BOOST_AUTO_TEST_CASE(testMatrixShapeCopyConstructorCopying)
+{
+  vinokurov::CompositeShape::shapePtr testRectangle =
+    std::make_shared<vinokurov::Rectangle>(5.5, 5.5, vinokurov::point_t{1.1, 1.1});
+
+  vinokurov::CompositeShape copyCompositeShape;
+  copyCompositeShape.add(testRectangle);
+
+  vinokurov::MatrixShape copyMatrix(copyCompositeShape);
+  vinokurov::rectangle_t copyFrame = copyMatrix[0][0]->getFrameRect();
+
+  vinokurov::MatrixShape testMatrix(copyMatrix);
+
+  vinokurov::rectangle_t testFrame = testMatrix[0][0]->getFrameRect();
+
+  BOOST_CHECK_EQUAL(copyMatrix.getCols(), testMatrix.getCols());
+  BOOST_CHECK_EQUAL(copyMatrix.getRows(), testMatrix.getRows());
+
+  BOOST_CHECK_CLOSE(copyFrame.height, testFrame.height, EPSILON);
+  BOOST_CHECK_CLOSE(copyFrame.width, testFrame.height, EPSILON);
+  BOOST_CHECK_CLOSE(copyFrame.pos.x, testFrame.pos.x, EPSILON);
+  BOOST_CHECK_CLOSE(copyFrame.pos.y, testFrame.pos.y, EPSILON);
+}
+
 BOOST_AUTO_TEST_CASE(testMatrixShapeMoveConstructorNoThrow)
 {
   vinokurov::CompositeShape::shapePtr testRectangle =
@@ -37,6 +62,30 @@ BOOST_AUTO_TEST_CASE(testMatrixShapeMoveConstructorNoThrow)
   vinokurov::MatrixShape matrix(compositeShape);
 
   BOOST_CHECK_NO_THROW(vinokurov::MatrixShape testMatrix(std::move(matrix)));
+}
+
+BOOST_AUTO_TEST_CASE(testMatrixShapeMoveConstructorMoving)
+{
+  vinokurov::CompositeShape::shapePtr testRectangle =
+    std::make_shared<vinokurov::Rectangle>(5.5, 5.5, vinokurov::point_t{1.1, 1.1});
+
+  vinokurov::CompositeShape compositeShape;
+  compositeShape.add(testRectangle);
+
+  vinokurov::MatrixShape matrix(compositeShape);
+  vinokurov::rectangle_t moveFrame = matrix[0][0]->getFrameRect();
+
+  vinokurov::MatrixShape testMatrix(std::move(matrix));
+
+  vinokurov::rectangle_t testFrame = testMatrix[0][0]->getFrameRect();
+
+  BOOST_CHECK_CLOSE(moveFrame.height, testFrame.height, EPSILON);
+  BOOST_CHECK_CLOSE(moveFrame.width, testFrame.height, EPSILON);
+  BOOST_CHECK_CLOSE(moveFrame.pos.x, testFrame.pos.x, EPSILON);
+  BOOST_CHECK_CLOSE(moveFrame.pos.y, testFrame.pos.y, EPSILON);
+
+  BOOST_CHECK_EQUAL(matrix.getCols(), 0);
+  BOOST_CHECK_EQUAL(matrix.getRows(), 0);
 }
 
 BOOST_AUTO_TEST_CASE(testMatrixShapeCopyAssignmentOperatorNoThrow)
@@ -52,6 +101,30 @@ BOOST_AUTO_TEST_CASE(testMatrixShapeCopyAssignmentOperatorNoThrow)
   BOOST_CHECK_NO_THROW(vinokurov::MatrixShape testMatrix = copyMatrix);
 }
 
+BOOST_AUTO_TEST_CASE(testMatrixShapeCopyAssignmentOperatorCopying)
+{
+  vinokurov::CompositeShape::shapePtr testRectangle =
+    std::make_shared<vinokurov::Rectangle>(5.5, 5.5, vinokurov::point_t{1.1, 1.1});
+
+  vinokurov::CompositeShape copyCompositeShape;
+  copyCompositeShape.add(testRectangle);
+
+  vinokurov::MatrixShape copyMatrix(copyCompositeShape);
+  vinokurov::rectangle_t copyFrame = copyMatrix[0][0]->getFrameRect();
+
+  vinokurov::MatrixShape testMatrix = copyMatrix;
+
+  vinokurov::rectangle_t testFrame = testMatrix[0][0]->getFrameRect();
+
+  BOOST_CHECK_EQUAL(copyMatrix.getCols(), testMatrix.getCols());
+  BOOST_CHECK_EQUAL(copyMatrix.getRows(), testMatrix.getRows());
+
+  BOOST_CHECK_CLOSE(copyFrame.height, testFrame.height, EPSILON);
+  BOOST_CHECK_CLOSE(copyFrame.width, testFrame.height, EPSILON);
+  BOOST_CHECK_CLOSE(copyFrame.pos.x, testFrame.pos.x, EPSILON);
+  BOOST_CHECK_CLOSE(copyFrame.pos.y, testFrame.pos.y, EPSILON);
+}
+
 BOOST_AUTO_TEST_CASE(testMatrixShapeMoveAssignmentOperatorNoThrow)
 {
   vinokurov::CompositeShape::shapePtr testRectangle =
@@ -63,6 +136,30 @@ BOOST_AUTO_TEST_CASE(testMatrixShapeMoveAssignmentOperatorNoThrow)
   vinokurov::MatrixShape matrix(compositeShape);
 
   BOOST_CHECK_NO_THROW(vinokurov::MatrixShape testMatrix = std::move(matrix));
+}
+
+BOOST_AUTO_TEST_CASE(testMatrixShapeMoveAssignmentOperatorMoving)
+{
+  vinokurov::CompositeShape::shapePtr testRectangle =
+    std::make_shared<vinokurov::Rectangle>(5.5, 5.5, vinokurov::point_t{1.1, 1.1});
+
+  vinokurov::CompositeShape compositeShape;
+  compositeShape.add(testRectangle);
+
+  vinokurov::MatrixShape matrix(compositeShape);
+  vinokurov::rectangle_t moveFrame = matrix[0][0]->getFrameRect();
+
+  vinokurov::MatrixShape testMatrix = std::move(matrix);
+
+  vinokurov::rectangle_t testFrame = testMatrix[0][0]->getFrameRect();
+
+  BOOST_CHECK_CLOSE(moveFrame.height, testFrame.height, EPSILON);
+  BOOST_CHECK_CLOSE(moveFrame.width, testFrame.height, EPSILON);
+  BOOST_CHECK_CLOSE(moveFrame.pos.x, testFrame.pos.x, EPSILON);
+  BOOST_CHECK_CLOSE(moveFrame.pos.y, testFrame.pos.y, EPSILON);
+
+  BOOST_CHECK_EQUAL(matrix.getCols(), 0);
+  BOOST_CHECK_EQUAL(matrix.getRows(), 0);
 }
 
 BOOST_AUTO_TEST_CASE(testMatrixShapeCorrectFragmentation)
@@ -88,22 +185,23 @@ BOOST_AUTO_TEST_CASE(testMatrixShapeCorrectFragmentation)
   BOOST_CHECK_EQUAL(matrix.getCols(), 2);
   BOOST_CHECK_EQUAL(matrix.getRows(), 2);
 
-  BOOST_CHECK_CLOSE(matrix(0, 0)->getFrameRect().pos.x, part1Frame.pos.x, EPSILON);
-  BOOST_CHECK_CLOSE(matrix(0, 0)->getFrameRect().pos.y, part1Frame.pos.y, EPSILON);
-  BOOST_CHECK_CLOSE(matrix(0, 0)->getFrameRect().width, part1Frame.width, EPSILON);
-  BOOST_CHECK_CLOSE(matrix(0, 0)->getFrameRect().height, part1Frame.height, EPSILON);
+  BOOST_CHECK_EQUAL(matrix[0].size(), 2);
+  BOOST_CHECK_EQUAL(matrix[1].size(), 1);
 
-  BOOST_CHECK_CLOSE(matrix(0, 1)->getFrameRect().pos.x, part3Frame.pos.x, EPSILON);
-  BOOST_CHECK_CLOSE(matrix(0, 1)->getFrameRect().pos.y, part3Frame.pos.y, EPSILON);
-  BOOST_CHECK_CLOSE(matrix(0, 1)->getFrameRect().width, part3Frame.width, EPSILON);
-  BOOST_CHECK_CLOSE(matrix(0, 1)->getFrameRect().height, part3Frame.height, EPSILON);
+  BOOST_CHECK_CLOSE(matrix[0][0]->getFrameRect().pos.x, part1Frame.pos.x, EPSILON);
+  BOOST_CHECK_CLOSE(matrix[0][0]->getFrameRect().pos.y, part1Frame.pos.y, EPSILON);
+  BOOST_CHECK_CLOSE(matrix[0][0]->getFrameRect().width, part1Frame.width, EPSILON);
+  BOOST_CHECK_CLOSE(matrix[0][0]->getFrameRect().height, part1Frame.height, EPSILON);
 
-  BOOST_CHECK_CLOSE(matrix(1, 0)->getFrameRect().pos.x, part2Frame.pos.x, EPSILON);
-  BOOST_CHECK_CLOSE(matrix(1, 0)->getFrameRect().pos.y, part2Frame.pos.y, EPSILON);
-  BOOST_CHECK_CLOSE(matrix(1, 0)->getFrameRect().width, part2Frame.width, EPSILON);
-  BOOST_CHECK_CLOSE(matrix(1, 0)->getFrameRect().height, part2Frame.height, EPSILON);
+  BOOST_CHECK_CLOSE(matrix[0][1]->getFrameRect().pos.x, part3Frame.pos.x, EPSILON);
+  BOOST_CHECK_CLOSE(matrix[0][1]->getFrameRect().pos.y, part3Frame.pos.y, EPSILON);
+  BOOST_CHECK_CLOSE(matrix[0][1]->getFrameRect().width, part3Frame.width, EPSILON);
+  BOOST_CHECK_CLOSE(matrix[0][1]->getFrameRect().height, part3Frame.height, EPSILON);
 
-  BOOST_CHECK_EQUAL(matrix(1, 1), nullptr);
+  BOOST_CHECK_CLOSE(matrix[1][0]->getFrameRect().pos.x, part2Frame.pos.x, EPSILON);
+  BOOST_CHECK_CLOSE(matrix[1][0]->getFrameRect().pos.y, part2Frame.pos.y, EPSILON);
+  BOOST_CHECK_CLOSE(matrix[1][0]->getFrameRect().width, part2Frame.width, EPSILON);
+  BOOST_CHECK_CLOSE(matrix[1][0]->getFrameRect().height, part2Frame.height, EPSILON);
 }
 
 BOOST_AUTO_TEST_CASE(testMatrixShapeExceptionAddingEmptyShape)
@@ -120,7 +218,7 @@ BOOST_AUTO_TEST_CASE(testMatrixShapeExceptionAddingNullptr)
   BOOST_CHECK_THROW(matrix.add(nullptr), std::invalid_argument);
 }
 
-BOOST_AUTO_TEST_CASE(testMatrixSHapeInvalidIndex)
+BOOST_AUTO_TEST_CASE(testMatrixShapeExceptionInvalidIndex)
 {
   vinokurov::CompositeShape::shapePtr testRectangle =
     std::make_shared<vinokurov::Rectangle>(5.5, 5.5, vinokurov::point_t{1.1, 1.1});
@@ -130,7 +228,7 @@ BOOST_AUTO_TEST_CASE(testMatrixSHapeInvalidIndex)
 
   vinokurov::MatrixShape matrix(testCompositeShape);
 
-  BOOST_CHECK_THROW(matrix(5, 5), std::out_of_range);
+  BOOST_CHECK_THROW(matrix[5][5], std::out_of_range);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

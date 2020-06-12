@@ -12,53 +12,54 @@ vinokurov::CompositeShape::CompositeShape() :
   array_(std::make_unique<shapePtr[]>(capacity_))
 {}
 
-vinokurov::CompositeShape::CompositeShape(const CompositeShape& copyShape) :
-  size_(copyShape.size_),
-  capacity_(copyShape.capacity_),
-  array_(std::make_unique<shapePtr[]>(copyShape.size_))
+vinokurov::CompositeShape::CompositeShape(const CompositeShape& rhs) :
+  size_(rhs.size_),
+  capacity_(rhs.capacity_),
+  array_(std::make_unique<shapePtr[]>(rhs.size_))
 {
   for(size_t i = 0; i < size_; i++)
   {
-    array_[i] = copyShape.array_[i];
+    array_[i] = rhs.array_[i];
   }
 }
 
-vinokurov::CompositeShape::CompositeShape(CompositeShape&& shape) noexcept :
-  size_(shape.size_),
-  capacity_(shape.capacity_),
-  array_(std::move(shape.array_))
+vinokurov::CompositeShape::CompositeShape(CompositeShape&& rhs) noexcept :
+  size_(rhs.size_),
+  capacity_(rhs.capacity_),
+  array_(std::move(rhs.array_))
 {
-  shape.size_ = 0;
-  shape.capacity_ = 0;
+  rhs.size_ = 0;
+  rhs.capacity_ = 0;
 }
 
-vinokurov::CompositeShape& vinokurov::CompositeShape::operator=(const CompositeShape& copyShape)
+vinokurov::CompositeShape& vinokurov::CompositeShape::operator=(const CompositeShape& rhs)
 {
-  if(this != &copyShape)
+  if(this != &rhs)
   {
-    size_ = copyShape.size_;
-    capacity_ = copyShape.capacity_;
-    shapeArray temp(std::make_unique<shapePtr[]>(copyShape.size_));
+    size_ = rhs.size_;
+    capacity_ = rhs.capacity_;
+    shapeArray temp(std::make_unique<shapePtr[]>(rhs.capacity_));
 
     for(size_t i = 0; i < size_; i++)
     {
-      temp[i] = copyShape.array_[i];
+      temp[i] = rhs.array_[i];
     }
     array_.swap(temp);
   }
   return *this;
 }
 
-vinokurov::CompositeShape& vinokurov::CompositeShape::operator=(CompositeShape&& shape) noexcept
+vinokurov::CompositeShape& vinokurov::CompositeShape::operator=(CompositeShape&& rhs) noexcept
 {
-  if(this != &shape)
+  if(this != &rhs)
   {
-    size_ = shape.size_;
-    array_ = std::move(shape.array_);
-    capacity_ = shape.capacity_;
-    shape.size_ = 0;
-    shape.capacity_ = 0;
+    size_ = rhs.size_;
+    capacity_ = rhs.capacity_;
+    array_ = std::move(rhs.array_);
   }
+  rhs.size_ = 0;
+  rhs.capacity_ = 0;
+
   return *this;
 }
 
@@ -160,6 +161,7 @@ void vinokurov::CompositeShape::move(double deltaX, double deltaY) noexcept
 void vinokurov::CompositeShape::move(const point_t& newCenter)
 {
   point_t center = getFrameRect().pos;
+
   move(newCenter.x - center.x, newCenter.y - center.y);
 }
 
@@ -189,18 +191,15 @@ void vinokurov::CompositeShape::scale(double coefficient)
   for(size_t i = 0; i < size_; i++)
   {
     point_t shapeCenter = array_[i]->getFrameRect().pos;
+
     array_[i]->move({center.x + (shapeCenter.x - center.x) * coefficient, 
       center.y + (shapeCenter.y - center.y) * coefficient});
     array_[i]->scale(coefficient);
   }
 }
 
-void vinokurov::CompositeShape::rotate(double angle) noexcept
+void vinokurov::CompositeShape::rotate(double angle)
 {
-  if(!array_ || size_ == 0)
-  {
-    return;
-  }
   point_t center = getFrameRect().pos;
   double sinAngle = std::sin(angle * M_PI / 180);
   double cosAngle = std::cos(angle * M_PI / 180);
