@@ -6,9 +6,9 @@ vinokurov::Layer::Layer(const shapeArray& array, size_t size) :
   size_(size),
   array_(std::make_unique<shapePtr[]>(size))
 {
-  for(size_t i = 0; i < size_; i++)
+  for (size_t i = 0; i < size_; i++)
   {
-    if(array[i])
+    if (array[i])
     {
       array_[i] = array[i];
     }
@@ -19,7 +19,7 @@ vinokurov::Layer::Layer(const Layer& rhs) :
   size_(rhs.size_),
   array_(std::make_unique<shapePtr[]>(rhs.size_))
 {
-  for(size_t i = 0; i < size_; i++)
+  for (size_t i = 0; i < size_; i++)
   {
     array_[i] = rhs.array_[i];
   }
@@ -34,35 +34,35 @@ vinokurov::Layer::Layer(Layer&& rhs) noexcept :
 
 vinokurov::Layer& vinokurov::Layer::operator=(const Layer& rhs)
 {
-  if(this != &rhs)
+  if (this != &rhs)
   {
-    size_ = rhs.size_;
-    shapeArray temp(std::make_unique<shapePtr[]>(size_));
+    shapeArray temp(std::make_unique<shapePtr[]>(rhs.size_));
 
-    for(size_t i = 0; i < size_; i++)
+    for(size_t i = 0; i < rhs.size_; i++)
     {
       temp[i] = rhs.array_[i];
     }
     array_.swap(temp);
+
+    size_ = rhs.size_;
   }
   return *this;
 }
 
 vinokurov::Layer& vinokurov::Layer::operator=(Layer&& rhs) noexcept
 {
-  if(this != &rhs)
+  if (this != &rhs)
   {
     size_ = rhs.size_;
     array_ = std::move(rhs.array_);
+    rhs.size_ = 0;
   }
-  rhs.size_ = 0;
-
   return *this;
 }
 
 vinokurov::Layer::shapePtr vinokurov::Layer::operator[](unsigned int index) const
 {
-  if(index >= size_)
+  if (index >= size_)
   {
     throw std::out_of_range("Layer: Error. Index is out of range.");
   }

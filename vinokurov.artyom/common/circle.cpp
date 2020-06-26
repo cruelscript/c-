@@ -45,7 +45,7 @@ void vinokurov::Circle::print(std::ostream& out) const
 
 void vinokurov::Circle::scale(double coefficient)
 {
-  if(coefficient <= 0)
+  if (coefficient <= 0)
   {
     throw std::invalid_argument("Circle: Error. Scaling coefficient cannot be less than zero.");
   }

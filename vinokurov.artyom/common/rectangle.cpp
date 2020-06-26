@@ -37,7 +37,7 @@ vinokurov::rectangle_t vinokurov::Rectangle::getFrameRect() const noexcept
   double minX = vertices_[0].x;
   double minY = vertices_[0].y;
 
-  for(point_t vertex: vertices_)
+  for (point_t vertex: vertices_)
   {
     if(vertex.x > maxX)
     {
@@ -67,7 +67,7 @@ void vinokurov::Rectangle::move(const point_t& newCenter) noexcept
 
 void vinokurov::Rectangle::move(double deltaX, double deltaY) noexcept
 {
-  for(point_t& vertex : vertices_)
+  for (point_t& vertex : vertices_)
   {
     vertex.x += deltaX;
     vertex.y += deltaY;
@@ -83,7 +83,7 @@ void vinokurov::Rectangle::print(std::ostream& out) const
 
 void vinokurov::Rectangle::scale(double coefficient)
 {
-  if(coefficient <= 0.0)
+  if (coefficient <= 0.0)
   {
     throw std::invalid_argument("Rectangle: Error. Scaling coefficient cannot be less than zero.");
   }
@@ -101,7 +101,7 @@ void vinokurov::Rectangle::rotate(double angle) noexcept
   angle *= M_PI / 180;
   point_t center_ = center();
 
-  for(point_t& vertex: vertices_)
+  for (point_t& vertex: vertices_)
   {
     vertex = {center_.x + (vertex.x - center_.x) * std::cos(angle) - (vertex.y - center_.y) * std::sin(angle),
       center_.y + (vertex.y - center_.y) * std::cos(angle) + (vertex.x - center_.x) * std::sin(angle)};

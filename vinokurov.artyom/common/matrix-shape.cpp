@@ -19,7 +19,7 @@ vinokurov::MatrixShape::MatrixShape(const MatrixShape& rhs) :
   cols_(rhs.cols_),
   array_(std::make_unique<shapePtr[]>(cols_ * rows_))
 {
-  for(size_t i = 0 ; i < cols_ * rows_; i++)
+  for (size_t i = 0 ; i < cols_ * rows_; i++)
   {
     array_[i] = rhs.array_[i];
   }
@@ -37,11 +37,11 @@ vinokurov::MatrixShape::MatrixShape(MatrixShape&& rhs) noexcept :
 vinokurov::MatrixShape::MatrixShape(CompositeShape& compositeShape) :
   MatrixShape()
 {
-  if(compositeShape.size() == 0)
+  if (compositeShape.size() == 0)
   {
     throw std::invalid_argument("MatrixShape: Error. Unable to create matrix from empty composite shape.");
   }
-  for(size_t i = 0; i < compositeShape.size(); i++)
+  for (size_t i = 0; i < compositeShape.size(); i++)
   {
     add(compositeShape[i]);
   }
@@ -49,13 +49,13 @@ vinokurov::MatrixShape::MatrixShape(CompositeShape& compositeShape) :
 
 vinokurov::MatrixShape& vinokurov::MatrixShape::operator=(const MatrixShape& rhs)
 {
-  if(this != &rhs)
+  if (this != &rhs)
   {
     rows_ = rhs.rows_;
     cols_ = rhs.cols_;
     shapeArray temp(std::make_unique<shapePtr[]>(rows_ * cols_));
 
-    for(size_t i = 0; i < rows_ * cols_; i++)
+    for (size_t i = 0; i < rows_ * cols_; i++)
     {
       temp[i] = rhs.array_[i];
     }
@@ -66,29 +66,28 @@ vinokurov::MatrixShape& vinokurov::MatrixShape::operator=(const MatrixShape& rhs
 
 vinokurov::MatrixShape& vinokurov::MatrixShape::operator=(MatrixShape&& rhs) noexcept
 {
-  if(this != &rhs)
+  if (this != &rhs)
   {
     rows_ = rhs.rows_;
     cols_ = rhs.cols_;
     array_ = std::move(rhs.array_);
+    rhs.cols_ = 0;
+    rhs.rows_ = 0;
   }
-  rhs.cols_ = 0;
-  rhs.rows_ = 0;
-
   return *this;
 }
 
 vinokurov::Layer vinokurov::MatrixShape::operator[](unsigned int index) const
 {
-  if(index >= rows_)
+  if (index >= rows_)
   {
     throw std::out_of_range("MatrixShape: Error. Index is out of range.");
   }
   size_t size = 0;
 
-  for(size_t i = 0; i < cols_; i++)
+  for (size_t i = 0; i < cols_; i++)
   {
-    if(array_[index * cols_ + i])
+    if (array_[index * cols_ + i])
     {
       size++;
     }
@@ -96,7 +95,7 @@ vinokurov::Layer vinokurov::MatrixShape::operator[](unsigned int index) const
   }
   shapeArray temp(std::make_unique<shapePtr[]>(size));
 
-  for(size_t i = 0; i < size; i++)
+  for (size_t i = 0; i < size; i++)
   {
     temp[i] = array_[index * cols_ + i];
   }
@@ -105,37 +104,37 @@ vinokurov::Layer vinokurov::MatrixShape::operator[](unsigned int index) const
 
 void vinokurov::MatrixShape::add(const shapePtr& shape)
 {
-  if(!shape)
+  if (!shape)
   {
     throw std::invalid_argument("MatrixShape: Error. Pointer of added element cannot be nullptr.");
   }
   size_t row = 0;
 
-  for(size_t i = 0; i < rows_; i++)
+  for (size_t i = 0; i < rows_; i++)
   {
-    for(size_t j = 0; j < cols_; j++)
+    for (size_t j = 0; j < cols_; j++)
     {
-      if(!array_[i * cols_ + j])
+      if (!array_[i * cols_ + j])
       {
         break;
       }
-      if(isOverlapped(array_[i * cols_ + j], shape))
+      if (isOverlapped(array_[i * cols_ + j], shape))
       {
         row = i + 1;
         break;
       }
     }
   }
-  if(row == rows_)
+  if (row == rows_)
   {
     shapeArray temp = std::make_unique<shapePtr[]>(cols_ * (rows_ + 1));
     rows_++;
 
-    for(size_t i = 0; i < (rows_ - 1) * cols_; i++)
+    for (size_t i = 0; i < (rows_ - 1) * cols_; i++)
     {
       temp[i] = array_[i];
     }
-    for(size_t i = (rows_ - 1) * cols_; i < rows_ * cols_; i++)
+    for (size_t i = (rows_ - 1) * cols_; i < rows_ * cols_; i++)
     {
       temp[i] = nullptr;
     }
@@ -143,23 +142,23 @@ void vinokurov::MatrixShape::add(const shapePtr& shape)
   }
   bool isAdded = false;
 
-  for(size_t j = 0; j < cols_; j++)
+  for (size_t j = 0; j < cols_; j++)
   {
-    if(!array_[row * cols_ + j])
+    if (!array_[row * cols_ + j])
     {
       array_[row * cols_ + j] = shape;
       isAdded = true;
       break;
     }
   }
-  if(!isAdded)
+  if (!isAdded)
   {
     shapeArray temp = std::make_unique<shapePtr[]>((cols_ + 1) * rows_);
     cols_++;
 
-    for(size_t i = 0; i < rows_; i++)
+    for (size_t i = 0; i < rows_; i++)
     {
-      for(size_t j = 0; j < cols_ - 1; j++)
+      for (size_t j = 0; j < cols_ - 1; j++)
       {
         temp[i * cols_ + j] = array_[i * (cols_ - 1) + j];
       }
@@ -183,11 +182,11 @@ void vinokurov::MatrixShape::print(std::ostream& out) const
 {
   out << "\nMatrix of shapes: \n";
 
-  for(size_t i = 0; i < rows_; i++)
+  for (size_t i = 0; i < rows_; i++)
   {
-    for(size_t j = 0; j < cols_; j++)
+    for (size_t j = 0; j < cols_; j++)
     {
-      if(array_[i * cols_ + j])
+      if (array_[i * cols_ + j])
       {
         out << "Layer " << i + 1 << ":\nShape " << j + 1;
         array_[i * cols_ + j]->print(out);        

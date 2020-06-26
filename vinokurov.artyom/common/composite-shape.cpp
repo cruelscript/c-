@@ -17,7 +17,7 @@ vinokurov::CompositeShape::CompositeShape(const CompositeShape& rhs) :
   capacity_(rhs.capacity_),
   array_(std::make_unique<shapePtr[]>(rhs.size_))
 {
-  for(size_t i = 0; i < size_; i++)
+  for (size_t i = 0; i < size_; i++)
   {
     array_[i] = rhs.array_[i];
   }
@@ -34,38 +34,38 @@ vinokurov::CompositeShape::CompositeShape(CompositeShape&& rhs) noexcept :
 
 vinokurov::CompositeShape& vinokurov::CompositeShape::operator=(const CompositeShape& rhs)
 {
-  if(this != &rhs)
+  if (this != &rhs)
   {
-    size_ = rhs.size_;
-    capacity_ = rhs.capacity_;
     shapeArray temp(std::make_unique<shapePtr[]>(rhs.capacity_));
 
-    for(size_t i = 0; i < size_; i++)
+    for (size_t i = 0; i < size_; i++)
     {
       temp[i] = rhs.array_[i];
     }
     array_.swap(temp);
+
+    size_ = rhs.size_;
+    capacity_ = rhs.capacity_;
   }
   return *this;
 }
 
 vinokurov::CompositeShape& vinokurov::CompositeShape::operator=(CompositeShape&& rhs) noexcept
 {
-  if(this != &rhs)
+  if (this != &rhs)
   {
     size_ = rhs.size_;
     capacity_ = rhs.capacity_;
     array_ = std::move(rhs.array_);
+    rhs.size_ = 0;
+    rhs.capacity_ = 0;
   }
-  rhs.size_ = 0;
-  rhs.capacity_ = 0;
-
   return *this;
 }
 
 vinokurov::CompositeShape::shapePtr vinokurov::CompositeShape::operator[](unsigned int index) const
 {
-  if(index >= size_)
+  if (index >= size_)
   {
     throw std::out_of_range("CompositeShape: Error. Index is out of range.");
   }
@@ -74,21 +74,21 @@ vinokurov::CompositeShape::shapePtr vinokurov::CompositeShape::operator[](unsign
 
 void vinokurov::CompositeShape::add(const shapePtr& element)
 {
-  if(!element)
+  if (!element)
   {
     throw std::invalid_argument("CompositeShape: Error. Pointer of added element cannot be nullptr.");
   }
-  if(!array_)
+  if (!array_)
   {
     array_ = std::make_unique<shapePtr[]>(capacity_);
   }
-  else if(size_ >= capacity_)
+  else if (size_ >= capacity_)
   {
     const int GROW_COEFFICIENT = 2;
     shapeArray temp(std::make_unique<shapePtr[]>(GROW_COEFFICIENT * capacity_));
     capacity_ *= GROW_COEFFICIENT;
 
-    for(size_t i = 0; i < size_; i++)
+    for (size_t i = 0; i < size_; i++)
     {
       temp[i] = array_[i];
     }
@@ -100,7 +100,7 @@ void vinokurov::CompositeShape::add(const shapePtr& element)
 
 void vinokurov::CompositeShape::remove()
 {
-  if(size_ == 0)
+  if (size_ == 0)
   {
     throw std::logic_error("CompositeShape: Error. Array underflow.");    
   }
@@ -112,7 +112,7 @@ double vinokurov::CompositeShape::getArea() const noexcept
 {
   double sumArea = 0.0;
 
-  for(size_t i = 0; i < size_; i++)
+  for (size_t i = 0; i < size_; i++)
   {
     sumArea += array_[i]->getArea();
   }
@@ -121,7 +121,7 @@ double vinokurov::CompositeShape::getArea() const noexcept
 
 vinokurov::rectangle_t vinokurov::CompositeShape::getFrameRect() const
 {
-  if(size_ == 0)
+  if (size_ == 0)
   {
     throw std::invalid_argument("CompositeShape: Error. Frame rectangle is not defined"); 
   }
@@ -152,7 +152,7 @@ vinokurov::rectangle_t vinokurov::CompositeShape::getFrameRect() const
 
 void vinokurov::CompositeShape::move(double deltaX, double deltaY) noexcept
 {
-  for(size_t i = 0; i < size_; i++)
+  for (size_t i = 0; i < size_; i++)
   {
     array_[i]->move(deltaX, deltaY);
   }
@@ -173,7 +173,7 @@ void vinokurov::CompositeShape::print(std::ostream& out) const
   out << "\nHeight of the composite shape is " << frameRect.height;
   out << "\nCenter of the composite shape is at (" << frameRect.pos.x << ", " << frameRect.pos.y << ")\n";
 
-  for(size_t i = 0; i < size_; i++)
+  for (size_t i = 0; i < size_; i++)
   {
     out << "\n" << i + 1 << " part of composite shape: ";
     array_[i]->print(out);
@@ -182,13 +182,13 @@ void vinokurov::CompositeShape::print(std::ostream& out) const
 
 void vinokurov::CompositeShape::scale(double coefficient)
 {
-  if(coefficient <= 0.0)
+  if (coefficient <= 0.0)
   {
     throw std::invalid_argument("CompositeShape: Error. Scaling coefficient cannot be less than zero.");
   }
   point_t center = getFrameRect().pos;
 
-  for(size_t i = 0; i < size_; i++)
+  for (size_t i = 0; i < size_; i++)
   {
     point_t shapeCenter = array_[i]->getFrameRect().pos;
 
@@ -204,9 +204,9 @@ void vinokurov::CompositeShape::rotate(double angle)
   double sinAngle = std::sin(angle * M_PI / 180);
   double cosAngle = std::cos(angle * M_PI / 180);
 
-  for(size_t i = 0; i < size_; i++)
+  for (size_t i = 0; i < size_; i++)
   {
-    if(array_[i])
+    if (array_[i])
     {
       point_t shapeCenter = array_[i]->getFrameRect().pos;
 

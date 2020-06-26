@@ -9,7 +9,7 @@ namespace vinokurov
   struct point_t;
   struct rectangle_t;
 
-  class CompositeShape : public Shape
+  class CompositeShape: public Shape
   {
   public:
     typedef std::shared_ptr<Shape> shapePtr;
