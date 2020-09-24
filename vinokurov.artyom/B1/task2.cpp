@@ -32,13 +32,13 @@ void task2(const char* filename, std::ostream& out)
 
     if(fin.gcount() == CHUNK_SIZE)
     {
-      c_unique_ptr temp(static_cast<char*>(realloc(data.get(), arraySize * 2)), &free);
+      c_unique_ptr temp(static_cast<char*>(realloc(data.get(), arraySize + CHUNK_SIZE)), &free);
       if(!temp)
       {
         throw std::runtime_error("task2: Error. Bad reallocation.");
       }
 
-      arraySize *= 2;
+      arraySize += CHUNK_SIZE;
       data.release();
       std::swap(temp, data);
     }
