@@ -10,7 +10,7 @@ void fillRandom(double* array, int size)
   std::random_device seed;
   std::uniform_real_distribution<double> distribution(-1, 1);
 
-  for(size_t i = 0; i < size; ++i)
+  for(int i = 0; i < size; ++i)
   {
     array[i] = distribution(seed);
   }

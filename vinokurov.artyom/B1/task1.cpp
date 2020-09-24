@@ -18,7 +18,7 @@ void task1(const char* order, std::istream& in, std::ostream& out)
     operatorVector.push_back(i);
   }
 
-  if(!in.eof() || !in.fail())
+  if(!in.eof() && !in.fail())
   {
     throw std::ios_base::failure("task1: Error. Failed to read data");
   }

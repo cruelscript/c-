@@ -11,12 +11,12 @@ public:
   typedef typename std::size_t iterator;
   typedef typename Container::reference reference;
 
-  static size_t begin(const Container&)
+  static iterator begin(const Container&)
   {
     return 0;
   }
 
-  static size_t end(const Container& vector)
+  static iterator end(const Container& vector)
   {
     return vector.size();
   }

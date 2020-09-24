@@ -3,6 +3,7 @@
 
 #include <functional>
 #include <cstring>
+#include <iostream>
 
 template <typename T>
 std::function<bool(const T&, const T&)> getComparator(const char* order)
