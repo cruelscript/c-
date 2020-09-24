@@ -13,10 +13,10 @@ void task2(const char* filename, std::ostream& out)
   std::ifstream fin(filename);
   if(!fin.is_open())
   {
-    throw std::ios_base::failure("task2: Error. Cannot open file.");
+    throw std::ios_base::failure("task2: Error. Cannot open file");
   }
 
-  c_unique_ptr data(static_cast<char*>(malloc(CHUNK_SIZE)), free);
+  c_unique_ptr data(static_cast<char*>(malloc(CHUNK_SIZE)), &free);
   if(!data)
   {
     throw std::runtime_error("task1: Error. Bad allocation.");

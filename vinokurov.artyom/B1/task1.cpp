@@ -13,12 +13,12 @@ void task1(const char* order, std::istream& in, std::ostream& out)
   std::vector<int> operatorVector {};
 
   int i = 0;
-  while(in >> i && !in.eof())
+  while((in >> i) && !in.eof())
   {
     operatorVector.push_back(i);
   }
 
-  if(!in.eof() && !in.fail())
+  if(!in.eof() && in.fail())
   {
     throw std::ios_base::failure("task1: Error. Failed to read data");
   }

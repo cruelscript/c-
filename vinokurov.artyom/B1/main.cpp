@@ -9,25 +9,40 @@ int main(int argc, char* argv[])
 {
   try
   {
-    if(argc < 2 || argc > 4)
-    {
-      throw std::invalid_argument("Console Input: Error. Invalid number of arguments.");
-    }
-
     switch(std::stoi(argv[1]))
     {
       case 1:
+        if(argc != 3)
+        {
+          throw std::invalid_argument("Console Input: Error. Invalid number of arguments for task 1.");
+        }
         task1(argv[2], std::cin, std::cout);
         break;
+
       case 2:
+        if(argc != 3)
+        {
+          throw std::invalid_argument("Console Input: Error. Invalid number of arguments for task 2.");
+        }
         task2(argv[2], std::cout);
         break;
+
       case 3:
+        if(argc != 2)
+        {
+          throw std::invalid_argument("Console Input: Error. Invalid number of arguments for task 3");
+        }
         task3(std::cin, std::cout);
         break;
+
       case 4:
+        if(argc != 4)
+        {
+          throw std::invalid_argument("Console Input: Error. Invalid number of arguments for task 4");
+        }
         task4(argv[2], std::stoi(argv[3]), std::cout);
         break;
+
       default:
         throw std::invalid_argument("Console Input: Error. Invalid task number.");
     }

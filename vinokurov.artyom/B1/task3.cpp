@@ -22,6 +22,11 @@ void task3(std::istream& in, std::ostream& out)
     throw std::ios_base::failure("task3: Error. Failed to read data");
   }
 
+  if(num != 0)
+  {
+    throw std::invalid_argument("task3: Error. Sequence did not end with zero.");
+  }
+
   if(vector.empty())
   {
     return;
