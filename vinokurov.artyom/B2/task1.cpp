@@ -43,6 +43,12 @@ void task1(std::istream& in, std::ostream& out)
         }
       }
 
+      if(data.empty())
+      {
+        out << "<INVALID COMMAND>\n";
+        continue;
+      }
+
       if(priority == "high")
       {
         queue.enqueue(data, Priority::HIGH);
@@ -57,8 +63,7 @@ void task1(std::istream& in, std::ostream& out)
       }
       else
       {
-        out << "INVALID COMMAND\n";
-        continue;
+        out << "<INVALID COMMAND>\n";
       }
     }
 
@@ -66,7 +71,7 @@ void task1(std::istream& in, std::ostream& out)
     {
       if(queue.isEmpty())
       {
-        out << "EMPTY\n";
+        out << "<EMPTY>\n";
         continue;
       }
       out << queue.dequeue() << "\n";
@@ -79,7 +84,7 @@ void task1(std::istream& in, std::ostream& out)
 
     else
     {
-      out << "INVALID COMMAND\n";
+      out << "<INVALID COMMAND>\n";
     }
   }
 }
