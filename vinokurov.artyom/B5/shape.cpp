@@ -14,29 +14,29 @@ double getDistance(const Point& lhs, const Point& rhs)
 bool isTriangle(const Shape& shape)
 {
   return shape.size() == vertexNum::TRIANGLE &&
-  (shape[2].x - shape[0].x) * (shape[1].y - shape[0].y) != (shape[1].x - shape[0].x) * (shape[2].y - shape[0].y);
+         (shape[2].x - shape[0].x) * (shape[1].y - shape[0].y) != (shape[1].x - shape[0].x) * (shape[2].y - shape[0].y);
 }
 
 bool isRectangle(const Shape& shape)
 {
   return shape.size() == vertexNum::RECTANGLE &&
-    getDistance(shape[1], shape[2]) == getDistance(shape[0], shape[3]) &&
-    getDistance(shape[0], shape[1]) == getDistance(shape[2], shape[3]) &&
-    getDistance(shape[0], shape[2]) == getDistance(shape[1], shape[3]);
+         getDistance(shape[1], shape[2]) == getDistance(shape[0], shape[3]) &&
+         getDistance(shape[0], shape[1]) == getDistance(shape[2], shape[3]) &&
+         getDistance(shape[0], shape[2]) == getDistance(shape[1], shape[3]);
 }
 
 bool isSquare(const Shape& shape)
 {
   return isRectangle(shape) &&
-    getDistance(shape[0], shape[1]) == getDistance(shape[1], shape[2]);
+         getDistance(shape[0], shape[1]) == getDistance(shape[1], shape[2]);
 }
 
 int countVertices(const std::vector<Shape>& vector)
 {
   return std::accumulate(vector.begin(), vector.end(), 0,
-                         [] (int vertexNum, const Shape& shape)
+                         [](int vertexNum, const Shape& shape)
                          {
-                            return vertexNum + shape.size();
+                           return vertexNum + shape.size();
                          });
 }
 
@@ -57,52 +57,59 @@ int countSquares(const std::vector<Shape>& vector)
 
 std::istream& operator>>(std::istream& in, Point& point)
 {
-  char leftP;
-  char rightP;
-  char semicolon;
-
-  in >> std::ws;
-  if(!in)
+  if (!(in >> std::ws))
   {
     return in;
   }
 
-  in >> leftP >> point.x >> semicolon >> point.y >> rightP;
+  char leftP = 0;
+  char rightP = 0;
+  char semicolon = 0;
+  Point temp = {0, 0};
 
-  if(leftP != '(' || rightP != ')' || semicolon != ';')
+  in >> leftP >> temp.x >> semicolon >> temp.y >> rightP;
+
+  if (leftP != '(' || rightP != ')' || semicolon != ';')
   {
     in.setstate(std::ios::failbit);
+    return in;
   }
 
+  if(!in.eof() && in.fail())
+  {
+    return in;
+  }
+
+  point = temp;
   return in;
 }
 
 std::istream& operator>>(std::istream& in, Shape& shape)
 {
-  size_t size = 0;
-  in >> size;
-
-  if(!in)
+  if (!(in >> std::ws))
   {
-    return in;
-  }
-
-  if(size < vertexNum::TRIANGLE)
-  {
-    in.setstate(std::ios::failbit);
     return in;
   }
 
   std::string input;
-  std::getline(in >> std::ws, input);
+  std::getline(in, input);
   std::stringstream sin(input);
+
+  size_t size = 0;
+  sin >> std::ws >> size;
+
+  if (size < vertexNum::TRIANGLE)
+  {
+    in.setstate(std::ios::failbit);
+    return in;
+  }
 
   Shape temp;
   temp.reserve(size);
 
   std::copy(std::istream_iterator<Point>(sin), std::istream_iterator<Point>(), std::back_inserter(temp));
 
-  if(!sin.eof() || temp.size() != size || !sin)
+  if (temp.size() != size)
   {
     in.setstate(std::ios::failbit);
     return in;
