@@ -61,12 +61,19 @@ std::istream& operator>>(std::istream& in, Point& point)
   char rightP;
   char semicolon;
 
-  in >> std::ws >> leftP >> point.x >> semicolon >> point.y >> rightP;
+  in >> std::ws;
+  if(!in)
+  {
+    return in;
+  }
+
+  in >> leftP >> point.x >> semicolon >> point.y >> rightP;
 
   if(leftP != '(' || rightP != ')' || semicolon != ';')
   {
     in.setstate(std::ios::failbit);
   }
+
   return in;
 }
 
@@ -75,22 +82,27 @@ std::istream& operator>>(std::istream& in, Shape& shape)
   size_t size = 0;
   in >> size;
 
+  if(!in)
+  {
+    return in;
+  }
+
   if(size < vertexNum::TRIANGLE)
   {
     in.setstate(std::ios::failbit);
     return in;
   }
 
-  Shape temp;
-  temp.reserve(size);
-
   std::string input;
   std::getline(in >> std::ws, input);
   std::stringstream sin(input);
 
+  Shape temp;
+  temp.reserve(size);
+
   std::copy(std::istream_iterator<Point>(sin), std::istream_iterator<Point>(), std::back_inserter(temp));
 
-  if(!sin.eof())
+  if(!sin.eof() || temp.size() != size || !sin)
   {
     in.setstate(std::ios::failbit);
     return in;

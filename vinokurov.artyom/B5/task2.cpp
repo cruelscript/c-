@@ -7,7 +7,7 @@ void task2(std::istream& in, std::ostream& out)
 {
   std::vector<Shape> shapes((std::istream_iterator<Shape>(in)), std::istream_iterator<Shape>());
 
-  if(!in.eof() && in.fail())
+  if(in.fail())
   {
     throw std::ios_base::failure("task2: Error. Failed to read data");
   }
