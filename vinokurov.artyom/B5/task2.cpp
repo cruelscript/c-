@@ -15,7 +15,7 @@ void task2(std::istream& in, std::ostream& out)
   out << "Vertices: " << countVertices(shapes);
   out << "\nTriangles: " << countTriangles(shapes);
   out << "\nSquares: " << countSquares(shapes);
-  out << "\nRectangle: " << countRectangles(shapes);
+  out << "\nRectangles: " << countRectangles(shapes);
 
   shapes.erase(std::remove_if(shapes.begin(), shapes.end(),
                               [](const Shape& shape)
