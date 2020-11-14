@@ -122,7 +122,7 @@ std::istream& operator>>(std::istream& in, Shape& shape)
 
 std::ostream& operator<<(std::ostream& out, const Point& point)
 {
-  return out << '(' << point.x << ';' << point.y << ')';
+  return out << " (" << point.x << "; " << point.y << ") ";
 }
 
 std::ostream& operator<<(std::ostream& out, const Shape& shape)
