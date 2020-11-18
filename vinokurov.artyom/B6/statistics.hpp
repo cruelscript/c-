@@ -59,7 +59,7 @@ void Statistics<value_t>::print(std::ostream& out)
 {
   if(count_ == 0)
   {
-    out << "Empty\n";
+    out << "No Data\n";
   }
   else
   {
