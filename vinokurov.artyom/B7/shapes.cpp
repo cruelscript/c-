@@ -85,13 +85,22 @@ std::istream& operator >>(std::istream& in, std::shared_ptr<Shape>& shapePtr)
   std::stringstream sin(input);
 
   std::string name;
-  sin >> name;
+  for(char c; sin >> c;)
+  {
+    if(c == '(')
+    {
+      sin.unget();
+      break;
+    }
+    name += c;
+  }
 
   if (name.empty())
   {
     in.setstate(std::ios::failbit);
     return in;
   }
+
 
   Point temp{};
   sin >> temp;
