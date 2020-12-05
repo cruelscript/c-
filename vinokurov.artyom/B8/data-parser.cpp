@@ -64,7 +64,7 @@ void DataParser::parse()
     }
 
     else if(std::isdigit(*begin_, locale) ||
-            (*begin_ == '+' || *begin_ == '-') && std::isdigit(*(begin_ + 1), locale))
+            ((*begin_ == '+' || *begin_ == '-') && std::isdigit(*(begin_ + 1), locale)))
     {
       if(*begin_ == '+' || *begin_ == '-')
       {
