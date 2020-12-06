@@ -114,9 +114,12 @@ void DataParser::parse()
         current.push_back(*begin);
         begin++;
       }
-      if(*begin == '-')
+      if(begin != end)
       {
-        throw std::invalid_argument("DataParser: Error. Invalid dash. Use '---' instead.");
+        if(*begin == '-')
+        {
+          throw std::invalid_argument("DataParser: Error. Invalid dash. Use '---' instead.");
+        }
       }
     }
 
