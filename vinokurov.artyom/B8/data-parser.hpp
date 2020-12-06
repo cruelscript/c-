@@ -21,11 +21,8 @@ private:
   std::ostream& out;
   size_t lineWidth_;
 
-  std::vector<char>::iterator begin_;
-  std::vector<char>::iterator end_;
   std::vector<char> buffer_;
   std::vector<std::string> result_;
-
 };
 
 #endif //B8_DATA_PARSER_HPP

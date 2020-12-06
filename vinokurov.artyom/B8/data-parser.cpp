@@ -22,128 +22,137 @@ void DataParser::input()
   {
     throw std::ios_base::failure("DataParser: Error. Failed to read data");
   }
-
-  begin_ = buffer_.begin();
-  end_ = buffer_.end();
 }
 
 void DataParser::parse()
 {
   std::locale locale("C");
-  bool isPunct = false;
   bool repeatPunct = false;
 
-  while (begin_ != end_)
+  auto begin = buffer_.begin();
+  auto end = buffer_.end();
+
+  while (begin != end)
   {
     std::string current;
 
-    if (std::isalpha(*begin_, locale))
+    if (std::isalpha(*begin, locale))
     {
-      while (begin_ != end_)
+      while (begin != end)
       {
-        if (std::isalpha(*begin_, locale))
+        if (std::isalpha(*begin, locale))
         {
-          current.push_back(*begin_);
+          current.push_back(*begin);
         }
-        else if (*begin_ == '-')
+        else if (*begin == '-')
         {
-          current.push_back(*begin_);
-          if (*(begin_ + 1) == '-')
+          current.push_back(*begin);
+          if (*(begin + 1) == '-')
           {
             throw std::invalid_argument("DataParser: Error. There is possible only 1 dash in a single word.");
           }
         }
         else break;
-        begin_++;
+        begin++;
       }
       if (current.size() > MAX_TOKEN_SIZE)
       {
         throw std::invalid_argument("DataParser: Error. Supported only 20-letters wide words.");
       }
-      isPunct = false;
       repeatPunct = false;
     }
 
-    else if (std::isdigit(*begin_, locale) ||
-             ((*begin_ == '+' || *begin_ == '-') && std::isdigit(*(begin_ + 1), locale)))
+    else if (std::isdigit(*begin, locale) ||
+             ((*begin == '+' || *begin == '-') && std::isdigit(*(begin + 1), locale)))
     {
-      if (*begin_ == '+' || *begin_ == '-')
+      if (*begin == '+' || *begin == '-')
       {
-        current.push_back(*begin_);
-        begin_++;
+        current.push_back(*begin);
+        begin++;
       }
 
       char decimalPoint = std::use_facet<std::numpunct<char>>(in.getloc()).decimal_point();
       size_t numDecimalPoints = 0;
 
-      while (begin_ != end_)
+      while (begin != end)
       {
-        if (std::isdigit(*begin_, locale) || *begin_ == decimalPoint)
+        if (std::isdigit(*begin, locale) || *begin == decimalPoint)
         {
-          if (*begin_ == decimalPoint && ++numDecimalPoints > 1)
+          if (*begin == decimalPoint && ++numDecimalPoints > 1)
           {
             throw std::invalid_argument("DataParser: Error. Number can have only 1 decimal point.");
           }
-          current.push_back(*begin_);
+          current.push_back(*begin);
         }
         else break;
-        begin_++;
+        begin++;
       }
       if (current.size() > MAX_TOKEN_SIZE)
       {
         throw std::invalid_argument("DataParser: Error. Supported only 20-letters wide words.");
       }
-      isPunct = false;
       repeatPunct = false;
     }
 
-    else if (*begin_ == '-')
+    else if (*begin == '-')
     {
+      if (result_.empty())
+      {
+        throw std::invalid_argument("DataParser: Error. Invalid dash location.");
+      }
+      char lastCh = result_.back().back();
+      if (std::ispunct(lastCh, locale) && lastCh != ',' && lastCh != '-')
+      {
+        throw std::invalid_argument("DataParser: Error. Invalid punctuation location.");
+      }
       for (size_t i = 0; i < MAX_DASH_SIZE; ++i)
       {
-        if (*begin_ != '-')
+        if (*begin != '-')
         {
           throw std::invalid_argument("DataParser: Error. Invalid dash. Use '---' instead.");
         }
-        current.push_back(*begin_);
-        begin_++;
+        current.push_back(*begin);
+        begin++;
+      }
+      if(*begin == '-')
+      {
+        throw std::invalid_argument("DataParser: Error. Invalid dash. Use '---' instead.");
       }
     }
 
-    while (begin_ != end_)
+    while (begin != end)
     {
-      if (isPunct && *(begin_ + 1) == '-')
+      if (std::isspace(*begin, locale))
       {
-        isPunct = false;
-      }
-      if (std::isspace(*begin_, locale))
-      {
-        begin_++;
+        begin++;
       }
       else break;
     }
 
-    if (begin_ != end_)
+    if (begin != end)
     {
-      if (std::ispunct(*begin_, locale))
+      if (std::ispunct(*begin, locale))
       {
-        if (*begin_ != '-')
+        if (*begin != '-')
         {
-          if (repeatPunct)
+          if (repeatPunct || current.empty())
           {
             throw std::invalid_argument("DataParser: Error. Invalid punctuation location.");
           }
-          current.push_back(*begin_);
-          begin_++;
-          isPunct = true;
+          current.push_back(*begin);
+          begin++;
         }
         repeatPunct = true;
       }
     }
 
-    if (begin_ == end_ || !current.empty())
+    if (begin == end || !current.empty())
     {
-      result_.push_back(current);
+      if (current == "---")
+      {
+        result_.back() += " ---";
+      }
+      else result_.push_back(current);
     }
   }
 }
@@ -174,12 +183,13 @@ void DataParser::print()
       out << "\n" << token;
       size = token.size() + 1;
     }
-    if(token != *result_.rbegin())
+    if (token != *result_.rbegin())
     {
-      if(size < lineWidth_ && size != 0)
+      if (size < lineWidth_ && size != 0)
       {
         out << " ";
       }
     }
+    else out << "\n";
   }
 }
